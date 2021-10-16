@@ -1,0 +1,26 @@
+.top-search-box {
+  width: 500px;
+
+  .search-box {
+    &:focus {
+      overflow: hidden !important;
+    }
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
+}
+.search-btn {
+  &:focus {
+    overflow: hidden !important;
+  }
+}
+input[type="search"] {
+  font-size: 14px;
+}
+
+@media screen and (max-width: 600px) {
+  .top-search-box {
+    width: 350px;
+  }
+}
