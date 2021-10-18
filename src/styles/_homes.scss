@@ -1,0 +1,41 @@
+@import "./variables";
+
+.choose-section {
+  background-color: $bg-secondary;
+}
+.service-number {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-image: linear-gradient(135deg, #23a999 1%, #00a1ba 52%, #006597);
+  vertical-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  color: white;
+  line-height: 50px;
+}
+
+.dash {
+  position: relative;
+  &::before {
+    position: absolute;
+    content: "";
+    height: 3px;
+    width: 30px;
+  }
+}
+.app-section {
+  .app-button {
+    background-color: #f16622 !important;
+    border: none;
+    &:hover {
+      background-color: $primary !important;
+    }
+  }
+}
+.app-form {
+  &::placeholder {
+    font-size: 12px !important;
+    padding-left: 20px;
+  }
+}

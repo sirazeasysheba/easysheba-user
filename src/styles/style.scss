@@ -9,3 +9,8 @@
 @import "./variables";
 @import "./header";
 @import "./forms";
+@import "./homes";
+
+.text-brand-primary {
+  color: $primary;
+}

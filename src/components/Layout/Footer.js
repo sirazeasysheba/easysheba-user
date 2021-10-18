@@ -5,7 +5,7 @@ import playStore from "../../media/play-store.png";
 import {
   faFacebookF,
   faYoutube,
-  faTwitter,
+  faInstagram,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 import {
@@ -32,7 +32,7 @@ const Footer = () => {
                 <ul className="list-unstyled d-flex justify-content-center">
                   <li className="social-icons text-center  mx-2 facebook">
                     <a
-                      href="https://www.facebook.com/digitallearningxyz"
+                      href="https://www.facebook.com/EasyShebaPlatform"
                       target="_blank"
                       rel="noreferrer"
                       style={{ color: "#a5b7d9" }}
@@ -45,10 +45,18 @@ const Footer = () => {
                     <FontAwesomeIcon icon={faYoutube} />
                   </li>
                   <li className="social-icons text-center mx-2 twitter">
-                    <FontAwesomeIcon icon={faTwitter} />
+                    <FontAwesomeIcon icon={faInstagram} />
                   </li>
                   <li className="social-icons text-center  mx-2 pinerest">
-                    <FontAwesomeIcon icon={faLinkedin} />
+                    <a
+                      href="https://www.linkedin.com/company/31311047/admin/"
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ color: "#a5b7d9" }}
+                    >
+                      {" "}
+                      <FontAwesomeIcon icon={faLinkedin} />
+                    </a>
                   </li>
                 </ul>
                 <div>
@@ -153,7 +161,10 @@ const Footer = () => {
           </Col>
         </Row>
       </div>
-      <div className="text-center bg-secondary fw-medium">
+      <div
+        className="text-center bg-secondary fw-medium"
+        style={{ marginBottom: -16 }}
+      >
         <p style={{ fontSize: 12, color: "#fff" }} className="p-4">
           Copyright @{new Date().getFullYear()} EasySheba Platform Limited | All
           Rights Reserved

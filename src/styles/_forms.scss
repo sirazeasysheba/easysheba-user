@@ -1,5 +1,17 @@
+.form-control {
+  position: relative;
+}
 .error {
   position: absolute;
   color: red !important;
   font-size: 0.8rem;
+}
+.password {
+  .eye-icon {
+    position: absolute;
+    top: 495px;
+    right: 520px;
+    cursor: pointer;
+    z-index: 1000;
+  }
 }

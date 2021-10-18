@@ -1,9 +1,12 @@
 import { Formik, Form } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import TextField from "../components/UI/TextField";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
+import { login } from "../redux/actions/auth.actions";
+import { useSelector } from "react-redux";
 const Login = () => {
   const validate = Yup.object({
     email: Yup.string().email("Email is Invalid").required("Email is required"),
@@ -11,6 +14,13 @@ const Login = () => {
       .min(6, "Password must be at least 6 characters")
       .required("Password is required"),
   });
+  //redux
+
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+  if (auth.authenticate) {
+    return <Redirect to={`/dashboard`} />;
+  }
   return (
     <>
       <Formik
@@ -20,7 +30,9 @@ const Login = () => {
         }}
         validationSchema={validate}
         onSubmit={(values) => {
-          console.log(values);
+          const user = values;
+          console.log(user);
+          dispatch(login(user));
         }}
       >
         {(formik) => (
@@ -35,24 +47,26 @@ const Login = () => {
                     type="email"
                     placeholder="abc@xyz.com"
                     name="email"
+                    // onChange={(e) => setEmail(e.target.value)}
                   />
                   <TextField
                     label="Password"
                     type="password"
                     placeholder="*******"
                     name="password"
+                    //onChange={(e) => setPassword(e.target.value)}
                   />
 
                   <div className="mb-3">
                     <input
-                      class="form-check-input me-2"
+                      className="form-check-input me-2"
                       type="checkbox"
                       value=""
                       id="flexCheckIndeterminate"
                     />
                     <label
                       className="form-check-label"
-                      for="flexCheckIndeterminate"
+                      htmlFor="flexCheckIndeterminate"
                       style={{ fontSize: 14 }}
                     >
                       Remember me?
@@ -76,17 +90,14 @@ const Login = () => {
                     {" "}
                     <Link
                       to="/forget-password"
-                      className="text-brand-primary fw-medium signIn-signUp-link text-danger"
+                      className="fw-medium text-danger"
                     >
                       Forget Password?
                     </Link>
                   </p>
                   <p className="text-muted text-center">
                     Don’t have an account?{" "}
-                    <Link
-                      to="/signup"
-                      className="text-brand-primary fw-medium signIn-signUp-link"
-                    >
+                    <Link to="/signup" className="fw-medium ">
                       Register
                     </Link>
                   </p>

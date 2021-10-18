@@ -1,8 +1,206 @@
 import React from "react";
-import Layout from "../Layout/Layout";
-
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import quality from "../../media/quality.svg";
+import price from "../../media/price.svg";
+import experts from "../../media/experts.svg";
+import equppied from "../../media/equppied.svg";
+import playStore from "../../media/play-store.png";
 const Home = () => {
-  return <div></div>;
+  return (
+    <>
+      <div className="choose-section mb-2 mt-5 py-5">
+        <Container style={{ fontSize: 14 }}>
+          <p>Why Choose EasySheba... ?</p>
+          <h2 className="fw-bold">Because we care about your comfort...</h2>
+          <Row>
+            <Col md={3}>
+              <div className="shadow text-center mt-5 p-3">
+                <img
+                  src={quality}
+                  alt=""
+                  className="image-fluid mx-auto"
+                  style={{ height: 150 }}
+                />
+                <h5 className="fw-bold mb-3">100% Quality Assured</h5>
+                <p style={{ minHeight: 63 }}>
+                  If you don't love our service, we will make it right.
+                </p>
+              </div>
+            </Col>
+            <Col md={3}>
+              <div className="shadow text-center mt-5 p-3">
+                <img
+                  src={price}
+                  alt=""
+                  className="image-fluid mx-auto"
+                  style={{ height: 150 }}
+                />
+                <h5 className="fw-bold mb-3">Affordable pricing</h5>
+                <p style={{ minHeight: 63 }}>
+                  See fixed prices before you book. No hidden charges.
+                </p>
+              </div>
+            </Col>
+            <Col md={3}>
+              <div className="shadow text-center mt-5 p-3">
+                <img
+                  src={experts}
+                  alt=""
+                  className="image-fluid mx-auto"
+                  style={{ height: 150 }}
+                />
+                <h5 className="fw-bold mb-3">Experts only</h5>
+                <p style={{ minHeight: 63 }}>
+                  Our professionals are well trained and have on-job expertise.
+                </p>
+              </div>
+            </Col>
+            <Col md={3}>
+              <div className="shadow text-center mt-5 p-3">
+                <img
+                  src={equppied}
+                  alt=""
+                  className="image-fluid mx-auto"
+                  style={{ height: 150 }}
+                />
+                <h5 className="fw-bold mb-3">Fully equipped</h5>
+                <p style={{ minHeight: 63 }}>
+                  We bring everything needed to get the job done well.
+                </p>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+
+      <Container fluid>
+        <Row className="px-5">
+          <Col md={3} className="py-2 text-center">
+            <div style={{ background: "#fafbfc" }}>
+              <h1>66+</h1>
+              <h5>Service </h5>
+            </div>
+          </Col>
+          <Col md={3} className="py-2 text-center">
+            <div style={{ background: "#fafbfc" }}>
+              <h1>114+</h1>
+              <h5>Service Men</h5>
+            </div>
+          </Col>
+          <Col md={3} className="py-2 text-center">
+            <div style={{ background: "#fafbfc" }}>
+              <h1>101+</h1>
+              <h5>Order Served</h5>
+            </div>
+          </Col>
+          <Col md={3} className="py-2 text-center">
+            <div style={{ background: "#fafbfc" }}>
+              <h1>54+</h1>
+              <h5>Five Star</h5>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+      <Container style={{ fontSize: 14, marginTop: 60 }}>
+        <div className="dash">
+          <p className="dash">How it works ?</p>
+        </div>
+        <h2 className="fw-bold mb-3">Easiest way to get a service</h2>
+        <Row>
+          <Col md={6}>
+            <img src="" alt="" />
+          </Col>
+          <Col md={6}>
+            <div className="d-flex mb-3">
+              <div>
+                <div className="service-number d-flex justify-content-center mt-2 me-3">
+                  <p>1</p>
+                </div>
+              </div>
+              <div>
+                <h5 className="fw-bold">Choose Any Package </h5>
+                <p>
+                  Choose and take any package you are searching for from the
+                  website or the app
+                </p>
+              </div>
+            </div>
+            <div className="d-flex mb-3">
+              <div>
+                <div className="service-number d-flex justify-content-center mt-2 me-3">
+                  <p>2</p>
+                </div>
+              </div>
+              <div>
+                <h5 className="fw-bold">Confirm </h5>
+                <p>
+                  Let us know your date and time to avail of the service. Please
+                  select the service provider based on their rating.
+                </p>
+              </div>
+            </div>
+            <div className="d-flex mb-3">
+              <div className="service-number d-flex justify-content-center mt-2 me-3">
+                <p>3</p>
+              </div>
+              <div>
+                <h5 className="fw-bold">Sit Back and Relax </h5>
+                <p>It's time to relax. Easy Sheba, Easy Life.</p>
+              </div>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+      <Container style={{ fontSize: 14, marginTop: 60 }}>
+        <Row>
+          <Col md={5}></Col>
+          <Col md={7}>
+            <div>
+              <p>DOWNLOAD OUR APP</p>
+              <h3 className="fw-bold my-3">Any Service, Any Time, Anywhere.</h3>
+              <p style={{ marginBottom: 30 }}>
+                Give us your mobile number. You’ll get an SMS with the app
+                download link.
+              </p>
+              <div className="app-section  my-3">
+                <Form className="d-flex mb-3">
+                  <Form.Group
+                    className="mb-3 app-form"
+                    controlId="formBasicEmail"
+                  >
+                    <Form.Control
+                      type="text"
+                      placeholder="Type your mobile number"
+                      className="app-form shadow-none"
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3 " controlId="formBasicEmail">
+                    <Button className="app-button shadow-none">
+                      Get the app
+                    </Button>
+                  </Form.Group>
+                </Form>
+                <div className="mb-5">
+                  <a
+                    href="https://play.google.com/store/apps/details?id=multiplexer.lab.easysheba"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      src={playStore}
+                      alt=""
+                      className="image-fluid"
+                      style={{ height: 40 }}
+                    />{" "}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </>
+  );
 };
 
 export default Home;
