@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router";
+import AllServices from "./components/AllServices/AllServices";
 import Home from "./components/Home/Home";
 import Footer from "./components/Layout/Footer";
 import Header from "./components/Layout/Header";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import VideoModal from "./components/UI/VideoModal";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
+import Policy from "./pages/Policy";
 import SignUp from "./pages/SignUp";
 import { isUserLoggedIn } from "./redux/actions/auth.actions";
 import "./styles/style.scss";
@@ -35,6 +38,15 @@ function App() {
         <PrivateRoute exact path="/dashboard">
           <Dashboard />
         </PrivateRoute>
+        <Route exact path="/video">
+          <VideoModal />
+        </Route>
+        <Route exact path="/all-services">
+          <AllServices />
+        </Route>
+        <Route exact path="/privacy-policy">
+          <Policy />
+        </Route>
       </Switch>
       <Footer />
     </div>

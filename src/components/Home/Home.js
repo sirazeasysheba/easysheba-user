@@ -1,14 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import quality from "../../media/quality.svg";
 import price from "../../media/price.svg";
 import experts from "../../media/experts.svg";
 import equppied from "../../media/equppied.svg";
 import playStore from "../../media/play-store.png";
+import app from "../../media/app-download.webp";
+import service from "../../media/service-request.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import ServiceModal from "../UI/ServiceModal";
+import ServiceCart from "../Layout/ServiceCart";
+import { Link } from "react-router-dom";
 const Home = () => {
+  const [modalShow, setModalShow] = useState(false);
+  const handleShow = () => setModalShow(true);
+  const handleClose = () => {
+    console.log("hi");
+    setModalShow(false);
+  };
   return (
     <>
-      <div className="choose-section mb-2 mt-5 py-5">
+      {/* Trending */}
+      {/* <Container className="mt-5">
+        <h4 className="fw-bold mb-3">Trending</h4>
+        <Link to="/details" className="text-decoration-none text-dark">
+          {" "}
+          <ServiceCart />
+        </Link>
+      </Container>
+      <Container className="mt-5">
+        <h4 className="fw-bold mb-3">Recommended</h4>
+        <Link to="/details" className="text-decoration-none text-dark">
+          {" "}
+          <ServiceCart />
+        </Link>
+      </Container> */}
+      <div className="choose-section mb-2 mt-5 pt-5">
         <Container style={{ fontSize: 14 }}>
           <p>Why Choose EasySheba... ?</p>
           <h2 className="fw-bold">Because we care about your comfort...</h2>
@@ -72,9 +100,8 @@ const Home = () => {
           </Row>
         </Container>
       </div>
-
-      <Container fluid>
-        <Row className="px-5">
+      <Container>
+        <Row className="mt-5">
           <Col md={3} className="py-2 text-center">
             <div style={{ background: "#fafbfc" }}>
               <h1>66+</h1>
@@ -153,8 +180,10 @@ const Home = () => {
       </Container>
       <Container style={{ fontSize: 14, marginTop: 60 }}>
         <Row>
-          <Col md={5}></Col>
-          <Col md={7}>
+          <Col md={5}>
+            <img src={app} alt="" className="image-fluid" />
+          </Col>
+          <Col md={7} className="d-flex align-items-center">
             <div>
               <p>DOWNLOAD OUR APP</p>
               <h3 className="fw-bold my-3">Any Service, Any Time, Anywhere.</h3>
@@ -199,6 +228,85 @@ const Home = () => {
           </Col>
         </Row>
       </Container>
+      <div className="" style={{ backgroundColor: "#f4f5f8" }}>
+        <Container>
+          <Row md={8} className="d-flex align-items-center">
+            <Col>
+              <div>
+                <h5 className="mb-4">
+                  Want to Request For a Customize Service?
+                </h5>
+                <button className="request-btn me-5" onClick={handleShow}>
+                  REQUEST A SERVICE
+                </button>
+                <button className="call-btn">
+                  {" "}
+                  <FontAwesomeIcon
+                    icon={faPhone}
+                    className="fa-rotate-90 me-1"
+                  />{" "}
+                  01966-050506
+                </button>
+              </div>
+            </Col>
+            <Col md={4}>
+              <img src={service} alt="" className="image-fluid service-img" />
+            </Col>
+          </Row>
+          <ServiceModal
+            modalShow={modalShow}
+            handleClose={handleClose}
+            title={"Request for service"}
+          >
+            <Form className="modal-form">
+              <Form.Group
+                className="mb-3"
+                controlId="formBasicEmail"
+                style={{ width: 300 }}
+              >
+                <Form.Label>আপনার এলাকা?</Form.Label>
+                <Form.Select>
+                  <option>Aftabnagar</option>
+                </Form.Select>
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>আপনার কি ধরনের সার্ভিস প্রয়োজন?</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  placeholder="উদাহরণ : অমার এসি দিয়ে পানি পড়ছে .."
+                  style={{ height: 80 }}
+                  className="modal-input"
+                />
+              </Form.Group>
+              <Row>
+                <Col>
+                  <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>আপনার পরিচয়?</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="আপনার নাম"
+                      style={{ height: 50 }}
+                      className="modal-input"
+                    />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label></Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="আপনার পরিচয়"
+                      className="mt-2 modal-input"
+                      style={{ height: 50 }}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+            </Form>
+          </ServiceModal>
+        </Container>
+      </div>
     </>
   );
 };

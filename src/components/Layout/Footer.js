@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <div className="footer mt-5">
+      <div className="footer">
         <Row className="me-2">
           <Col md={4} className="d-flex justify-content-center mt-5">
             <div>
@@ -103,7 +103,7 @@ const Footer = () => {
             <Link to="/success-stories" className="d-block  mb-2">
               Terms and Conditions
             </Link>
-            <Link to="/contact" className="d-block  mb-2">
+            <Link to="/privacy-policy" className="d-block  mb-2">
               Privacy and Policies
             </Link>
           </Col>
@@ -112,15 +112,15 @@ const Footer = () => {
               <h6 className="text-white mb-4 mt-5">COMPANIES</h6>
               <li className="d-block mb0 "></li>
               <Link
-                to="/courses/web-development"
+                to="http://digitalearning.xyz/"
                 className="d-block  mb-2 mt-1"
               >
                 Digital Learning XYZ
               </Link>
-              <Link to="/courses/graphic-design" className="d-block  mb-2">
+              <Link to="/" className="d-block  mb-2">
                 Agriona Food Ltd
               </Link>
-              <Link to="/courses/digital-marketing" className="d-block  mb-2">
+              <Link to="/" className="d-block  mb-2">
                 Bhidu Agro Ltd
               </Link>
             </div>

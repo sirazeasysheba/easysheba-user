@@ -1,0 +1,14 @@
+@import "./variables";
+
+.services {
+  border-right: 2px solid $primary;
+  ul {
+    li {
+      padding-bottom: 15px;
+    }
+    a {
+      text-decoration: none;
+      color: $primary;
+    }
+  }
+}
