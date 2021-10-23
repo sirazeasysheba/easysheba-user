@@ -12,6 +12,7 @@ import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import ServiceModal from "../UI/ServiceModal";
 import ServiceCart from "../Layout/ServiceCart";
 import { Link } from "react-router-dom";
+import BannerSlider from "../BannerSlider/BannerSlider";
 const Home = () => {
   const [modalShow, setModalShow] = useState(false);
   const handleShow = () => setModalShow(true);
@@ -36,7 +37,8 @@ const Home = () => {
           <ServiceCart />
         </Link>
       </Container> */}
-      <div className="choose-section mb-2 mt-5 pt-5">
+      <div className="choose-section mb-2 pt-5">
+        <BannerSlider />
         <Container style={{ fontSize: 14 }}>
           <p>Why Choose EasySheba... ?</p>
           <h2 className="fw-bold">Because we care about your comfort...</h2>

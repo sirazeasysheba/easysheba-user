@@ -1,9 +1,9 @@
 import { userConstants } from "../actions/constants";
 
 const initialState = {
-  message: "",
-  error: null,
   loading: false,
+  error: null,
+  message: "",
 };
 const userReducer = (state = initialState, action) => {
   console.log(action);
@@ -18,6 +18,10 @@ const userReducer = (state = initialState, action) => {
       state = {
         ...state,
         loading: false,
+        // user: action.payload.user,
+        // token: action.payload.token,
+        // authenticate: true,
+        // authenticating: false,
         message: action.payload.message,
       };
       break;

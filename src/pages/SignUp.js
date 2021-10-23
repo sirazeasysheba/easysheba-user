@@ -30,6 +30,7 @@ const SignUp = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const auth = useSelector((state) => state.auth);
+
   if (auth.authenticate) {
     return <Redirect to={`/login`} />;
   }
@@ -53,7 +54,7 @@ const SignUp = () => {
         }}
       >
         {(formik) => (
-          <div className="my-2 form-wrapper px-2">
+          <div className="mb-2 form-wrapper px-2" style={{ marginTop: 100 }}>
             <p className="text-center text-muted">Signup to continue</p>
             <div>
               <div className="d-flex justify-content-center">

@@ -70,8 +70,12 @@ input[type="search"] {
     border: 1px solid #f16622;
   }
 }
+
 @media screen and (max-width: 600px) {
   .top-search-box {
     width: 350px;
+  }
+  .header {
+    position: relative !important;
   }
 }

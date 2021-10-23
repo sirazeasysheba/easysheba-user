@@ -51,16 +51,13 @@ export const isUserLoggedIn = () => {
 
 export const signOut = () => {
   return async (dispatch) => {
+    // localStorage.clear();
     dispatch({
       type: authConstants.LOGOUT_REQUEST,
     });
     const res = await axios.post(`/signout`);
 
-    // localStorage.clear();
-
-    dispatch({
-      type: authConstants.LOGOUT_REQUEST,
-    });
+    //localStorage.clear();
 
     if (res.status === 200) {
       localStorage.clear();

@@ -4,10 +4,10 @@ import ServiceCart from "../Layout/ServiceCart";
 import { Link } from "react-router-dom";
 const AllServices = () => {
   return (
-    <div className="All-services my-5">
+    <div className="All-services" style={{ marginTop: 100 }}>
       <Container>
         <Row>
-          <Col md={3} className="service-title">
+          <Col md={3} className="service-title mb-5">
             <h3 className="fw-bold mb-3">All Services</h3>
             <div className="services">
               <ul className="list-unstyled">

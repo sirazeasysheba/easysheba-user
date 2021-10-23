@@ -13,10 +13,15 @@ import Policy from "./pages/Policy";
 import SignUp from "./pages/SignUp";
 import { isUserLoggedIn } from "./redux/actions/auth.actions";
 import "./styles/style.scss";
-
+//import "swiper/swiper.scss";
+import "swiper/swiper-bundle.min.css";
+import "swiper/swiper.min.css";
+//import "swiper/scss/pagination";
+// import "swiper/scss/navigation";
 function App() {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());

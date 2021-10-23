@@ -36,7 +36,7 @@ const Login = () => {
         }}
       >
         {(formik) => (
-          <div className="my-5 form-wrapper px-2">
+          <div className="mb-5 form-wrapper px-2" style={{ marginTop: 100 }}>
             <h3 className="text-center mb-2">Welcome to EasySheba</h3>
             <p className="text-center text-muted">Login to continue</p>
             <div>

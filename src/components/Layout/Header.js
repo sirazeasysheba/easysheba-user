@@ -27,6 +27,7 @@ import { signOut } from "../../redux/actions/auth.actions";
 
 const Header = () => {
   const token = window.localStorage.getItem("token");
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const logout = () => {
@@ -35,7 +36,13 @@ const Header = () => {
   };
   return (
     <>
-      <Navbar bg="light" expand="lg">
+      <Navbar
+        bg="light"
+        expand="lg"
+        fixed="top"
+        className="header"
+        style={{ marginBottom: 100 }}
+      >
         <Container fluid>
           <Link to="/" className="navbar-brand mx-5">
             {" "}
@@ -73,7 +80,7 @@ const Header = () => {
                   All Services
                 </NavLink>
               </li>
-              {token && (
+              {auth.authenticate && (
                 <li className="nav-item fw-bold me-2">
                   <NavLink to="/notifications" className="nav-link">
                     <FontAwesomeIcon icon={faBell} style={{ color: "black" }} />
@@ -90,7 +97,7 @@ const Header = () => {
                   <span id="span"></span>
                 </NavLink>
               </li>
-              {token ? (
+              {auth.authenticate ? (
                 <li className="nav-item fw-bold me-5 ">
                   <span className="nav-link">
                     <Dropdown>

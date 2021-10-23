@@ -1,45 +1,52 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Autoplay, Navigation } from "swiper";
+import banner from "../../media/banner (1).jpg";
+import banner1 from "../../media/banner (2).jpg";
+import banner2 from "../../media/banner (3).jpg";
+import banner3 from "../../media/banner (4).jpg";
+import banner4 from "../../media/banner (5).jpg";
+import banner5 from "../../media/banner (6).jpg";
 
-// Import Swiper styles
-import "swiper/css";
-// import "/swiper/css/effect-fade";
-// import "/swiper/css/navigation";
-// import "/swiper/css/pagination";
-
-// import Swiper core and required modules
-import SwiperCore, { EffectFade, Navigation, Pagination } from "swiper";
-
-// install Swiper modules
-SwiperCore.use([EffectFade, Navigation, Pagination]);
+SwiperCore.use([Autoplay, Navigation]);
 
 const BannerSlider = () => {
   return (
-    <>
-      <Swiper
-        spaceBetween={30}
-        effect={"fade"}
-        navigation={true}
-        pagination={{
-          clickable: true,
-        }}
-        className="mySwiper"
-      >
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-        </SwiperSlide>
-      </Swiper>
-    </>
+    <Swiper
+      spaceBetween={16}
+      slidesPerView={1}
+      loop={3}
+      autoplay={{
+        delay: 3000,
+        disableOnInteraction: false,
+      }}
+      navigation={true}
+      onSlideChange={() => console.log("slide change")}
+      onSwiper={(swiper) => console.log(swiper)}
+      className="px-2 mx-auto mb-3"
+      style={{ maxWidth: "100%" }}
+    >
+      <SwiperSlide className="rounded-2 d-flex align-items-center justify-content-center text-white">
+        <img src={banner} alt="" className="image-fluid" />
+      </SwiperSlide>
+      <SwiperSlide className=" rounded-2 d-flex align-items-center justify-content-center text-white">
+        <img src={banner1} alt="" className="image-fluid" />
+      </SwiperSlide>
+      <SwiperSlide className="rounded-2 d-flex align-items-center justify-content-center text-white">
+        <img src={banner2} alt="" className="image-fluid" />
+      </SwiperSlide>
+      <SwiperSlide className=" rounded-2 d-flex align-items-center justify-content-center text-white">
+        <img src={banner3} alt="" className="image-fluid" />
+      </SwiperSlide>
+      <SwiperSlide className=" rounded-2 d-flex align-items-center justify-content-center text-white">
+        <img src={banner4} alt="" className="image-fluid" />
+      </SwiperSlide>
+      <SwiperSlide className=" rounded-2 d-flex align-items-center justify-content-center text-white">
+        <img src={banner5} alt="" className="image-fluid" />
+      </SwiperSlide>
+    </Swiper>
   );
 };
+
 export default BannerSlider;

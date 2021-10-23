@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 const Policy = () => {
   return (
-    <div className="my-5">
-      <Container>
+    <div style={{ marginTop: 100 }}>
+      <Container className="my-5">
         <p>
           Our management has developed this Privacy Statement(Policy) to express
           our firm commitment to aid our users better understand what
