@@ -28,22 +28,52 @@ const BannerSlider = () => {
       style={{ maxWidth: "100%" }}
     >
       <SwiperSlide className="rounded-2 d-flex align-items-center justify-content-center text-white">
-        <img src={banner} alt="" className="image-fluid" />
+        <img
+          src={banner}
+          alt=""
+          className="image-fluid"
+          style={{ maxHeight: 400 }}
+        />
       </SwiperSlide>
       <SwiperSlide className=" rounded-2 d-flex align-items-center justify-content-center text-white">
-        <img src={banner1} alt="" className="image-fluid" />
+        <img
+          src={banner1}
+          alt=""
+          className="image-fluid"
+          style={{ maxHeight: 400 }}
+        />
       </SwiperSlide>
       <SwiperSlide className="rounded-2 d-flex align-items-center justify-content-center text-white">
-        <img src={banner2} alt="" className="image-fluid" />
+        <img
+          src={banner2}
+          alt=""
+          className="image-fluid"
+          style={{ maxHeight: 400 }}
+        />
       </SwiperSlide>
       <SwiperSlide className=" rounded-2 d-flex align-items-center justify-content-center text-white">
-        <img src={banner3} alt="" className="image-fluid" />
+        <img
+          src={banner3}
+          alt=""
+          className="image-fluid"
+          style={{ maxHeight: 400 }}
+        />
       </SwiperSlide>
       <SwiperSlide className=" rounded-2 d-flex align-items-center justify-content-center text-white">
-        <img src={banner4} alt="" className="image-fluid" />
+        <img
+          src={banner4}
+          alt=""
+          className="image-fluid"
+          style={{ maxHeight: 400 }}
+        />
       </SwiperSlide>
       <SwiperSlide className=" rounded-2 d-flex align-items-center justify-content-center text-white">
-        <img src={banner5} alt="" className="image-fluid" />
+        <img
+          src={banner5}
+          alt=""
+          className="image-fluid"
+          style={{ maxHeight: 400 }}
+        />
       </SwiperSlide>
     </Swiper>
   );
