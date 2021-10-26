@@ -22,10 +22,10 @@ const BannerSlider = () => {
         disableOnInteraction: false,
       }}
       navigation={true}
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
+      // onSlideChange={() => console.log("slide change")}
+      // onSwiper={(swiper) => console.log(swiper)}
       className="px-2 mx-auto mb-3"
-      style={{ maxWidth: "100%" }}
+      style={{ maxWidth: "800px" }}
     >
       <SwiperSlide className="rounded-2 d-flex align-items-center justify-content-center text-white">
         <img

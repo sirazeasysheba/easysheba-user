@@ -1,5 +1,6 @@
 * {
   margin: 0;
+  scroll-behavior: smooth;
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -27,4 +28,17 @@
 .swiper-slide img {
   display: block;
   width: 100%;
+}
+
+.link {
+  text-decoration: none;
+  color: $primary;
+}
+
+.details {
+  background: linear-gradient(270deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6))
+      center center / cover no-repeat,
+    url("../media/1619427700_acservicing.jpg"), url("../media//55541bd.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }

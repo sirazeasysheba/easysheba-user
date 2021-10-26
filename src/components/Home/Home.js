@@ -4,41 +4,58 @@ import quality from "../../media/quality.svg";
 import price from "../../media/price.svg";
 import experts from "../../media/experts.svg";
 import equppied from "../../media/equppied.svg";
+import gif from "../../media/zendesk.gif";
 import playStore from "../../media/play-store.png";
 import app from "../../media/app-download.webp";
 import service from "../../media/service-request.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import ServiceModal from "../UI/ServiceModal";
-import ServiceCart from "../Layout/ServiceCart";
 import { Link } from "react-router-dom";
 import BannerSlider from "../BannerSlider/BannerSlider";
+import { useSelector } from "react-redux";
+
 const Home = () => {
   const [modalShow, setModalShow] = useState(false);
   const handleShow = () => setModalShow(true);
   const handleClose = () => {
-    console.log("hi");
     setModalShow(false);
   };
+
+  const category = useSelector((state) => state.category);
+
   return (
     <>
-      {/* Trending */}
-      {/* <Container className="mt-5">
-        <h4 className="fw-bold mb-3">Trending</h4>
-        <Link to="/details" className="text-decoration-none text-dark">
-          {" "}
-          <ServiceCart />
-        </Link>
-      </Container>
-      <Container className="mt-5">
-        <h4 className="fw-bold mb-3">Recommended</h4>
-        <Link to="/details" className="text-decoration-none text-dark">
-          {" "}
-          <ServiceCart />
-        </Link>
-      </Container> */}
       <div className="choose-section mb-2 pt-5">
         <BannerSlider />
+        {/* <img
+          src={gif}
+          alt=""
+          className="image-fluid"
+          style={{ width: "80%" }}
+        /> */}
+        {/* Category */}
+        <div className="my-5">
+          <Container className="d-flex">
+            {category.categories.map((cat, index) => (
+              <Link to="/all-services" className="link">
+                <div key={index} className="mx-2">
+                  {cat.categoryImage && (
+                    <div className="d-flex justify-content-center">
+                      <img
+                        src={cat.categoryImage}
+                        alt=""
+                        style={{ maxHeight: 60 }}
+                      />
+                    </div>
+                  )}
+                  <h6>{cat.name}</h6>
+                </div>
+              </Link>
+            ))}
+          </Container>
+        </div>
+
         <Container style={{ fontSize: 14 }}>
           <p>Why Choose EasySheba... ?</p>
           <h2 className="fw-bold">Because we care about your comfort...</h2>

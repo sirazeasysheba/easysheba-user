@@ -16,6 +16,8 @@ import "./styles/style.scss";
 //import "swiper/swiper.scss";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
+import { getAllCategory } from "./redux/actions";
+import ProductDetails from "./pages/ProductDetails";
 //import "swiper/scss/pagination";
 // import "swiper/scss/navigation";
 function App() {
@@ -26,11 +28,15 @@ function App() {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
     }
+    dispatch(getAllCategory());
   }, []);
   return (
     <div className="App">
       <Header />
       <Switch>
+        <Route exact path="/product-details">
+          <ProductDetails />
+        </Route>
         <Route exact path="/">
           <Home />
         </Route>
