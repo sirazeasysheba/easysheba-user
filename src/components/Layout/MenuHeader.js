@@ -1,40 +1,69 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllCategory } from "../../redux/actions";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+import { Container, Nav, Navbar } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { Link, NavLink } from "react-router-dom";
 
 const MenuHeader = () => {
   const category = useSelector((state) => state.category);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getAllCategory());
-  }, []);
-  const renderCategories = (categories) => {
-    let categoryList = [];
 
-    for (let category of categories) {
-      categoryList.push(
-        <li key={category.name}>
-          {category.parentId ? (
-            <a href={category.slug}> {category.name}</a>
-          ) : (
-            <span> {category.name}</span>
-          )}
-
-          {category.children.length > 0 ? (
-            <ul>{renderCategories(category.children)}</ul>
-          ) : null}
-        </li>
-      );
-    }
-    return categoryList;
-  };
   return (
     <div className="menuHeader">
-      <ul>
-        {category.categories.length > 0
-          ? renderCategories(category.categories)
-          : null}
-      </ul>
+      <Navbar collapseOnSelect expand="lg" bg="light">
+        <Container>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav>
+              <li className="nav-item mx-auto">
+                <NavLink
+                  to="/all-services"
+                  className="nav-link text-brand-primary"
+                  style={{ fontSize: 13, color: "black" }}
+                >
+                  All Services
+                </NavLink>
+              </li>
+              {category.categories &&
+                category.categories.map((cat, index) => (
+                  <li className="nav-item dropdown mx-auto">
+                    <span
+                      className="nav-link dropdown-toggle"
+                      id="navbarDropdown"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      style={{ fontSize: 13, color: "black" }}
+                    >
+                      {cat.name}
+                      <FontAwesomeIcon
+                        icon={faAngleDown}
+                        className="ms-1 menubar-icon"
+                      />
+                    </span>
+                    <ul
+                      className="dropdown-menu"
+                      aria-labelledby="navbarDropdown"
+                    >
+                      {cat.children &&
+                        cat.children.map((child, _index) => (
+                          <li>
+                            <Link
+                              to="/profile"
+                              className="dropdown-item"
+                              style={{ fontSize: 13, color: "black" }}
+                            >
+                              {child.name}
+                            </Link>
+                          </li>
+                        ))}
+                    </ul>
+                  </li>
+                ))}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </div>
   );
 };

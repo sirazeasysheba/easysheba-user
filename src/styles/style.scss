@@ -15,20 +15,6 @@
 .text-brand-primary {
   color: $primary;
 }
-.swiper {
-  width: 80%;
-  height: 500px;
-}
-
-.swiper-slide {
-  background-position: center;
-  background-size: cover;
-}
-
-.swiper-slide img {
-  display: block;
-  width: 100%;
-}
 
 .link {
   text-decoration: none;
@@ -41,4 +27,13 @@
     url("../media/1619427700_acservicing.jpg"), url("../media//55541bd.png");
   background-repeat: no-repeat;
   background-size: cover;
+}
+.category-card {
+  //margin: 100px 100px;
+  //margin-left: 100px;
+}
+.service-slide-container {
+  // background: gray;
+  border-radius: 20px;
+  box-shadow: inset 0 2px 5px 0 rgba(0, 0, 0, 0.1);
 }

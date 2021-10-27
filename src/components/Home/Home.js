@@ -4,7 +4,7 @@ import quality from "../../media/quality.svg";
 import price from "../../media/price.svg";
 import experts from "../../media/experts.svg";
 import equppied from "../../media/equppied.svg";
-import gif from "../../media/zendesk.gif";
+import customer from "../../media/customer-logo.png";
 import playStore from "../../media/play-store.png";
 import app from "../../media/app-download.webp";
 import service from "../../media/service-request.png";
@@ -14,6 +14,7 @@ import ServiceModal from "../UI/ServiceModal";
 import { Link } from "react-router-dom";
 import BannerSlider from "../BannerSlider/BannerSlider";
 import { useSelector } from "react-redux";
+import ServiceSlide from "../BannerSlider/ServiceSlide";
 
 const Home = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -21,8 +22,6 @@ const Home = () => {
   const handleClose = () => {
     setModalShow(false);
   };
-
-  const category = useSelector((state) => state.category);
 
   return (
     <>
@@ -36,23 +35,11 @@ const Home = () => {
         /> */}
         {/* Category */}
         <div className="my-5">
-          <Container className="d-flex">
-            {category.categories.map((cat, index) => (
-              <Link to="/all-services" className="link">
-                <div key={index} className="mx-2">
-                  {cat.categoryImage && (
-                    <div className="d-flex justify-content-center">
-                      <img
-                        src={cat.categoryImage}
-                        alt=""
-                        style={{ maxHeight: 60 }}
-                      />
-                    </div>
-                  )}
-                  <h6>{cat.name}</h6>
-                </div>
-              </Link>
-            ))}
+          <Container>
+            <h3 className="text-center">Our Services</h3>
+            <div className="">
+              <ServiceSlide />
+            </div>
           </Container>
         </div>
 
@@ -197,6 +184,7 @@ const Home = () => {
           </Col>
         </Row>
       </Container>
+
       <Container style={{ fontSize: 14, marginTop: 60 }}>
         <Row>
           <Col md={5}>
@@ -324,6 +312,10 @@ const Home = () => {
               </Row>
             </Form>
           </ServiceModal>
+        </Container>
+        <Container className="mt-5 text-center">
+          <h3>Trusted by 5000+ customers for solving their problem</h3>
+          <img src={customer} alt="" />
         </Container>
       </div>
     </>

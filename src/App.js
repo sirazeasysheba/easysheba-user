@@ -18,6 +18,7 @@ import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { getAllCategory } from "./redux/actions";
 import ProductDetails from "./pages/ProductDetails";
+import ServiceSlide from "./components/BannerSlider/ServiceSlide";
 //import "swiper/scss/pagination";
 // import "swiper/scss/navigation";
 function App() {
@@ -37,6 +38,7 @@ function App() {
         <Route exact path="/product-details">
           <ProductDetails />
         </Route>
+
         <Route exact path="/">
           <Home />
         </Route>

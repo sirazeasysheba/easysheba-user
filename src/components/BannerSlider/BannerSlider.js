@@ -1,4 +1,5 @@
 import React from "react";
+import "../../styles/_topBanner.scss";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Navigation } from "swiper";
