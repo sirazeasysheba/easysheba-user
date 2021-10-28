@@ -111,12 +111,14 @@ const Footer = () => {
             <div className="">
               <h6 className="text-white mb-4 mt-5">COMPANIES</h6>
               <li className="d-block mb0 "></li>
-              <Link
-                to="http://digitalearning.xyz/"
+              <a
+                href="http://digitalearning.xyz/"
+                target="_blank"
+                rel="noreferrer"
                 className="d-block  mb-2 mt-1"
               >
                 Digital Learning XYZ
-              </Link>
+              </a>
               <Link to="/" className="d-block  mb-2">
                 Agriona Food Ltd
               </Link>

@@ -32,8 +32,12 @@
   //margin: 100px 100px;
   //margin-left: 100px;
 }
-.service-slide-container {
-  // background: gray;
-  border-radius: 20px;
-  box-shadow: inset 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+
+.modal-btn {
+  border: none !important;
+  background: transparent;
+  position: relative;
+  height: 60px;
+  width: 60px;
+  top: 40%;
 }

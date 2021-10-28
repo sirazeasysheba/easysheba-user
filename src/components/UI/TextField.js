@@ -5,10 +5,12 @@ const TextField = ({ label, ...props }) => {
   const [field, meta] = useField(props);
 
   return (
-    <div className="mb-4" style={{ width: 350 }}>
-      <label htmlFor={field.name} style={{ fontSize: 14, fontWeight: "600" }}>
-        {label} <span className="text-danger">*</span>
-      </label>
+    <div className="mb-4">
+      {label && (
+        <label htmlFor={field.name} style={{ fontSize: 14, fontWeight: "600" }}>
+          {label} <span className="text-danger">*</span>
+        </label>
+      )}
       <input
         // type={field.type}
         // name={field.name}

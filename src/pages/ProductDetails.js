@@ -1,20 +1,36 @@
-import { faPhoneAlt, faStar } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPhoneAlt,
+  faStar as faStar2,
+  faStarHalfAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { faCheckCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import review from "../media/reviewer.svg";
+import * as Yup from "yup";
+import React, { useState } from "react";
 import {
   Breadcrumb,
   Col,
   Container,
-  Form,
   Nav,
   Row,
   Tab,
+  Form,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import image from "../media/1619427700_acservicing.jpg";
 import MenuHeader from "../components/Layout/MenuHeader";
+import TextField from "../components/UI/TextField";
+import { Formik, Form as Form2 } from "formik";
+
 const ProductDetails = () => {
+  const [rating, setRating] = useState("");
+  const [comment, setComment] = useState("");
+  const validate = Yup.object({
+    email: Yup.string().email("Email is Invalid").required("Email is required"),
+    name: Yup.string().required("Name is required"),
+  });
   return (
     <div div style={{ marginTop: 57 }}>
       <MenuHeader />
@@ -63,7 +79,7 @@ const ProductDetails = () => {
                   }}
                 >
                   <h5 className="me-2 ps-2 pt-2 fw-bold">
-                    <FontAwesomeIcon icon={faStar} /> 4.88
+                    <FontAwesomeIcon icon={faStar2} /> 4.88
                   </h5>
                   <h6 className="pt-2"> out of 5</h6>
                 </div>
@@ -119,7 +135,7 @@ const ProductDetails = () => {
                     className="me-2 ps-2 pt-2 fw-bold"
                     style={{ fontSize: 16 }}
                   >
-                    <FontAwesomeIcon icon={faStar} /> 4.88
+                    <FontAwesomeIcon icon={faStar2} /> 4.88
                   </h5>
                   <h6 className="pt-2" style={{ fontSize: 12 }}>
                     {" "}
@@ -181,10 +197,13 @@ const ProductDetails = () => {
                       <s className="me-2">৳ 500.00</s> ৳ 400.00
                     </p>
 
-                    <Form.Group controlId="formFileMultiple">
+                    <Form.Group
+                      controlId="formFileMultiple"
+                      style={{ fontSize: 12 }}
+                    >
                       <input
                         type="submit"
-                        className="request-btn"
+                        className="review-btn"
                         value="Add to Cart"
                       />
                     </Form.Group>
@@ -197,12 +216,12 @@ const ProductDetails = () => {
       </div>
       <Container>
         <Row>
-          <Col md={7}>
+          <Col md={8}>
             <Row className="mt-3">
               <Tab.Container id="left-tabs-example" defaultActiveKey="details">
                 <Row>
                   <Nav variant="pills">
-                    <Row className="w-100 mx-2 mb-3">
+                    <Row className="w-100 mx-2 mb-3 border-bottom">
                       <Col md={3} className="px-0">
                         <Nav.Item className="active-toggle-btn">
                           <Nav.Link
@@ -239,81 +258,306 @@ const ProductDetails = () => {
 
                   <Tab.Content>
                     <Tab.Pane eventKey="details">
-                      <div className="mt-4">
-                        <h5 className="fw-bold">
-                          This course will highlight on:{" "}
-                        </h5>
-                        <ul
-                          className="list-unstyled text-muted"
-                          style={{ fontSize: 14 }}
-                        >
-                          {/* {highlightList?.map((li) => (
-                          <li className="mt-1">
-                            <FontAwesomeIcon
-                              icon={faFileInvoice}
-                              style={{ color: "#02863A" }}
-                            />{" "}
-                            {li}
-                          </li>
-                        ))} */}
-                        </ul>
-                      </div>
-                      <div>
-                        <h5 className="fw-bold">Software & Tools Taught</h5>
-                        <ul
-                          className="list-unstyled text-muted"
-                          style={{ fontSize: 14 }}
-                        >
-                          {/* {softwareList?.map((li) => (
-                          <li className="mt-1">
-                            <FontAwesomeIcon
-                              icon={faFileInvoice}
-                              style={{ color: "#02863A" }}
-                            />{" "}
-                            {li}
-                          </li>
-                        ))} */}
-                        </ul>
-                      </div>
+                      <div className="mt-4"></div>
                     </Tab.Pane>
                     <Tab.Pane eventKey="additional-information">
-                      <div className="mt-3">
-                        <h3> COURSE MODULE</h3>
-                        <ul
-                          className="list-unstyled text-muted"
-                          style={{ fontSize: 14 }}
-                        >
-                          {/* {moduleList?.map((li) => (
-                          <li className="mt-1">
-                            <FontAwesomeIcon
-                              icon={faFileInvoice}
-                              style={{ color: "#02863A" }}
-                            />{" "}
-                            {li}
-                          </li>
-                        ))} */}
-                        </ul>
-                      </div>
+                      <div className="mt-3"></div>
                     </Tab.Pane>
                     <Tab.Pane eventKey="reviews">
                       <div className="mt-3">
-                        <h3>
-                          After completing the course student will be able to:{" "}
-                        </h3>
-                        <ul
-                          className="list-unstyled text-muted"
-                          style={{ fontSize: 14 }}
-                        >
-                          {/* {objectiveList?.map((li) => (
-                          <li className="mt-1">
-                            <FontAwesomeIcon
-                              icon={faHandPointRight}
-                              style={{ color: "#02863A" }}
-                            />{" "}
-                            {li}
-                          </li>
-                        ))} */}
-                        </ul>
+                        <Row>
+                          <Col md={6}>
+                            <h5>Rating From Customers</h5>
+                            <h1 className=" ms-5 mt-4" style={{ fontSize: 60 }}>
+                              4.50
+                            </h1>
+                            <div
+                              className=""
+                              style={{ marginLeft: 67, color: "#ecd115" }}
+                            >
+                              <FontAwesomeIcon icon={faStar2} />
+                              <FontAwesomeIcon icon={faStar2} />
+                              <FontAwesomeIcon icon={faStar2} />
+                              <FontAwesomeIcon icon={faStar2} />
+                              <FontAwesomeIcon icon={faStarHalfAlt} />
+                            </div>
+                            <small
+                              className="text-muted"
+                              style={{ marginLeft: 42, fontSize: 11 }}
+                            >
+                              61 reviews and 808 ratings
+                            </small>
+
+                            {/* Skills */}
+                            <div className="Skills mt-3">
+                              <div className="skills-containers">
+                                <div className="skill-bar d-flex ">
+                                  <p className="skill-text">5</p>
+                                  <div className="skill-progress">
+                                    <div className="progress">
+                                      <div
+                                        className="inner-progress"
+                                        style={{
+                                          width: "80%",
+                                          backgroundColor: "#3ea05c",
+                                        }}
+                                      ></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="Skills">
+                              <div className="skills-containers">
+                                <div className="skill-bar d-flex ">
+                                  <p className="skill-text">4</p>
+                                  <div className="skill-progress">
+                                    <div className="progress">
+                                      <div
+                                        className="inner-progress"
+                                        style={{
+                                          width: "15%",
+                                          backgroundColor: "#a9d363",
+                                        }}
+                                      ></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="Skills">
+                              <div className="skills-containers">
+                                <div className="skill-bar d-flex ">
+                                  <p className="skill-text">3</p>
+                                  <div className="skill-progress">
+                                    <div className="progress">
+                                      <div
+                                        className="inner-progress"
+                                        style={{
+                                          width: "15%",
+                                          backgroundColor: "#e1d53b",
+                                        }}
+                                      ></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="Skills">
+                              <div className="skills-containers">
+                                <div className="skill-bar d-flex ">
+                                  <p className="skill-text">2</p>
+                                  <div className="skill-progress">
+                                    <div className="progress">
+                                      <div
+                                        className="inner-progress"
+                                        style={{
+                                          width: "5%",
+                                          backgroundColor: "#d68639",
+                                        }}
+                                      ></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="Skills">
+                              <div className="skills-containers">
+                                <div className="skill-bar d-flex ">
+                                  <p className="skill-text me-1">1</p>
+                                  <div className="skill-progress">
+                                    <div className="progress">
+                                      <div
+                                        className="inner-progress"
+                                        style={{
+                                          width: "10%",
+                                          backgroundColor: "#b62d3b",
+                                        }}
+                                      ></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="review mt-3">
+                              <h5 className="mb-3">Review From Customers</h5>
+                              <div className="d-flex">
+                                <div>
+                                  <img
+                                    src={review}
+                                    alt=""
+                                    style={{ maxWidth: 40, marginRight: 10 }}
+                                  />
+                                </div>
+                                <div style={{ fontSize: 12 }}>
+                                  <h6 className="fw-bold">H M Arifur Rahman</h6>
+                                  <div
+                                    className="ms-5 mb-1"
+                                    style={{ color: "#ecd115", fontSize: 12 }}
+                                  >
+                                    <FontAwesomeIcon icon={faStar2} />
+                                    <FontAwesomeIcon icon={faStar2} />
+                                    <FontAwesomeIcon icon={faStar2} />
+                                    <FontAwesomeIcon icon={faStar2} />
+                                    <FontAwesomeIcon icon={faStar2} />
+                                  </div>
+                                  <p>
+                                    {" "}
+                                    <span className="text-muted">
+                                      Taken on
+                                    </span>{" "}
+                                    <span className="fw-bold">
+                                      27 October, 2021
+                                    </span>
+                                  </p>
+                                  <p>
+                                    Mr X give us excellent service and he is
+                                    also well mannered. Thanks.
+                                  </p>
+                                </div>
+                              </div>
+                              <div className="d-flex">
+                                <div>
+                                  <img
+                                    src={review}
+                                    alt=""
+                                    style={{ maxWidth: 40, marginRight: 10 }}
+                                  />
+                                </div>
+                                <div style={{ fontSize: 12 }}>
+                                  <h6 className="fw-bold">Afsana Jahan Nipa</h6>
+                                  <div
+                                    className="ms-5 mb-1"
+                                    style={{ color: "#ecd115", fontSize: 12 }}
+                                  >
+                                    <FontAwesomeIcon icon={faStar2} />
+                                    <FontAwesomeIcon icon={faStar2} />
+                                    <FontAwesomeIcon icon={faStar2} />
+                                    <FontAwesomeIcon icon={faStar2} />
+                                    <FontAwesomeIcon icon={faStar2} />
+                                  </div>
+                                  <p>
+                                    <span className="text-muted">
+                                      Taken on{" "}
+                                    </span>
+                                    <span className="fw-bold">
+                                      12 October, 2021
+                                    </span>
+                                  </p>
+                                  <p>
+                                    The professionals are very skilled, on time,
+                                    and very sincere in their work. Always
+                                    recommend EasySheba!
+                                  </p>
+                                </div>
+                              </div>
+                              <button className="review-all-btn">
+                                View All Reviews
+                              </button>
+                            </div>
+                          </Col>
+                          <Col md={6}>
+                            <h5 className="fw-bold mb-3">
+                              Review & Rate Our Service
+                            </h5>
+                            <p style={{ fontSize: 13 }}>
+                              Your email address will not be published. Required
+                              fields are marked{" "}
+                              <span className="text-danger">*</span>
+                            </p>
+                            <div className="d-flex">
+                              <p className="fw-bold">Rate: </p>
+                              <div className="ms-2 mb-1">
+                                <FontAwesomeIcon icon={faStar} />
+                                <FontAwesomeIcon icon={faStar} />
+                                <FontAwesomeIcon icon={faStar} />
+                                <FontAwesomeIcon icon={faStar} />
+                                <FontAwesomeIcon icon={faStar} />
+                              </div>
+                            </div>
+                            <Formik
+                              initialValues={{
+                                name: "",
+                                email: "",
+                              }}
+                              validationSchema={validate}
+                              onSubmit={(values) => {
+                                const user = values;
+
+                                user.comment = comment;
+                                console.log(user);
+                              }}
+                            >
+                              {(formik) => (
+                                <div className="mb-5 form-wrapper">
+                                  <div>
+                                    <div
+
+                                    // style={{ width: "300px" }}
+                                    >
+                                      <Form2>
+                                        <Form.Group
+                                          className="mb-3 fw-bold"
+                                          controlId="exampleForm.ControlTextarea1"
+                                        >
+                                          <Form.Label>
+                                            Your Comment{" "}
+                                            <span className="text-danger">
+                                              *
+                                            </span>
+                                          </Form.Label>
+                                          <Form.Control
+                                            as="textarea"
+                                            rows={3}
+                                            onChange={(e) =>
+                                              setComment(e.target.value)
+                                            }
+                                          />
+                                        </Form.Group>
+                                        <TextField
+                                          label="Name"
+                                          type="text"
+                                          placeholder="Your Name"
+                                          name="name"
+                                        />
+                                        <TextField
+                                          label="Email"
+                                          type="email"
+                                          placeholder="Your email"
+                                          name="email"
+                                        />
+                                        <div className="mb-3">
+                                          <input
+                                            className="form-check-input me-2"
+                                            type="checkbox"
+                                            value=""
+                                            id="flexCheckIndeterminate"
+                                          />
+                                          <label
+                                            className="form-check-label"
+                                            htmlFor="flexCheckIndeterminate"
+                                            style={{ fontSize: 14 }}
+                                          >
+                                            Save my name, email, and website in
+                                            this browser for the next time I
+                                            comment.
+                                          </label>
+                                        </div>
+                                        <button
+                                          type="submit"
+                                          className="review-btn"
+                                        >
+                                          Submit
+                                        </button>
+                                      </Form2>
+                                    </div>
+                                  </div>
+                                </div>
+                              )}
+                            </Formik>
+                          </Col>
+                        </Row>
                       </div>
                     </Tab.Pane>
                   </Tab.Content>
@@ -321,7 +565,7 @@ const ProductDetails = () => {
               </Tab.Container>
             </Row>
           </Col>
-          <Col md={5}>
+          <Col md={4}>
             <div className="have-questions-section">
               <h5>Have many questions in your head?</h5>
               <h6>We are ready to help you.....</h6>

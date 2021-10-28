@@ -26,7 +26,7 @@ const MenuHeader = () => {
               </li>
               {category.categories &&
                 category.categories.map((cat, index) => (
-                  <li className="nav-item dropdown mx-auto">
+                  <li className="nav-item dropdown mx-auto" key={index}>
                     <span
                       className="nav-link dropdown-toggle"
                       id="navbarDropdown"
@@ -47,7 +47,7 @@ const MenuHeader = () => {
                     >
                       {cat.children &&
                         cat.children.map((child, _index) => (
-                          <li>
+                          <li key={_index}>
                             <Link
                               to="/profile"
                               className="dropdown-item"

@@ -8,6 +8,7 @@ import customer from "../../media/customer-logo.png";
 import playStore from "../../media/play-store.png";
 import app from "../../media/app-download.webp";
 import service from "../../media/service-request.png";
+import advertise from "../../media/Artboard-23ty.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import ServiceModal from "../UI/ServiceModal";
@@ -27,18 +28,20 @@ const Home = () => {
     <>
       <div className="choose-section mb-2 pt-5">
         <BannerSlider />
-        {/* <img
-          src={gif}
-          alt=""
-          className="image-fluid"
-          style={{ width: "80%" }}
-        /> */}
-        {/* Category */}
         <div className="my-5">
           <Container>
-            <h3 className="text-center">Our Services</h3>
-            <div className="">
+            <h3 className="text-center fw-bold mb-3">Our Services</h3>
+            <div>
               <ServiceSlide />
+            </div>
+          </Container>
+        </div>
+
+        {/* Advertisement */}
+        <div className="my-5">
+          <Container>
+            <div>
+              <img src={advertise} alt="" className="w-100" />
             </div>
           </Container>
         </div>
@@ -106,6 +109,7 @@ const Home = () => {
           </Row>
         </Container>
       </div>
+
       <Container>
         <Row className="mt-5">
           <Col md={3} className="py-2 text-center">

@@ -58,7 +58,7 @@ const SignUp = () => {
             <p className="text-center text-muted">Signup to continue</p>
             <div>
               <div className="d-flex justify-content-center">
-                <Form>
+                <Form style={{ width: 350 }}>
                   <TextField
                     label="Name"
                     type="text"

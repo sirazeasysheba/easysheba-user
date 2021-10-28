@@ -43,3 +43,64 @@
   color: white;
   border-radius: 20px;
 }
+
+.review-btn {
+  background-color: $primary !important;
+  border: none;
+  padding: 8px 20px;
+  color: white;
+  font-weight: 500;
+  font-size: 12px;
+  border-radius: 10px;
+  &:hover {
+    background-color: $secondary !important;
+  }
+}
+.review-all-btn {
+  border: none !important;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 80px;
+  margin-bottom: 80px;
+}
+.rating {
+  width: 180 px;
+  position: relative;
+  height: 15 px;
+  transition: width 2s;
+  -webkit-transition: width 2s;
+  background: #f0f0f0;
+  margin-bottom: 10 px;
+}
+
+.Skills {
+  .skills-containers {
+    .skill-bar {
+      .skill-text {
+        font-size: 14px;
+        font-weight: bold;
+      }
+      .skill-progress {
+        width: 80%;
+        .progress {
+          width: 80%;
+          height: 15px;
+          margin-left: 1rem;
+          background-color: #f0f0f0;
+          position: relative;
+          margin-top: 3px;
+          .inner-progress {
+            // content: "";
+            position: absolute;
+
+            // background-color: #037fff;
+            height: 100%;
+            bottom: 0;
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+}
