@@ -12,6 +12,8 @@
 @import "./forms";
 @import "./homes";
 @import "./services";
+@import "./all-service";
+
 .text-brand-primary {
   color: $primary;
 }
@@ -27,10 +29,6 @@
     url("../media/1619427700_acservicing.jpg"), url("../media//55541bd.png");
   background-repeat: no-repeat;
   background-size: cover;
-}
-.category-card {
-  //margin: 100px 100px;
-  //margin-left: 100px;
 }
 
 .modal-btn {

@@ -155,8 +155,9 @@ const Footer = () => {
                 </div>
 
                 <p>
-                  Assure M N Tower, Flat B1, <br /> House H/1, North-South Road,
-                  Block- H, <br /> Aftabnagar, Dhaka-1212
+                  House #5, Road #3
+                  <br /> Block E, Banasree,
+                  <br /> Rampura, Dhaka-1219
                 </p>
               </div>
             </div>
