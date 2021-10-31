@@ -7,7 +7,10 @@ const TextField = ({ label, ...props }) => {
   return (
     <div className="mb-4">
       {label && (
-        <label htmlFor={field.name} style={{ fontSize: 14, fontWeight: "600" }}>
+        <label
+          htmlFor={field.name}
+          style={{ fontSize: 14, fontWeight: "600", marginBottom: 15 }}
+        >
           {label} <span className="text-danger">*</span>
         </label>
       )}

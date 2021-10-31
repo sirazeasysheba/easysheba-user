@@ -217,7 +217,7 @@ const ProductDetails = () => {
       <Container>
         <Row>
           <Col md={8}>
-            <Row className="mt-3">
+            <Row className="mt-3 tab-container">
               <Tab.Container id="left-tabs-example" defaultActiveKey="details">
                 <Row>
                   <Nav variant="pills">

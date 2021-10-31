@@ -98,7 +98,7 @@ const Header = () => {
                 </NavLink>
               </li>
               {auth.authenticate ? (
-                <li className="nav-item fw-bold me-5 ">
+                <li className="nav-item top-menu-container fw-bold me-5 ">
                   <span className="nav-link">
                     <Dropdown>
                       <Dropdown.Toggle className="dashboard-btn profile">

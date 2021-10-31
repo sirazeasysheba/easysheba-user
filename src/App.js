@@ -18,7 +18,8 @@ import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { getAllCategory } from "./redux/actions";
 import ProductDetails from "./pages/ProductDetails";
-import ServiceSlide from "./components/BannerSlider/ServiceSlide";
+import Checkout from "./pages/Checkout";
+
 //import "swiper/scss/pagination";
 // import "swiper/scss/navigation";
 function App() {
@@ -50,6 +51,9 @@ function App() {
         </Route>
         <PrivateRoute exact path="/dashboard">
           <Dashboard />
+        </PrivateRoute>
+        <PrivateRoute exact path="/checkout">
+          <Checkout />
         </PrivateRoute>
         <Route exact path="/video">
           <VideoModal />

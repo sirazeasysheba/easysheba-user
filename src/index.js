@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "swiper/swiper.scss";
 import { BrowserRouter as Router } from "react-router-dom";

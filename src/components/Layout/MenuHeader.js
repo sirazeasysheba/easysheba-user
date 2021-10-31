@@ -25,7 +25,7 @@ const MenuHeader = () => {
                 </NavLink>
               </li>
               {category.categories &&
-                category.categories.map((cat, index) => (
+                category.categories?.map((cat, index) => (
                   <li className="nav-item dropdown mx-auto" key={index}>
                     <span
                       className="nav-link dropdown-toggle"

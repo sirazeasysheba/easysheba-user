@@ -9,9 +9,9 @@ SwiperCore.use([Navigation]);
 const ServiceSlide = () => {
   const category = useSelector((state) => state.category);
   return (
-    <div className="p-3 shadow-lg" style={{ borderRadius: 20 }}>
+    <div className="p-3 shadow-lg service-slider" style={{ borderRadius: 20 }}>
       <Swiper
-        slidesPerView={4}
+        slidesPerView={6}
         spaceBetween={5}
         navigation={true}
         className="mySwiper"
@@ -24,7 +24,7 @@ const ServiceSlide = () => {
                   <img
                     src={cat.categoryImage}
                     alt=""
-                    style={{ maxHeight: 30, marginTop: 10 }}
+                    style={{ maxHeight: 40, marginTop: 10 }}
                   />
                 </div>
               )}

@@ -29,9 +29,11 @@
   border-right: 3px solid green;
 }
 .sub-category-image {
-  max-height: 150px;
-  max-width: 300px;
+  max-height: 180px;
+  width: 100%;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
 }
 .sub-category-list {
   font-size: 14px;

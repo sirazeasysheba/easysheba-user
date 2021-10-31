@@ -25,7 +25,7 @@ const AllServices = () => {
               <h3 className="text-center mb-4">All Services</h3>
               <ScrollspyNav
                 scrollTargetIds={ids}
-                offset={90}
+                offset={220}
                 activeNavClass="is-active"
                 currentClassName="nav-item--active"
                 scrollDuration="100"
@@ -53,29 +53,33 @@ const AllServices = () => {
             <div>
               {category.categories.map((cat, index) => (
                 <div id={`${index}`} className="mb-5">
-                  <h3 className="fw-bold mb-3">{cat.name}</h3>
+                  <h3 className="fw-bold mb-5">{cat.name}</h3>
                   <Container style={{ paddingLeft: 12 }}>
                     <Row>
                       {cat.children.map(
                         (child, _index) =>
                           child.type === "cart" && (
                             <Col md={4} key={_index} style={{ padding: 0 }}>
-                              <img
-                                src={child.categoryImage}
-                                alt=""
-                                className="sub-category-image"
-                              />
-                              <p className="ms-5 mt-2 fw-bold">{child.name}</p>
+                              <div style={{ maxHeight: 200, maxWidth: 280 }}>
+                                <img
+                                  src={child.categoryImage}
+                                  alt=""
+                                  className="sub-category-image"
+                                />
+                                <p className="text-center mt-2 fw-bold">
+                                  {child.name}
+                                </p>
+                              </div>
                             </Col>
                           )
                       )}
                     </Row>
                   </Container>
-                  <div className="mt-4">
-                    <h6 style={{ fontWeight: 500 }}>
+                  <div className="mt-5">
+                    <h6 style={{ fontWeight: 500 }} className="mb-3">
                       All Other {cat.name} Services
                     </h6>
-                    <Container>
+                    <Container style={{ paddingLeft: 12 }}>
                       <Row>
                         {cat.children.map(
                           (child, _index) =>
@@ -84,6 +88,7 @@ const AllServices = () => {
                                 md={4}
                                 key={_index}
                                 className="sub-category-list "
+                                style={{ padding: 0 }}
                               >
                                 <FontAwesomeIcon
                                   icon={faCog}
