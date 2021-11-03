@@ -1,0 +1,31 @@
+@import "./variables";
+.order-search-box-container {
+  &:hover {
+    border: 1px solid black !important;
+  }
+  .search-order {
+    border: none !important;
+  }
+  .order-search-box-icon {
+    font-size: 13px;
+    cursor: pointer;
+    &:hover {
+      color: $secondary;
+    }
+  }
+}
+.order-select-form {
+  width: 230px;
+  .form-select,
+  .form-select > option {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.8) !important;
+  }
+}
+.borderless {
+  border-top-style: none !important;
+  border-left-style: none !important;
+  border-right-style: none !important;
+  border-bottom-style: none !important;
+}

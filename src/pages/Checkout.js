@@ -15,9 +15,12 @@ const Checkout = () => {
   const validate = Yup.object({
     house: Yup.string().required("House No is required"),
     road: Yup.string().required("Road No is required"),
+    block: Yup.string().required("Block No is required"),
+    area: Yup.string().required("Area is required"),
+    sector: Yup.string().required("Sector is required"),
   });
   return (
-    <div style={{ marginTop: 55 }} className="checkout-container">
+    <div style={{ marginTop: 55, fontSize: 13 }} className="checkout-container">
       <Container>
         <Row>
           <Col md={7}>
@@ -27,21 +30,23 @@ const Checkout = () => {
               </div>
               <div>
                 <h5 className="fw-bold">Checkout</h5>
-                <p>Expert will arrive at your given address within 6:00 PM </p>
+                <p className="mb-2">
+                  Expert will arrive at your given address within 6:00 PM{" "}
+                </p>
                 <div className="d-flex w-100 justify-content-between ">
-                  <h1 className="me-5">
+                  <h3 className="me-5">
                     6.00 <span style={{ fontSize: 14 }}>PM</span>{" "}
-                  </h1>
-                  <h1 className="me-5">
+                  </h3>
+                  <h3 className="me-5">
                     31 <span style={{ fontSize: 14 }}>October,2021</span>{" "}
-                  </h1>
+                  </h3>
                   <button className="change-btn">
                     <FontAwesomeIcon icon={faEdit} /> Change
                   </button>
                 </div>
               </div>
             </div>
-            <div className="mt-5 p-3 shadow-lg d-flex checkout">
+            <div className="mt-3 p-3 shadow-lg d-flex checkout">
               <div>
                 <img src={person} alt="" className="me-3" />
               </div>
@@ -57,7 +62,7 @@ const Checkout = () => {
                 </div>
               </div>
             </div>
-            <div className="checkout-address-container p-3 shadow-lg d-flex">
+            <div className="checkout-address-container p-3 shadow-lg d-flex mb-5">
               <div>
                 <img src={home} alt="" className="me-3" />
               </div>
@@ -71,6 +76,9 @@ const Checkout = () => {
                     initialValues={{
                       house: "",
                       road: "",
+                      sector: "",
+                      block: "",
+                      area: "",
                     }}
                     validationSchema={validate}
                     onSubmit={(values) => {
@@ -87,7 +95,7 @@ const Checkout = () => {
                                 <TextField
                                   label="House No."
                                   type="text"
-                                  placeholder="Your Name"
+                                  placeholder="House No"
                                   name="house"
                                 />
                               </Col>
@@ -95,7 +103,7 @@ const Checkout = () => {
                                 <TextField
                                   label="Road No. / Name"
                                   type="text"
-                                  placeholder="Your email"
+                                  placeholder="Road No. / Name"
                                   name="road"
                                 />
                               </Col>
@@ -105,7 +113,7 @@ const Checkout = () => {
                                 <TextField
                                   label="Block No."
                                   type="text"
-                                  placeholder="Your Name"
+                                  placeholder="Block No."
                                   name="block"
                                 />
                               </Col>
@@ -113,17 +121,17 @@ const Checkout = () => {
                                 <TextField
                                   label="Sector No"
                                   type="text"
-                                  placeholder="Your email"
+                                  placeholder="Sector No"
                                   name="sector"
                                 />
                               </Col>
                             </Row>
                             <Row className="mt-3">
                               <TextField
-                                label="House No."
+                                label="Area"
                                 type="text"
-                                placeholder="Your Name"
-                                name="house"
+                                placeholder="Gulshan"
+                                name="area"
                               />
                             </Row>
 
@@ -166,16 +174,16 @@ const Checkout = () => {
                 <p>৳ 7500</p>
               </div>
               <div className="d-flex justify-content-between mt-2">
-                <p>Subtotal</p>
-                <p>৳ 7500</p>
+                <p className="mb-1">Subtotal</p>
+                <p className="mb-1">৳ 7500</p>
               </div>
               <div className="d-flex justify-content-between">
-                <p>Delivery Charge</p>
-                <p>0</p>
+                <p className="mb-1">Delivery Charge</p>
+                <p className="mb-1">0</p>
               </div>
               <div className="d-flex justify-content-between text-success border-bottom">
-                <p>Discount</p>
-                <p> 0</p>
+                <p className="mb-1">Discount</p>
+                <p className="mb-1"> 0</p>
               </div>
               <div className="d-flex justify-content-between mt-2 fw-bold">
                 <p>Amount to be paid</p>
@@ -233,9 +241,11 @@ const Checkout = () => {
                 </Link>{" "}
               </small>
 
-              <button className="place-order-button mt-3 mb-5">
-                PLACE ORDER
-              </button>
+              <Link to="/order-payment">
+                <button className="place-order-button mt-3 mb-5">
+                  PLACE ORDER
+                </button>{" "}
+              </Link>
               <div className="d-flex error-section py-2 mb-5">
                 <div className="mx-3 ">
                   <img src={error} alt="" />

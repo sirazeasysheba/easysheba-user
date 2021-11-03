@@ -19,6 +19,8 @@ import "swiper/swiper.min.css";
 import { getAllCategory } from "./redux/actions";
 import ProductDetails from "./pages/ProductDetails";
 import Checkout from "./pages/Checkout";
+import OrderPayment from "./pages/OrderPayment";
+import Orders from "./pages/Orders";
 
 //import "swiper/scss/pagination";
 // import "swiper/scss/navigation";
@@ -54,6 +56,12 @@ function App() {
         </PrivateRoute>
         <PrivateRoute exact path="/checkout">
           <Checkout />
+        </PrivateRoute>
+        <PrivateRoute exact path="/order-payment">
+          <OrderPayment />
+        </PrivateRoute>
+        <PrivateRoute exact path="/orders">
+          <Orders />
         </PrivateRoute>
         <Route exact path="/video">
           <VideoModal />

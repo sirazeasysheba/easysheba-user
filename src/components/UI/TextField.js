@@ -9,7 +9,7 @@ const TextField = ({ label, ...props }) => {
       {label && (
         <label
           htmlFor={field.name}
-          style={{ fontSize: 14, fontWeight: "600", marginBottom: 15 }}
+          style={{ fontSize: 14, fontWeight: "600", marginBottom: 10 }}
         >
           {label} <span className="text-danger">*</span>
         </label>
@@ -20,7 +20,7 @@ const TextField = ({ label, ...props }) => {
         // placeholder={field.placeholder}
         {...field}
         {...props}
-        className={`form-control shadow-none ${
+        className={`form-control text-form shadow-none ${
           meta.touched && meta.error && "is-invalid"
         }`}
         autoComplete="off"

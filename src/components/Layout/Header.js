@@ -152,7 +152,7 @@ const Header = () => {
                             }}
                             className="mt-2 text-dark"
                           />{" "}
-                          <Link to="/user/setting" className="topbar-link">
+                          <Link to="/orders" className="topbar-link">
                             Order History
                           </Link>
                         </Dropdown.Item>

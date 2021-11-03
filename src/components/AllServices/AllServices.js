@@ -4,6 +4,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import ScrollspyNav from "react-scrollspy-nav";
 const AllServices = () => {
@@ -60,16 +61,19 @@ const AllServices = () => {
                         (child, _index) =>
                           child.type === "cart" && (
                             <Col md={4} key={_index} style={{ padding: 0 }}>
-                              <div style={{ maxHeight: 200, maxWidth: 280 }}>
-                                <img
-                                  src={child.categoryImage}
-                                  alt=""
-                                  className="sub-category-image"
-                                />
-                                <p className="text-center mt-2 fw-bold">
-                                  {child.name}
-                                </p>
-                              </div>
+                              <Link to="/product-details" className="link">
+                                <div style={{ maxHeight: 200, maxWidth: 280 }}>
+                                  <img
+                                    src={child.categoryImage}
+                                    alt=""
+                                    className="sub-category-image"
+                                  />
+
+                                  <p className="text-center mt-2 fw-bold">
+                                    {child.name}
+                                  </p>
+                                </div>
+                              </Link>
                             </Col>
                           )
                       )}
@@ -92,11 +96,13 @@ const AllServices = () => {
                               >
                                 <FontAwesomeIcon
                                   icon={faCog}
-                                  className="sub-category-list-icon"
+                                  className="sub-category-list-icon me-2"
                                 />{" "}
-                                <p className="sub-category-list-name">
-                                  {child.name}
-                                </p>
+                                <Link to="/product-details" className="link">
+                                  <p className="text-center fw-medium">
+                                    {child.name}
+                                  </p>
+                                </Link>
                               </Col>
                             )
                         )}
