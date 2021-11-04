@@ -15,6 +15,8 @@
 @import "./all-service";
 @import "./checkout";
 @import "./orders";
+@import "./image-uploader";
+
 .text-brand-primary {
   color: $primary;
 }
@@ -80,3 +82,43 @@
     font-weight: 500;
   }
 }
+.change-btn {
+  border: none;
+  font-size: 14px;
+  background: transparent;
+  color: #b13643;
+  font-weight: 700;
+}
+.bread {
+  --bs-breadcrumb-divider: ".";
+  --bs-breadcrumb-divider-color: red !important;
+}
+
+.profile-image {
+  //text-align: center;
+  margin-left: 90px;
+  img {
+    height: 120px;
+    border-radius: 100%;
+    border: 1px solid #2e344e;
+  }
+}
+
+// .profile-modal {
+//   .modal-form {
+//     font-size: 14px;
+//     .modal-input {
+//       &::placeholder {
+//         font-size: 12px;
+//         padding-left: 10px;
+//         margin-top: 15px !important;
+//       }
+//     }
+//   }
+//   .modal-header {
+//     margin-left: 120px;
+//     font-size: 24px;
+//     font-weight: 700;
+//     border: none !important;
+//   }
+// }

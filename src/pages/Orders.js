@@ -17,13 +17,13 @@ const Orders = () => {
   return (
     <div style={{ marginTop: 100, marginBottom: 50 }}>
       <Container>
-        <Breadcrumb>
+        <Breadcrumb className="bread">
           <Breadcrumb.Item>
             {" "}
             <Link
               to="/"
               className="breadcrumb-item text-decoration-none"
-              style={{ color: "#CDCECF" }}
+              style={{ color: "#333333" }}
             >
               Home
             </Link>{" "}
@@ -102,17 +102,19 @@ const Orders = () => {
                       </td>
                       <td className="d-flex mt-0 pt-0">
                         <div style={{ width: 80, fontWeight: 700 }}>৳1,780</div>
-                        <button
-                          className="view-details-btn fw-bold"
-                          style={{ fontSize: 13 }}
-                        >
-                          Details{" "}
-                          <FontAwesomeIcon
-                            icon={faChevronRight}
-                            className="ms-1 pt-2 fw-bold"
-                            style={{ color: "#f16622", fontSize: 20 }}
-                          />
-                        </button>
+                        <Link to="/order-details">
+                          <button
+                            className="view-details-btn fw-bold"
+                            style={{ fontSize: 13 }}
+                          >
+                            Details{" "}
+                            <FontAwesomeIcon
+                              icon={faChevronRight}
+                              className="ms-1 pt-2 fw-bold"
+                              style={{ color: "#f16622", fontSize: 20 }}
+                            />
+                          </button>
+                        </Link>
                       </td>
                     </tr>
                     <tr>

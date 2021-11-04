@@ -29,3 +29,43 @@
   border-right-style: none !important;
   border-bottom-style: none !important;
 }
+.order-details-tab-container {
+  .active-toggle-btn {
+    color: $primary !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .nav-pills .nav-link.active {
+    color: $primary !important;
+    background: none !important;
+    font-weight: 700;
+    border-bottom: 5px solid #00a1ba;
+    border-radius: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .tab-links {
+    color: $primary !important;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+.faq-btn {
+  border: none !important;
+  background: transparent;
+  font-size: 18px;
+  font-weight: 700;
+}
+.span-plus-minus {
+  background: #c71f66;
+  border-radius: 50%;
+  padding: 0px 4px;
+  // margin-right: 5px;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+}

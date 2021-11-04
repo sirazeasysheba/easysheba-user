@@ -13,7 +13,6 @@ import Policy from "./pages/Policy";
 import SignUp from "./pages/SignUp";
 import { isUserLoggedIn } from "./redux/actions/auth.actions";
 import "./styles/style.scss";
-//import "swiper/swiper.scss";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import { getAllCategory } from "./redux/actions";
@@ -21,6 +20,9 @@ import ProductDetails from "./pages/ProductDetails";
 import Checkout from "./pages/Checkout";
 import OrderPayment from "./pages/OrderPayment";
 import Orders from "./pages/Orders";
+import OrderDetails from "./pages/OrderDetails";
+import Profile from "./pages/Profile";
+import Setting from "./pages/Setting";
 
 //import "swiper/scss/pagination";
 // import "swiper/scss/navigation";
@@ -62,6 +64,15 @@ function App() {
         </PrivateRoute>
         <PrivateRoute exact path="/orders">
           <Orders />
+        </PrivateRoute>
+        <PrivateRoute exact path="/order-details">
+          <OrderDetails />
+        </PrivateRoute>
+        <PrivateRoute exact path="/profile">
+          <Profile />
+        </PrivateRoute>
+        <PrivateRoute exact path="/user/setting">
+          <Setting />
         </PrivateRoute>
         <Route exact path="/video">
           <VideoModal />

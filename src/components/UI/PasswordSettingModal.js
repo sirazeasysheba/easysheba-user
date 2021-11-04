@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Modal } from "react-bootstrap";
+import React from "react";
+import { Modal, Button } from "react-bootstrap";
 
-const ServiceModal = (props) => {
+const PasswordSettingModal = (props) => {
   return (
-    <div className="service-modal">
+    <div>
       <Modal
         show={props.modalShow}
         onHide={props.handleClose}
@@ -24,12 +24,16 @@ const ServiceModal = (props) => {
         </Modal.Header>
         <Modal.Body>{props.children}</Modal.Body>
         <Modal.Footer className="mx-auto">
-          <button className="request-btn" onClick={props.handleClose}>
-            REQUEST SERVICE
-          </button>
+          <Button
+            className="w-100 fw-medium shadow-none bg-success mt-2"
+            onClick={props.handleClose}
+          >
+            SUBMIT
+          </Button>
         </Modal.Footer>
       </Modal>
     </div>
   );
 };
-export default ServiceModal;
+
+export default PasswordSettingModal;
