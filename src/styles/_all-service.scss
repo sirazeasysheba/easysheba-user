@@ -5,25 +5,24 @@
   .service-list {
     font-size: 12px;
     color: rgba(0, 0, 0, 0.9) !important ;
-  }
-
-  a {
-    text-decoration: none;
-    //color: $primary;
-    padding: 10px;
-    font-size: 14px;
-    color: black !important ;
-    font-weight: 500;
+    a {
+      text-decoration: none;
+      display: block;
+      //color: $primary;
+      padding: 10px;
+      font-size: 14px;
+      color: black !important ;
+      font-weight: 500;
+      margin-bottom: 0 !important;
+    }
   }
 }
 .is-active {
-  width: 120px !important;
   background: #f4f5f8;
   font-weight: 700 !important;
   border-right: 3px solid green;
 }
 .currentClassName {
-  width: 120px !important;
   background: #f4f5f8;
   font-weight: 700 !important;
   border-right: 3px solid green;

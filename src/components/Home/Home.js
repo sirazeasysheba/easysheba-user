@@ -4,7 +4,7 @@ import quality from "../../media/quality.svg";
 import price from "../../media/price.svg";
 import experts from "../../media/experts.svg";
 import equppied from "../../media/equppied.svg";
-import customer from "../../media/customer-logo.png";
+import client from "../../media/client.jpg";
 import playStore from "../../media/play-store.png";
 import app from "../../media/app-download.webp";
 import service from "../../media/service-request.png";
@@ -177,8 +177,10 @@ const Home = () => {
         </Row>
       </Container>
       <Container className="mt-5 text-center">
-        <h3>Trusted by 5000+ customers for solving their problem</h3>
-        <img src={customer} alt="" />
+        <h3 className="mb-3">
+          Trusted by 5000+ customers for solving their problem
+        </h3>
+        <img src={client} alt="" style={{ width: "100%" }} />
       </Container>
       <Container style={{ fontSize: 14, marginTop: 60 }}>
         <div className="dash">

@@ -52,7 +52,7 @@ const Header = () => {
         expand="lg"
         fixed="top"
         className="header"
-        style={{ marginBottom: 100 }}
+        style={{ zIndex: 50 }}
       >
         <Container fluid>
           <Link to="/" className="navbar-brand mx-5">

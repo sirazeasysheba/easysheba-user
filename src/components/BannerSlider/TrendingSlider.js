@@ -1,102 +1,107 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation } from "swiper";
-import { Col, Row } from "react-bootstrap";
 import categoryImage from "../../media/ac.jpg";
-SwiperCore.use([Navigation]);
+import Slider from "react-slick";
+import { ReactComponent as LeftArrow } from "../../media/arrow left.svg";
+import "slick-carousel/slick/slick.css";
+
+import "slick-carousel/slick/slick-theme.css";
+
 const TrendingSlider = () => {
+  var settings = {
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrow: false,
+    // autoplay: true,
+    // autoplaySpeed: 2000,
+
+    // responsive: [
+    //   {
+    //     breakpoint: 1024,
+    //     settings: {
+    //       slidesToShow: 3,
+    //       slidesToScroll: 3,
+    //       infinite: true,
+    //       dots: true,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 600,
+    //     settings: {
+    //       slidesToShow: 2,
+    //       slidesToScroll: 2,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 480,
+    //     settings: {
+    //       slidesToShow: 1,
+    //       slidesToScroll: 1,
+    //     },
+    //   },
+    // ],
+    // prevArrow: <LeftArrow />,
+  };
   return (
     <div className="trending-slider">
-      <div className="swiper-container">
-        <Swiper
-          slidesPerView={4}
-          spaceBetween={50}
-          navigation={true}
-          className="mySwiper"
-        >
-          <SwiperSlide>
-            <Link to="/product-details" className="link">
-              <div style={{ maxHeight: 220, maxWidth: 280 }}>
-                <img
-                  src={categoryImage}
-                  alt=""
-                  className="sub-category-image"
-                />
+      <Slider {...settings}>
+        <div className="ms-3">
+          <Link to="/product-details" className="link">
+            <div>
+              <img src={categoryImage} alt="" className="trending-image" />
 
-                <p className="text-center mt-2 fw-bold">Ac Repair</p>
-              </div>
-            </Link>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Link to="/product-details" className="link">
-              <div style={{ maxHeight: 220, maxWidth: 280 }}>
-                <img
-                  src={categoryImage}
-                  alt=""
-                  className="sub-category-image"
-                />
+              <p className="text-center mt-2 fw-bold">Ac Repair</p>
+            </div>
+          </Link>
+        </div>
+        <div className="ms-3">
+          <Link to="/product-details" className="link">
+            <div>
+              <img src={categoryImage} alt="" className="trending-image" />
 
-                <p className="text-center mt-2 fw-bold">Ac Repair</p>
-              </div>
-            </Link>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Link to="/product-details" className="link">
-              <div style={{ maxHeight: 220, maxWidth: 280 }}>
-                <img
-                  src={categoryImage}
-                  alt=""
-                  className="sub-category-image"
-                />
+              <p className="text-center mt-2 fw-bold">Ac Repair</p>
+            </div>
+          </Link>
+        </div>
+        <div className="ms-3">
+          <Link to="/product-details" className="link">
+            <div>
+              <img src={categoryImage} alt="" className="trending-image" />
 
-                <p className="text-center mt-2 fw-bold">Ac Repair</p>
-              </div>
-            </Link>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Link to="/product-details" className="link">
-              <div style={{ maxHeight: 220, maxWidth: 280 }}>
-                <img
-                  src={categoryImage}
-                  alt=""
-                  className="sub-category-image"
-                />
+              <p className="text-center mt-2 fw-bold">Ac Repair</p>
+            </div>
+          </Link>
+        </div>
+        <div className="ms-3">
+          <Link to="/product-details" className="link">
+            <div>
+              <img src={categoryImage} alt="" className="trending-image" />
 
-                <p className="text-center mt-2 fw-bold">Ac Repair</p>
-              </div>
-            </Link>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Link to="/product-details" className="link">
-              <div style={{ maxHeight: 220, maxWidth: 280 }}>
-                <img
-                  src={categoryImage}
-                  alt=""
-                  className="sub-category-image"
-                />
+              <p className="text-center mt-2 fw-bold">Ac Repair</p>
+            </div>
+          </Link>
+        </div>
+        <div className="ms-3">
+          <Link to="/product-details" className="link">
+            <div>
+              <img src={categoryImage} alt="" className="trending-image" />
 
-                <p className="text-center mt-2 fw-bold">Ac Repair</p>
-              </div>
-            </Link>
-          </SwiperSlide>
+              <p className="text-center mt-2 fw-bold">Ac Repair</p>
+            </div>
+          </Link>
+        </div>
+        <div className="ms-3">
+          <Link to="/product-details" className="link">
+            <div>
+              <img src={categoryImage} alt="" className="trending-image" />
 
-          <SwiperSlide>
-            <Link to="/product-details" className="link">
-              <div style={{ maxHeight: 220, maxWidth: 280 }}>
-                <img
-                  src={categoryImage}
-                  alt=""
-                  className="sub-category-image"
-                />
-
-                <p className="text-center mt-2 fw-bold">Ac Repair</p>
-              </div>
-            </Link>
-          </SwiperSlide>
-        </Swiper>
-      </div>
+              <p className="text-center mt-2 fw-bold">Ac Repair</p>
+            </div>
+          </Link>
+        </div>
+      </Slider>
     </div>
   );
 };

@@ -1,76 +1,77 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation } from "swiper";
-import { Col, Row } from "react-bootstrap";
 import categoryImage from "../../media/ac.jpg";
-SwiperCore.use([Navigation]);
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+
+import "slick-carousel/slick/slick-theme.css";
 const RecommendSlider = () => {
+  var settings = {
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrow: false,
+  };
+
   return (
     <div className="trending-slider">
-      <Swiper
-        slidesPerView={4}
-        spaceBetween={50}
-        navigation={true}
-        className="mySwiper"
-      >
-        <SwiperSlide>
+      <Slider {...settings}>
+        <div className="ms-3">
           <Link to="/product-details" className="link">
-            <div style={{ maxHeight: 220, maxWidth: 280 }}>
-              <img src={categoryImage} alt="" className="sub-category-image" />
+            <div>
+              <img src={categoryImage} alt="" className="trending-image" />
 
               <p className="text-center mt-2 fw-bold">Ac Repair</p>
             </div>
           </Link>
-        </SwiperSlide>
-        <SwiperSlide>
+        </div>
+        <div className="ms-3">
           <Link to="/product-details" className="link">
-            <div style={{ maxHeight: 220, maxWidth: 280 }}>
-              <img src={categoryImage} alt="" className="sub-category-image" />
+            <div>
+              <img src={categoryImage} alt="" className="trending-image" />
 
               <p className="text-center mt-2 fw-bold">Ac Repair</p>
             </div>
           </Link>
-        </SwiperSlide>
-        <SwiperSlide>
+        </div>
+        <div className="ms-3">
           <Link to="/product-details" className="link">
-            <div style={{ maxHeight: 220, maxWidth: 280 }}>
-              <img src={categoryImage} alt="" className="sub-category-image" />
+            <div>
+              <img src={categoryImage} alt="" className="trending-image" />
 
               <p className="text-center mt-2 fw-bold">Ac Repair</p>
             </div>
           </Link>
-        </SwiperSlide>
-        <SwiperSlide>
+        </div>
+        <div className="ms-3">
           <Link to="/product-details" className="link">
-            <div style={{ maxHeight: 220, maxWidth: 280 }}>
-              <img src={categoryImage} alt="" className="sub-category-image" />
+            <div>
+              <img src={categoryImage} alt="" className="trending-image" />
 
               <p className="text-center mt-2 fw-bold">Ac Repair</p>
             </div>
           </Link>
-        </SwiperSlide>
-        <SwiperSlide>
+        </div>
+        <div className="ms-3">
           <Link to="/product-details" className="link">
-            <div style={{ maxHeight: 220, maxWidth: 280 }}>
-              <img src={categoryImage} alt="" className="sub-category-image" />
+            <div>
+              <img src={categoryImage} alt="" className="trending-image" />
 
               <p className="text-center mt-2 fw-bold">Ac Repair</p>
             </div>
           </Link>
-        </SwiperSlide>
-
-        <SwiperSlide>
+        </div>
+        <div className="ms-3">
           <Link to="/product-details" className="link">
-            <div style={{ maxHeight: 220, maxWidth: 280 }}>
-              <img src={categoryImage} alt="" className="sub-category-image" />
+            <div>
+              <img src={categoryImage} alt="" className="trending-image" />
 
               <p className="text-center mt-2 fw-bold">Ac Repair</p>
             </div>
           </Link>
-        </SwiperSlide>
-      </Swiper>
+        </div>
+      </Slider>
     </div>
   );
 };

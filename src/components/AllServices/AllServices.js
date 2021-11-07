@@ -18,15 +18,18 @@ const AllServices = () => {
   console.log(ids);
 
   return (
-    <div className="All-services mx-3 mb-5" style={{ marginTop: 80 }}>
-      <Container fluid>
+    <div className="All-services mb-5" style={{ marginTop: 80 }}>
+      <Container>
         <Row>
           <Col md={3}>
-            <div className="scroll-spy mb-5" style={{ position: "fixed" }}>
-              <h3 className="text-center mb-4">All Services</h3>
+            <h3 className="mb-4 text-center">All Services</h3>
+            <div
+              className="scroll-spy mb-5"
+              style={{ position: "sticky", top: 80 }}
+            >
               <ScrollspyNav
                 scrollTargetIds={ids}
-                offset={220}
+                offset={290}
                 activeNavClass="is-active"
                 currentClassName="nav-item--active"
                 scrollDuration="100"
@@ -35,8 +38,8 @@ const AllServices = () => {
               >
                 <div className="all-service-category">
                   {category.categories.map((cat, index) => (
-                    <div key={index} className="mb-3 service-list">
-                      <a href={`#${index}`}>
+                    <div key={index} className="service-list">
+                      <a href={`#${index}`} className="d-block">
                         <img
                           src={cat.categoryImage}
                           alt=""
@@ -50,7 +53,7 @@ const AllServices = () => {
               </ScrollspyNav>
             </div>
           </Col>
-          <Col md={9} className="mb-5">
+          <Col md={9} className="my-5">
             <div>
               {category.categories.map((cat, index) => (
                 <div id={`${index}`} className="mb-5">
