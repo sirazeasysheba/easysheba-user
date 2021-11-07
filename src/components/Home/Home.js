@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import quality from "../../media/quality.svg";
 import price from "../../media/price.svg";
@@ -16,6 +16,8 @@ import { Link } from "react-router-dom";
 import BannerSlider from "../BannerSlider/BannerSlider";
 import { useSelector } from "react-redux";
 import ServiceSlide from "../BannerSlider/ServiceSlide";
+import TrendingSlider from "../BannerSlider/TrendingSlider";
+import RecommendSlider from "../BannerSlider/RecommendSlider";
 
 const Home = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -23,9 +25,31 @@ const Home = () => {
   const handleClose = () => {
     setModalShow(false);
   };
+  const [showButton, setShowButton] = useState(false);
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 300) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    });
+  }, []);
 
+  // This function will scroll the window to the top
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // for smoothly scrolling
+    });
+  };
   return (
     <>
+      {showButton && (
+        <button onClick={scrollToTop} className="back-to-top">
+          &#8679;
+        </button>
+      )}
       <div className="choose-section mb-2 pt-5">
         <BannerSlider />
         <div className="my-5">
@@ -45,7 +69,21 @@ const Home = () => {
             </div>
           </Container>
         </div>
+        {/* Trending */}
+        <div className="mb-5">
+          <Container>
+            <h3 className="fw-bold mb-5">Trending</h3>
+            <TrendingSlider />
+          </Container>
+        </div>
 
+        {/* Recommended */}
+        <div className="mb-5">
+          <Container>
+            <h3 className="fw-bold mb-5">Recommended For You</h3>
+            <RecommendSlider />
+          </Container>
+        </div>
         <Container style={{ fontSize: 14 }}>
           <p>Why Choose EasySheba... ?</p>
           <h2 className="fw-bold">Because we care about your comfort...</h2>
@@ -137,6 +175,10 @@ const Home = () => {
             </div>
           </Col>
         </Row>
+      </Container>
+      <Container className="mt-5 text-center">
+        <h3>Trusted by 5000+ customers for solving their problem</h3>
+        <img src={customer} alt="" />
       </Container>
       <Container style={{ fontSize: 14, marginTop: 60 }}>
         <div className="dash">
@@ -316,10 +358,6 @@ const Home = () => {
               </Row>
             </Form>
           </ServiceModal>
-        </Container>
-        <Container className="mt-5 text-center">
-          <h3>Trusted by 5000+ customers for solving their problem</h3>
-          <img src={customer} alt="" />
         </Container>
       </div>
     </>

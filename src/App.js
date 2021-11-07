@@ -23,6 +23,7 @@ import Orders from "./pages/Orders";
 import OrderDetails from "./pages/OrderDetails";
 import Profile from "./pages/Profile";
 import Setting from "./pages/Setting";
+import Cart from "./pages/Cart";
 
 //import "swiper/scss/pagination";
 // import "swiper/scss/navigation";
@@ -52,6 +53,9 @@ function App() {
         </Route>
         <Route exact path="/signup">
           <SignUp />
+        </Route>
+        <Route exact path="/cart">
+          <Cart />
         </Route>
         <PrivateRoute exact path="/dashboard">
           <Dashboard />

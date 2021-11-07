@@ -7,6 +7,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import PasswordSettingModal from "../components/UI/PasswordSettingModal";
 import TextField from "../components/UI/TextField";
+import usePasswordToggle from "../components/UI/usePasswordToggle";
 
 const Setting = () => {
   const validate = Yup.object({
@@ -20,6 +21,7 @@ const Setting = () => {
       .min(6, "Password must be at least 6 characters")
       .required("Confirm Password is required"),
   });
+  const [icon, inputType] = usePasswordToggle();
   const [modalShow, setModalShow] = useState(false);
   const handleShow = () => setModalShow(true);
   const handleClose = () => {
@@ -95,12 +97,15 @@ const Setting = () => {
                     <Form>
                       <Row>
                         <Col md={6} style={{ width: 300 }}>
-                          <TextField
-                            label="Old Password"
-                            type="password"
-                            placeholder="******"
-                            name="oldPassword"
-                          />
+                          <div className="password">
+                            <TextField
+                              label="Old Password"
+                              type={inputType}
+                              placeholder="******"
+                              name="oldPassword"
+                            />
+                            <span className="eye-icon">{icon}</span>
+                          </div>
                         </Col>
                       </Row>
                       <Row>

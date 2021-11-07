@@ -69,3 +69,14 @@
   font-size: 12px;
   font-weight: 700;
 }
+.service-order-container {
+  border-right: 1px solid gray;
+  padding-right: 0px !important ;
+  .service-order-title {
+    width: 100%;
+    padding: 10px;
+    background-color: #f4f5f8;
+    border-right: 5px solid #00a1ba;
+    cursor: pointer;
+  }
+}

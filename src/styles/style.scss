@@ -58,6 +58,18 @@
     font-weight: 500;
   }
 }
+.secondary-btn {
+  border: 1px solid $primary !important;
+  padding: 8px 10px;
+  font-size: 13px;
+  border-radius: 5px;
+  background-color: $secondary;
+  color: white;
+  &:hover {
+    background-color: $primary !important;
+    font-weight: 500;
+  }
+}
 .info-section {
   background-color: rgba(47, 185, 197, 0.1);
   border-left: 5px solid rgb(47, 185, 197);
@@ -103,22 +115,22 @@
     border: 1px solid #2e344e;
   }
 }
-
-// .profile-modal {
-//   .modal-form {
-//     font-size: 14px;
-//     .modal-input {
-//       &::placeholder {
-//         font-size: 12px;
-//         padding-left: 10px;
-//         margin-top: 15px !important;
-//       }
-//     }
-//   }
-//   .modal-header {
-//     margin-left: 120px;
-//     font-size: 24px;
-//     font-weight: 700;
-//     border: none !important;
-//   }
-// }
+.canvas-footer {
+  position: fixed;
+  bottom: 0;
+}
+.cursor {
+  cursor: pointer;
+}
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 100px;
+  background: orange;
+  color: white;
+  cursor: pointer;
+  border-radius: 100px;
+  border: none;
+  box-shadow: 0 5px 10px #ccc;
+}

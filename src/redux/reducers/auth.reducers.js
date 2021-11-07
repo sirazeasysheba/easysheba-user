@@ -22,6 +22,7 @@ const authReducer = (state = initialState, action) => {
       state = {
         ...state,
         authenticating: true,
+        loading: true,
       };
       break;
     case authConstants.LOGIN_SUCCESS:

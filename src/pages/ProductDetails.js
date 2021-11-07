@@ -194,7 +194,13 @@ const ProductDetails = () => {
                     </Col>
                     <p>
                       {" "}
-                      <s className="me-2">৳ 500.00</s> ৳ 400.00
+                      <s
+                        className="me-2"
+                        style={{ fontSize: 16, fontWeight: 500 }}
+                      >
+                        ৳ 500.00
+                      </s>{" "}
+                      ৳ 400.00
                     </p>
 
                     <Form.Group

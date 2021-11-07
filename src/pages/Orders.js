@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import demo from "../media/ac.jpg";
 import {
+  Badge,
   Breadcrumb,
   Col,
   Container,
@@ -35,9 +36,13 @@ const Orders = () => {
           </Breadcrumb.Item>
         </Breadcrumb>
         <Row>
-          <Col md={3} className="border-right"></Col>
+          <Col md={3} className="service-order-container">
+            <div className="service-order-title">
+              <h6 className="text-center">Service Orders</h6>
+            </div>
+          </Col>
           <Col md={9}>
-            <div>
+            <div className="ms-5">
               <div className="d-flex">
                 <div className="order-search-box-container border rounded me-5">
                   <Form className="d-flex align-items-center">
@@ -86,7 +91,9 @@ const Orders = () => {
                     <tr>
                       <td>
                         <p className="mb-1 fw-bold">D-563248</p>
-                        <small>Accepted</small>
+                        <Badge pill bg="success">
+                          Accepted
+                        </Badge>
                       </td>
                       <td className="d-flex">
                         <img
@@ -120,7 +127,9 @@ const Orders = () => {
                     <tr>
                       <td>
                         <p className="mb-1 fw-bold">D-563248</p>
-                        <small>Accepted</small>
+                        <Badge pill bg="danger">
+                          Cancelled
+                        </Badge>
                       </td>
                       <td className="d-flex">
                         <img

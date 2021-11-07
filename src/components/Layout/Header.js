@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   faCartPlus,
   faSearch,
@@ -8,6 +8,7 @@ import {
   faUser,
   faCog,
   faSignOutAlt,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   Container,
@@ -24,9 +25,19 @@ import profile from "../../media/dummy-profile-pic.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../redux/actions/auth.actions";
+import CartCanvas from "../../pages/CartCanvas";
+import NotificationsModal from "../UI/NotificationsModal";
 
 const Header = () => {
-  const token = window.localStorage.getItem("token");
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [notificationsShow, setNotificationsShow] = useState(false);
+
+  const handleNotificationsModalClose = () => setNotificationsShow(false);
+  const handleNotificationsModalShow = () => setNotificationsShow(true);
+
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -82,20 +93,24 @@ const Header = () => {
               </li>
               {auth.authenticate && (
                 <li className="nav-item fw-bold me-2">
-                  <NavLink to="/notifications" className="nav-link">
-                    <FontAwesomeIcon icon={faBell} style={{ color: "black" }} />
-                  </NavLink>
+                  <span className="nav-link">
+                    <FontAwesomeIcon
+                      icon={faBell}
+                      style={{ color: "black", cursor: "pointer" }}
+                      onClick={handleNotificationsModalShow}
+                    />
+                  </span>
                 </li>
               )}
               <li className="nav-item fw-bold me-2">
-                <NavLink to="/cart" className="nav-link">
+                <span onClick={handleShow} className="nav-link">
                   <FontAwesomeIcon
                     icon={faCartPlus}
-                    style={{ color: "black" }}
+                    style={{ color: "black", cursor: "pointer" }}
                     className="cart-icon"
                   />
                   <span id="span"></span>
-                </NavLink>
+                </span>
               </li>
               {auth.authenticate ? (
                 <li className="nav-item top-menu-container fw-bold me-5 ">
@@ -189,6 +204,22 @@ const Header = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <CartCanvas show={show} handleClose={handleClose} placement="end" />
+      <NotificationsModal
+        modalShow={notificationsShow}
+        handleClose={handleNotificationsModalClose}
+        title="Notifications"
+      >
+        <div className="d-flex justify-content-between align-items-center border mb-2 rounded p-3">
+          <div>
+            <p className="mb-0">Message from Admin</p>
+            <small>{Date()}</small>
+          </div>
+          <div>
+            <FontAwesomeIcon icon={faTrash} className="text-danger cursor" />
+          </div>
+        </div>
+      </NotificationsModal>
     </>
   );
 };
