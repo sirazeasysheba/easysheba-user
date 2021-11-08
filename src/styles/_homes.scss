@@ -100,19 +100,13 @@
 
 .trending-slider {
   .slick-prev::before {
-    content: url("../media/arrow\ left.svg");
-    // background-image: url("../media/arrow\ left.svg");
-    // background-size: 30px, 30px;
-    // &::before {
-    //   display: none !important;
-    // }
-    margin-right: 50px !important;
+    content: url("../media/arrow-left-40.png");
   }
   .slick-prev-disabled {
     display: none !important;
   }
   .slick-next::before {
-    content: url("../media/arrow\ right.svg");
+    content: url("../media/arrow-right-40.png");
   }
   .trending-image {
     max-height: 180px;
@@ -127,6 +121,21 @@
   }
 }
 
+.clock-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  .clock {
+    max-width: 600px !important;
+    margin-bottom: 10px;
+
+    .clock-items {
+      font-size: 14px;
+      font-weight: 700;
+      color: white;
+    }
+  }
+}
 @media screen and (max-width: 600px) {
   .service-img {
     margin-top: 0px;

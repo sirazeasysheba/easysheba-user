@@ -63,9 +63,13 @@ const AllServices = () => {
                       {cat.children.map(
                         (child, _index) =>
                           child.type === "cart" && (
-                            <Col md={4} key={_index} style={{ padding: 0 }}>
+                            <Col
+                              md={4}
+                              key={_index}
+                              style={{ padding: 0, marginBottom: 20 }}
+                            >
                               <Link to="/product-details" className="link">
-                                <div style={{ maxHeight: 200, maxWidth: 280 }}>
+                                <div style={{ maxHeight: 200, maxWidth: 240 }}>
                                   <img
                                     src={child.categoryImage}
                                     alt=""

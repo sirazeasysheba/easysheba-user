@@ -19,10 +19,10 @@ import {
   Form,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import image from "../media/1619427700_acservicing.jpg";
 import MenuHeader from "../components/Layout/MenuHeader";
 import TextField from "../components/UI/TextField";
 import { Formik, Form as Form2 } from "formik";
+import CartModal from "../components/UI/CartModal";
 
 const ProductDetails = () => {
   const [rating, setRating] = useState("");
@@ -31,6 +31,22 @@ const ProductDetails = () => {
     email: Yup.string().email("Email is Invalid").required("Email is required"),
     name: Yup.string().required("Name is required"),
   });
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = "#f00";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   return (
     <div div style={{ marginTop: 57 }}>
       <MenuHeader />
@@ -39,7 +55,7 @@ const ProductDetails = () => {
           <Row>
             <Col md={7}>
               <div className="pt-5">
-                <Breadcrumb>
+                <Breadcrumb className="bread">
                   <Breadcrumb.Item>
                     {" "}
                     <Link
@@ -142,7 +158,9 @@ const ProductDetails = () => {
                     out of 5
                   </h6>
                 </div>
-
+                <Col>
+                  <button onClick={openModal}>Click me</button>
+                </Col>
                 <Form className="mt-3" style={{ fontSize: 12 }}>
                   <Row>
                     <Col>
@@ -161,9 +179,6 @@ const ProductDetails = () => {
                     </Col>
                   </Row>
                   <Row>
-                    <Col>
-                      <p>Choose Ton Of Your AC </p>
-                    </Col>
                     <Col>
                       <Form.Select
                         aria-label="Default select example"
@@ -590,6 +605,12 @@ const ProductDetails = () => {
           </Col>
         </Row>
       </Container>
+      <CartModal
+        modalIsOpen={modalIsOpen}
+        afterOpenModal={afterOpenModal}
+        closeModal={closeModal}
+        subtitle={subtitle}
+      />
     </div>
   );
 };

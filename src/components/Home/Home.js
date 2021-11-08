@@ -4,7 +4,7 @@ import quality from "../../media/quality.svg";
 import price from "../../media/price.svg";
 import experts from "../../media/experts.svg";
 import equppied from "../../media/equppied.svg";
-import client from "../../media/client.jpg";
+import client from "../../media/client-list.jpg";
 import playStore from "../../media/play-store.png";
 import app from "../../media/app-download.webp";
 import service from "../../media/service-request.png";
@@ -12,12 +12,12 @@ import advertise from "../../media/Artboard-23ty.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import ServiceModal from "../UI/ServiceModal";
-import { Link } from "react-router-dom";
 import BannerSlider from "../BannerSlider/BannerSlider";
-import { useSelector } from "react-redux";
 import ServiceSlide from "../BannerSlider/ServiceSlide";
 import TrendingSlider from "../BannerSlider/TrendingSlider";
 import RecommendSlider from "../BannerSlider/RecommendSlider";
+import Countdown from "react-countdown";
+import up from "../../media/UP-70.svg";
 
 const Home = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -43,11 +43,47 @@ const Home = () => {
       behavior: "smooth", // for smoothly scrolling
     });
   };
+  const renderer = ({ days, hours, minutes, seconds, completed }) => {
+    return (
+      <div className="clock border px-3 py-2">
+        <div className="d-flex justify-content-between align-items-center clock-items text-center">
+          <div>
+            <p className="mb-0">{days}</p>
+            <small className="mb-0">Days</small>
+          </div>
+          <span className="mx-2" style={{ fontSize: 16 }}>
+            :
+          </span>
+          <div>
+            <p className="mb-0">{hours}</p>
+            <small className="mb-0" style={{ fontSize: 12 }}>
+              Hours
+            </small>
+          </div>
+          <span className="mx-2" style={{ fontSize: 16 }}>
+            :
+          </span>
+          <div>
+            <p className="mb-0">{minutes}</p>
+            <small className="mb-0">Minutes</small>
+          </div>
+          <span className="mx-2" style={{ fontSize: 16 }}>
+            :
+          </span>
+          <div>
+            <p className="mb-0">{seconds}</p>
+            <small className="mb-0">Seconds</small>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
       {showButton && (
         <button onClick={scrollToTop} className="back-to-top">
-          &#8679;
+          <img src={up} alt="" style={{ height: 60 }} />
         </button>
       )}
       <div className="choose-section mb-2 pt-5">
@@ -62,15 +98,22 @@ const Home = () => {
         </div>
 
         {/* Advertisement */}
-        <div className="my-5">
-          <Container>
-            <div>
-              <img src={advertise} alt="" className="w-100" />
-            </div>
-          </Container>
-        </div>
+        <Container
+          className="my-5 clock-container"
+          style={{
+            backgroundImage: `url(${advertise})`,
+            //backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            height: "220px",
+            width: "1180px",
+          }}
+        >
+          <div>
+            <Countdown date={Date.now() + 5000000000} renderer={renderer} />
+          </div>
+        </Container>
         {/* Trending */}
-        <div className="mb-5">
+        <div className="my-5">
           <Container>
             <h3 className="fw-bold mb-5">Trending</h3>
             <TrendingSlider />
