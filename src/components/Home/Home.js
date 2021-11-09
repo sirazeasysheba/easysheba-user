@@ -8,7 +8,7 @@ import client from "../../media/client-list.jpg";
 import playStore from "../../media/play-store.png";
 import app from "../../media/app-download.webp";
 import service from "../../media/service-request.png";
-import advertise from "../../media/Artboard-23ty.jpg";
+import advertise from "../../media/web-banner.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import ServiceModal from "../UI/ServiceModal";
@@ -105,7 +105,7 @@ const Home = () => {
             //backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
             height: "220px",
-            width: "1180px",
+            backgroundSize: "contain",
           }}
         >
           <div>

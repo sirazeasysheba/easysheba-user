@@ -107,3 +107,21 @@
     }
   }
 }
+.service-btn {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  padding: 12px 20px;
+  border-radius: 10px;
+}
+
+.like-container {
+  border-radius: 20px;
+  .like-image {
+    max-width: 200px;
+    max-width: 120px;
+    border-radius: 10px;
+  }
+}

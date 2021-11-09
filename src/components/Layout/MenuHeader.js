@@ -15,18 +15,18 @@ const MenuHeader = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav>
-              <li className="nav-item mx-auto">
+              <li className="nav-item">
                 <NavLink
                   to="/all-services"
                   className="nav-link text-brand-primary"
-                  style={{ fontSize: 13, color: "black" }}
+                  style={{ fontSize: 14, color: "black", fontWeight: 700 }}
                 >
                   All Services
                 </NavLink>
               </li>
               {category.categories &&
-                category.categories?.map((cat, index) => (
-                  <li className="nav-item dropdown mx-auto" key={index}>
+                category.categories?.slice(0, 6).map((cat, index) => (
+                  <li className="nav-item dropdown ms-2" key={index}>
                     <span
                       className="nav-link dropdown-toggle"
                       id="navbarDropdown"

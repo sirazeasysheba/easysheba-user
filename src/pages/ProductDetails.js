@@ -1,4 +1,5 @@
 import {
+  faChevronRight,
   faPhoneAlt,
   faStar as faStar2,
   faStarHalfAlt,
@@ -23,8 +24,31 @@ import MenuHeader from "../components/Layout/MenuHeader";
 import TextField from "../components/UI/TextField";
 import { Formik, Form as Form2 } from "formik";
 import CartModal from "../components/UI/CartModal";
-
+import image from "../media/ac.jpg";
 const ProductDetails = () => {
+  const service = [
+    {
+      id: 1,
+      name: "AC Basic Service",
+    },
+    {
+      id: 1,
+      name: "AC Master Service",
+    },
+
+    {
+      id: 1,
+      name: "AC Water Drop Solution",
+    },
+    {
+      id: 1,
+      name: "Hanging Charge",
+    },
+    {
+      id: 1,
+      name: "AC Jet Wash",
+    },
+  ];
   const [rating, setRating] = useState("");
   const [comment, setComment] = useState("");
   const validate = Yup.object({
@@ -158,78 +182,22 @@ const ProductDetails = () => {
                     out of 5
                   </h6>
                 </div>
-                <Col>
-                  <button onClick={openModal}>Click me</button>
-                </Col>
-                <Form className="mt-3" style={{ fontSize: 12 }}>
-                  <Row>
-                    <Col>
-                      <p>Choose Service </p>
-                    </Col>
-                    <Col>
-                      <Form.Select
-                        aria-label="Default select example"
-                        size="sm"
-                      >
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="4">Four</option>
-                      </Form.Select>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <Form.Select
-                        aria-label="Default select example"
-                        size="sm"
-                      >
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="4">Four</option>
-                      </Form.Select>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <p>Choose Unit</p>
-                    </Col>
-                    <Col>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlInput1"
-                      >
-                        <Form.Control
-                          type="number"
-                          min="1"
-                          className="form-control-sm"
-                        />
-                      </Form.Group>
-                    </Col>
-                    <p>
-                      {" "}
-                      <s
-                        className="me-2"
-                        style={{ fontSize: 16, fontWeight: 500 }}
-                      >
-                        ৳ 500.00
-                      </s>{" "}
-                      ৳ 400.00
-                    </p>
 
-                    <Form.Group
-                      controlId="formFileMultiple"
-                      style={{ fontSize: 12 }}
+                <div className="mt-3">
+                  {service?.map((item, index) => (
+                    <div
+                      className="service-btn mb-2"
+                      key={index}
+                      onClick={openModal}
                     >
-                      <input
-                        type="submit"
-                        className="review-btn"
-                        value="Add to Cart"
+                      <small className="mb-0 fw-bold">{item.name}</small>
+                      <FontAwesomeIcon
+                        icon={faChevronRight}
+                        style={{ color: "#f16622" }}
                       />
-                    </Form.Group>
-                  </Row>
-                </Form>
+                    </div>
+                  ))}
+                </div>
               </div>
             </Col>
           </Row>
@@ -599,8 +567,26 @@ const ProductDetails = () => {
                 <h2>01966050506</h2>
               </div>
             </div>
-            <div className=" mb-5">
-              <h5>You may also like</h5>
+            <div className="like-container shadow-lg mb-5">
+              <h5 className="text-center py-3">You may also like</h5>
+              <div className="pb-5">
+                <div className="ms-3 d-flex">
+                  <Link to="/product-details" className="link me-3">
+                    <div className="text-center" style={{ fontSize: 12 }}>
+                      <img src={image} alt="" className="like-image" />
+                      <p className="fw-bold mt-1 mb-0">Ac Repair</p>
+                      <p className="small fw-bold"> ৳ 500 - ৳ 1,000 </p>
+                    </div>
+                  </Link>
+                  <Link to="/product-details" className="link">
+                    <div className="text-center" style={{ fontSize: 12 }}>
+                      <img src={image} alt="" className="like-image" />
+                      <p className="fw-bold mt-1 mb-0">Ac Repair</p>
+                      <p className="small fw-bold"> ৳ 500 - ৳ 1,000 </p>
+                    </div>
+                  </Link>
+                </div>
+              </div>
             </div>
           </Col>
         </Row>
