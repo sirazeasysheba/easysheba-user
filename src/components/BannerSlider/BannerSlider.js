@@ -3,7 +3,7 @@ import "../../styles/_topBanner.scss";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Navigation } from "swiper";
-import banner from "../../media/banner (1).jpg";
+import banner from "../../media/cctv-banner.jpg";
 import banner1 from "../../media/banner (2).jpg";
 import banner2 from "../../media/banner (3).jpg";
 import banner3 from "../../media/banner (4).jpg";

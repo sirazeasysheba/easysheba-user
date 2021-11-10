@@ -32,6 +32,7 @@ const authReducer = (state = initialState, action) => {
         token: action.payload.token,
         authenticate: true,
         authenticating: false,
+        error: null,
       };
       break;
     case authConstants.LOGIN_FAILURE:

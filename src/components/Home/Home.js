@@ -115,7 +115,7 @@ const Home = () => {
         {/* Trending */}
         <div className="my-5">
           <Container>
-            <h3 className="fw-bold mb-5">Trending</h3>
+            <h3 className="fw-bold mb-3">Trending</h3>
             <TrendingSlider />
           </Container>
         </div>
@@ -123,7 +123,7 @@ const Home = () => {
         {/* Recommended */}
         <div className="mb-5">
           <Container>
-            <h3 className="fw-bold mb-5">Recommended For You</h3>
+            <h3 className="fw-bold mb-3">Recommended For You</h3>
             <RecommendSlider />
           </Container>
         </div>
@@ -193,35 +193,46 @@ const Home = () => {
 
       <Container>
         <Row className="mt-5">
-          <Col md={3} className="py-2 text-center">
-            <div style={{ background: "#fafbfc" }}>
-              <h1>66+</h1>
-              <h5>Service </h5>
+          <Col md={3} className="py-2  text-center">
+            <div
+              className="py-2 shadow-lg rounded"
+              style={{ background: "#f16622" }}
+            >
+              <h1 className="mb-0 pb-0 text-white" style={{ lineHeight: 1 }}>
+                66+
+              </h1>
+              <h5 className="mt-0 text-white">Services</h5>
             </div>
           </Col>
           <Col md={3} className="py-2 text-center">
-            <div style={{ background: "#fafbfc" }}>
-              <h1>114+</h1>
-              <h5>Service Men</h5>
+            <div className="py-2 rounded" style={{ background: "#f16622" }}>
+              <h1 className="mb-0 pb-0 text-white" style={{ lineHeight: 1 }}>
+                114+
+              </h1>
+              <h5 className="mt-0 text-white">Service Men</h5>
             </div>
           </Col>
           <Col md={3} className="py-2 text-center">
-            <div style={{ background: "#fafbfc" }}>
-              <h1>101+</h1>
-              <h5>Order Served</h5>
+            <div className="py-2 rounded" style={{ background: "#f16622" }}>
+              <h1 className="mb-0 pb-0 text-white" style={{ lineHeight: 1 }}>
+                1100+
+              </h1>
+              <h5 className="mt-0 text-white">Order Served</h5>
             </div>
           </Col>
           <Col md={3} className="py-2 text-center">
-            <div style={{ background: "#fafbfc" }}>
-              <h1>54+</h1>
-              <h5>Five Star</h5>
+            <div className="py-2 rounded" style={{ background: "#f16622" }}>
+              <h1 className="mb-0 pb-0 text-white" style={{ lineHeight: 1 }}>
+                500+
+              </h1>
+              <h5 className="mt-0 text-white">Five Star Ratings</h5>
             </div>
           </Col>
         </Row>
       </Container>
       <Container className="mt-5 text-center">
         <h3 className="mb-3">
-          Trusted by 5000+ customers for solving their problem
+          Trusted by 500+ customers for solving their problem
         </h3>
         <img src={client} alt="" style={{ width: "100%" }} />
       </Container>
