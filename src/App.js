@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch } from "react-router";
+import { Route, Switch, useLocation } from "react-router";
 import AllServices from "./components/AllServices/AllServices";
 import Home from "./components/Home/Home";
 import Footer from "./components/Layout/Footer";
@@ -15,7 +15,7 @@ import { isUserLoggedIn } from "./redux/actions/auth.actions";
 import "./styles/style.scss";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
-import { getAllCategory } from "./redux/actions";
+import { getAllCategory, getAllService } from "./redux/actions";
 import ProductDetails from "./pages/ProductDetails";
 import Checkout from "./pages/Checkout";
 import OrderPayment from "./pages/OrderPayment";
@@ -30,12 +30,17 @@ import Cart from "./pages/Cart";
 function App() {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   useEffect(() => {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
     }
     dispatch(getAllCategory());
+    dispatch(getAllService());
   }, []);
   return (
     <div className="App">

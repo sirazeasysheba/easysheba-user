@@ -1,5 +1,5 @@
 import { Formik, Form } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import TextField from "../components/UI/TextField";
@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import { login } from "../redux/actions/auth.actions";
 import { useSelector } from "react-redux";
 const Login = () => {
+  const [error, setError] = useState(null);
   const validate = Yup.object({
     email: Yup.string().email("Email is Invalid").required("Email is required"),
     password: Yup.string()
@@ -18,9 +19,22 @@ const Login = () => {
 
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+  // useEffect(() => {
+  //   if (auth.error) {
+  //     console.log(auth.error.data.message);
+  //     setError(auth.error.data.message);
+  //   }
+  // }, []);
+  // useEffect(() => {
+  //   if (auth.loading) {
+  //     return <p>Loading.....</p>;
+  //   }
+  // }, []);
+
   if (auth.authenticate) {
     return <Redirect to={`/dashboard`} />;
   }
+
   return (
     <>
       <Formik
@@ -42,6 +56,7 @@ const Login = () => {
             <div>
               <div className="d-flex justify-content-center">
                 <Form style={{ width: 350 }}>
+                  {error && <p>{error}</p>}
                   <TextField
                     label="Email"
                     type="email"

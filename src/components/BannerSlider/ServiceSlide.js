@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 // install Swiper modules
 SwiperCore.use([Navigation]);
-const ServiceSlide = () => {
+const ServiceSlide = ({ openModal }) => {
   const category = useSelector((state) => state.category);
   return (
     <div className="p-3 shadow-lg service-slider" style={{ borderRadius: 20 }}>
@@ -28,6 +28,7 @@ const ServiceSlide = () => {
                   />
                 </div>
               )}
+              {/* <span onClick={openModal} style={{ cursor: "pointer" }}> */}
               <Link to="/all-services" className="link">
                 <p
                   className="mt-2 text-center"
@@ -40,6 +41,7 @@ const ServiceSlide = () => {
                   {cat.name}
                 </p>
               </Link>
+              {/* </span> */}
             </div>
           </SwiperSlide>
         ))}

@@ -18,6 +18,7 @@ import TrendingSlider from "../BannerSlider/TrendingSlider";
 import RecommendSlider from "../BannerSlider/RecommendSlider";
 import Countdown from "react-countdown";
 import up from "../../media/UP-70.svg";
+import CategoryModal from "../UI/CategoryModal";
 
 const Home = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -25,6 +26,22 @@ const Home = () => {
   const handleClose = () => {
     setModalShow(false);
   };
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+  let subtitle;
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = "#f00";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   const [showButton, setShowButton] = useState(false);
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -92,7 +109,11 @@ const Home = () => {
           <Container>
             <h3 className="text-center fw-bold mb-3">Our Services</h3>
             <div>
-              <ServiceSlide />
+              <ServiceSlide
+                openModal={openModal}
+                afterOpenModal={afterOpenModal}
+                closeModal={closeModal}
+              />
             </div>
           </Container>
         </div>
@@ -109,7 +130,10 @@ const Home = () => {
           }}
         >
           <div>
-            <Countdown date={Date.now() + 5000000000} renderer={renderer} />
+            <Countdown
+              date={Date.now() + 5000000000 - 1636888709464}
+              renderer={renderer}
+            />
           </div>
         </Container>
         {/* Trending */}
@@ -198,7 +222,10 @@ const Home = () => {
               className="py-2 shadow-lg rounded"
               style={{ background: "#f16622" }}
             >
-              <h1 className="mb-0 pb-0 text-white" style={{ lineHeight: 1 }}>
+              <h1
+                className="mb-0 pb-0 text-white mt-1"
+                style={{ lineHeight: 1 }}
+              >
                 66+
               </h1>
               <h5 className="mt-0 text-white">Services</h5>
@@ -206,7 +233,10 @@ const Home = () => {
           </Col>
           <Col md={3} className="py-2 text-center">
             <div className="py-2 rounded" style={{ background: "#f16622" }}>
-              <h1 className="mb-0 pb-0 text-white" style={{ lineHeight: 1 }}>
+              <h1
+                className="mb-0 pb-0 text-white mt-1"
+                style={{ lineHeight: 1 }}
+              >
                 114+
               </h1>
               <h5 className="mt-0 text-white">Service Men</h5>
@@ -214,7 +244,10 @@ const Home = () => {
           </Col>
           <Col md={3} className="py-2 text-center">
             <div className="py-2 rounded" style={{ background: "#f16622" }}>
-              <h1 className="mb-0 pb-0 text-white" style={{ lineHeight: 1 }}>
+              <h1
+                className="mb-0 pb-0 text-white mt-1"
+                style={{ lineHeight: 1 }}
+              >
                 1100+
               </h1>
               <h5 className="mt-0 text-white">Order Served</h5>
@@ -222,7 +255,10 @@ const Home = () => {
           </Col>
           <Col md={3} className="py-2 text-center">
             <div className="py-2 rounded" style={{ background: "#f16622" }}>
-              <h1 className="mb-0 pb-0 text-white" style={{ lineHeight: 1 }}>
+              <h1
+                className="mb-0 pb-0 text-white mt-1"
+                style={{ lineHeight: 1 }}
+              >
                 500+
               </h1>
               <h5 className="mt-0 text-white">Five Star Ratings</h5>
@@ -415,6 +451,12 @@ const Home = () => {
             </Form>
           </ServiceModal>
         </Container>
+        <CategoryModal
+          modalIsOpen={modalIsOpen}
+          afterOpenModal={afterOpenModal}
+          closeModal={closeModal}
+          subtitle={subtitle}
+        />
       </div>
     </>
   );

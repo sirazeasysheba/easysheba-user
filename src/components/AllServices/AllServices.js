@@ -1,6 +1,6 @@
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
@@ -9,13 +9,14 @@ import { Link } from "react-router-dom";
 import ScrollspyNav from "react-scrollspy-nav";
 const AllServices = () => {
   //Category
+  const [target, setTarget] = useState(null);
+  console.log(target);
   const category = useSelector((state) => state.category);
   const ids = [];
   category.categories.map((cat, index) => {
     ids.push(`${index}`);
     return ids;
   });
-  console.log(ids);
 
   return (
     <div className="All-services mb-5" style={{ marginTop: 80 }}>
@@ -68,8 +69,11 @@ const AllServices = () => {
                               key={_index}
                               style={{ padding: 0, marginBottom: 20 }}
                             >
-                              <Link to="/product-details" className="link">
-                                <div style={{ maxHeight: 200, maxWidth: 240 }}>
+                              <div
+                                style={{ maxHeight: 200, maxWidth: 240 }}
+                                onClick={() => setTarget(child)}
+                              >
+                                <Link to="/product-details" className="link">
                                   <img
                                     src={child.categoryImage}
                                     alt=""
@@ -79,8 +83,8 @@ const AllServices = () => {
                                   <p className="text-center mt-2 fw-bold">
                                     {child.name}
                                   </p>
-                                </div>
-                              </Link>
+                                </Link>
+                              </div>
                             </Col>
                           )
                       )}

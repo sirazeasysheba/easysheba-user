@@ -5,10 +5,18 @@ import { Col, Container, Row } from "react-bootstrap";
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
 import close from "../../media/x-converted.png";
-import { ReactComponent as Close } from "../../media/x.svg";
 const customStyles = {
+  overlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(255, 255, 255, 0.75)",
+    zIndex: 1000,
+  },
   content: {
-    top: "55%",
+    top: "50%",
     left: "50%",
     right: "auto",
     bottom: "auto",
@@ -18,7 +26,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     overflow: "visible",
     padding: 0,
-    zIndex: 1000,
+
     boxShadow:
       "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
   },

@@ -32,6 +32,7 @@ const authReducer = (state = initialState, action) => {
         token: action.payload.token,
         authenticate: true,
         authenticating: false,
+        loading: false,
         error: null,
       };
       break;
@@ -45,6 +46,7 @@ const authReducer = (state = initialState, action) => {
       state = {
         ...state,
         loading: true,
+        error: null,
       };
       break;
     case authConstants.LOGOUT_SUCCESS:
