@@ -15,6 +15,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import TextField from "../components/UI/TextField";
 import ImageUploader from "../components/UI/ImageUploader";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
   const phoneRegExp =
@@ -32,6 +33,9 @@ const Profile = () => {
       .min(6, "Password must be at least 6 characters")
       .required("Password is required"),
   });
+
+  const auth = useSelector((state) => state.auth);
+  const { name, username, email, contactNumber } = auth.user;
   const [profileInfo, setProfileInfo] = useState({
     profile_image: [],
   });
@@ -79,19 +83,19 @@ const Profile = () => {
               </div>
               <div className="d-flex border-bottom">
                 <p style={{ width: 100, fontWeight: 700 }}>Name: </p>
-                <p>H M Arifur Rahman</p>
+                <p>{name}</p>
               </div>
               <div className="d-flex  border-bottom mt-3">
                 <p style={{ width: 100, fontWeight: 700 }}>Username: </p>
-                <p>Dibakar123</p>
+                <p>{username}</p>
               </div>
               <div className="d-flex  border-bottom mt-3">
                 <p style={{ width: 100, fontWeight: 700 }}>Email: </p>
-                <p>admin@easysheba.com</p>
+                <p>{email}</p>
               </div>
               <div className="d-flex  border-bottom mt-3">
                 <p style={{ width: 100, fontWeight: 700 }}>Phone: </p>
-                <p>01706456817</p>
+                <p>{contactNumber}</p>
               </div>
               <div className="d-flex  border-bottom mt-3">
                 <p style={{ width: 100, fontWeight: 700 }}>Address: </p>

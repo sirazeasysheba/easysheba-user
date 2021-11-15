@@ -91,16 +91,16 @@ const Footer = () => {
           <Col md={2} className="footerOnFocus ">
             <h6 className="text-white mb-4 mt-5">OTHER PAGES</h6>
             <li className="d-block mb0 "></li>
-            <Link to="/about-digital-learning" className="d-block  mb-2 mt-1">
+            <Link to="/about-us" className="d-block  mb-2 mt-1">
               About Us
             </Link>
-            <Link to="/gallery" className="d-block  mb-2">
+            <Link to="/blog" className="d-block  mb-2">
               Blog
             </Link>
-            <Link to="#courses" className="d-block  mb-2">
+            <Link to="/help" className="d-block  mb-2">
               Help
             </Link>
-            <Link to="/success-stories" className="d-block  mb-2">
+            <Link to="/terms-conditions" className="d-block  mb-2">
               Terms and Conditions
             </Link>
             <Link to="/privacy-policy" className="d-block  mb-2">

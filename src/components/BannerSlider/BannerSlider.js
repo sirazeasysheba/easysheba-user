@@ -26,8 +26,6 @@ const BannerSlider = () => {
             disableOnInteraction: false,
           }}
           navigation={true}
-          // onSlideChange={() => console.log("slide change")}
-          // onSwiper={(swiper) => console.log(swiper)}
           className="px-2 mx-auto mb-3"
           style={{ maxWidth: "100%" }}
         >

@@ -24,6 +24,8 @@ import OrderDetails from "./pages/OrderDetails";
 import Profile from "./pages/Profile";
 import Setting from "./pages/Setting";
 import Cart from "./pages/Cart";
+import NotFound from "./pages/NotFound";
+import About from "./pages/About";
 
 //import "swiper/scss/pagination";
 // import "swiper/scss/navigation";
@@ -46,10 +48,6 @@ function App() {
     <div className="App">
       <Header />
       <Switch>
-        <Route exact path="/product-details">
-          <ProductDetails />
-        </Route>
-
         <Route exact path="/">
           <Home />
         </Route>
@@ -91,6 +89,15 @@ function App() {
         </Route>
         <Route exact path="/privacy-policy">
           <Policy />
+        </Route>
+        <Route exact path="/about-us">
+          <About />
+        </Route>
+        <Route path="/services/:slug">
+          <ProductDetails />
+        </Route>
+        <Route path="/*">
+          <NotFound />
         </Route>
       </Switch>
       <Footer />

@@ -73,7 +73,10 @@ const AllServices = () => {
                                 style={{ maxHeight: 200, maxWidth: 240 }}
                                 onClick={() => setTarget(child)}
                               >
-                                <Link to="/product-details" className="link">
+                                <Link
+                                  to={`/services/${child.slug}`}
+                                  className="link"
+                                >
                                   <img
                                     src={child.categoryImage}
                                     alt=""
