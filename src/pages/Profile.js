@@ -89,7 +89,6 @@ const Profile = () => {
 
   const auth = useSelector((state) => state.auth);
   const { name, username, email, contactNumber } = auth.user;
-
   const [profileInfo, setProfileInfo] = useState({
     profile_image: [],
   });

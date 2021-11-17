@@ -50,7 +50,6 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
   const [subTotal, setSubTotal] = useState(0);
   const handleDecrement = (product) => {
     const sameProduct = cart.find((pd) => pd.id === product.id);
-
     if (sameProduct.quantity <= 1) {
       const others = cart.filter((pd) => pd.id !== product.id);
       setCart(others);
