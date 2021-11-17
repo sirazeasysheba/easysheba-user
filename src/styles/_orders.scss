@@ -1,0 +1,82 @@
+@import "./variables";
+.order-search-box-container {
+  &:hover {
+    border: 1px solid black !important;
+  }
+  .search-order {
+    border: none !important;
+  }
+  .order-search-box-icon {
+    font-size: 13px;
+    cursor: pointer;
+    &:hover {
+      color: $secondary;
+    }
+  }
+}
+.order-select-form {
+  width: 230px;
+  .form-select,
+  .form-select > option {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.8) !important;
+  }
+}
+.borderless {
+  border-top-style: none !important;
+  border-left-style: none !important;
+  border-right-style: none !important;
+  border-bottom-style: none !important;
+}
+.order-details-tab-container {
+  .active-toggle-btn {
+    color: $primary !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .nav-pills .nav-link.active {
+    color: $primary !important;
+    background: none !important;
+    font-weight: 700;
+    border-bottom: 5px solid #00a1ba;
+    border-radius: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .tab-links {
+    color: $primary !important;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+.faq-btn {
+  border: none !important;
+  background: transparent;
+  font-size: 18px;
+  font-weight: 700;
+}
+.span-plus-minus {
+  background: #c71f66;
+  border-radius: 50%;
+  padding: 0px 4px;
+  // margin-right: 5px;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+}
+.service-order-container {
+  border-right: 1px solid gray;
+  padding-right: 0px !important ;
+  .service-order-title {
+    width: 100%;
+    padding: 10px;
+    background-color: #f4f5f8;
+    border-right: 5px solid #00a1ba;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,151 @@
+@import "./variables";
+
+.choose-section {
+  background-color: $bg-secondary;
+}
+.service-number {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-image: linear-gradient(135deg, #23a999 1%, #00a1ba 52%, #006597);
+  vertical-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  color: white;
+  line-height: 50px;
+}
+
+.dash {
+  position: relative;
+  &::before {
+    position: absolute;
+    content: "";
+    height: 3px;
+    width: 30px;
+  }
+}
+.app-section {
+  .app-button {
+    background-color: $primary !important;
+    border: none;
+    &:hover {
+      background-color: $secondary !important;
+    }
+  }
+}
+.app-form {
+  &::placeholder {
+    font-size: 12px !important;
+    padding-left: 20px;
+  }
+}
+.bg-brand-primary {
+  background: $primary;
+}
+.request-btn {
+  background-color: $primary !important;
+  border: none;
+  padding: 10px 30px;
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 10px;
+  &:hover {
+    background-color: $secondary !important;
+  }
+}
+.call-btn {
+  border: 1px solid $primary !important;
+  padding: 9px 30px;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 10px;
+  &:hover {
+    background-color: $primary !important;
+    color: white;
+    font-weight: 500;
+  }
+}
+.service-img {
+  margin-top: -100px;
+}
+
+.modal-form {
+  margin: 20px 150px;
+  font-size: 14px;
+  .modal-input {
+    &::placeholder {
+      font-size: 12px;
+      padding-left: 10px;
+      margin-top: 15px !important;
+    }
+  }
+}
+.modal-header {
+  margin-left: 120px;
+  font-size: 24px;
+  font-weight: 700;
+  border: none !important;
+}
+
+.service-cart {
+  width: 250px;
+  cursor: pointer;
+  .cart-image {
+    height: 130px;
+    width: 100%;
+    border-radius: 10px;
+  }
+}
+
+.trending-slider {
+  .slick-prev::before {
+    content: url("../media/arrow-left-40.png");
+  }
+  .slick-prev-disabled {
+    display: none !important;
+  }
+  .slick-next::before {
+    content: url("../media/arrow-right-40.png");
+  }
+  .trending-image {
+    max-height: 180px;
+    max-width: 250px;
+    border-radius: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  .slick-disabled {
+    display: none !important;
+  }
+}
+
+.clock-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  .clock {
+    max-width: 600px !important;
+    margin-bottom: 10px;
+
+    .clock-items {
+      font-size: 14px;
+      font-weight: 700;
+      color: white;
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .service-img {
+    margin-top: 0px;
+  }
+  .modal-form {
+    margin: 20px 20px;
+  }
+  .trending-image {
+    height: 50px;
+    width: 60px;
+    border-radius: 2px !important;
+  }
+}
