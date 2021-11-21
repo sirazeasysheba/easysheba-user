@@ -48,6 +48,8 @@ const DatePickerModal = ({
   time,
   date,
   setDate,
+  setMonth,
+  setYear,
   productByService,
   service,
 }) => {
@@ -57,11 +59,25 @@ const DatePickerModal = ({
   const [button4, setButton4] = useState(false);
   const [day1, setDay1] = useState(true);
   const [day2, setDay2] = useState(false);
+  const [day3, setDay3] = useState(false);
+  const [day4, setDay4] = useState(false);
+  const [day5, setDay5] = useState(false);
+  const [day6, setDay6] = useState(false);
+  const [day7, setDay7] = useState(false);
 
   const handleDay = (day, index) => {
-    setDate(day);
-    setDay2(true);
-    setDay1(false);
+    if (index === 0) {
+      setDay2(true);
+      setDay1(false);
+      setDay3(false);
+      setDay4(false);
+      setDay5(false);
+      setDay6(false);
+      setDay7(false);
+    }
+    setDate(day.date);
+    setMonth(day.month);
+    setYear(day.year);
   };
 
   const handleDay1 = () => {
@@ -108,14 +124,25 @@ const DatePickerModal = ({
     slidesToScroll: 1,
     arrow: false,
   };
-  const dateArray = [];
-  const daysArray = [];
+  const dateArray = [
+    {
+      date: "",
+      day: "",
+      month: "",
+      year: "",
+    },
+  ];
+
   for (let i = 1; i < 7; i++) {
     const days = addDays(new Date(), i);
-    dateArray.push(format(days, "dd"));
-    daysArray.push(format(days, "EE"));
+    dateArray.push({
+      date: format(days, "dd"),
+      day: format(days, "EE"),
+      month: format(days, "LLLL"),
+      year: format(days, "yyyy"),
+    });
   }
-  console.log(date);
+  dateArray.shift();
   return (
     <div className="cart-modal">
       <Modal
@@ -159,8 +186,8 @@ const DatePickerModal = ({
                       key={index}
                       onClick={() => handleDay(date, index)}
                     >
-                      <h2 className="mb-0 mt-3">{date}</h2>
-                      <p>{daysArray[index]}</p>
+                      <h2 className="mb-0 mt-3">{date.date}</h2>
+                      <p>{date.day}</p>
                     </div>
                   ))}
                 </Slider>

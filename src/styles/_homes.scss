@@ -136,6 +136,19 @@
     }
   }
 }
+.how-it-works {
+  background-image: linear-gradient(
+      0deg,
+      rgba(29, 20, 20, 0.3),
+      rgba(20, 29, 29, 0.3)
+    ),
+    url("../media/rsz_1thumbnail-howeasyshebaworks.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: 20px;
+}
+
 @media screen and (max-width: 600px) {
   .service-img {
     margin-top: 0px;

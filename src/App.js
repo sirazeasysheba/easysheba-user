@@ -6,7 +6,6 @@ import Home from "./components/Home/Home";
 import Footer from "./components/Layout/Footer";
 import Header from "./components/Layout/Header";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import VideoModal from "./components/UI/VideoModal";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Policy from "./pages/Policy";
@@ -15,7 +14,12 @@ import { isUserLoggedIn } from "./redux/actions/auth.actions";
 import "./styles/style.scss";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
-import { getAllCategory, getAllService, getProducts } from "./redux/actions";
+import {
+  getAllCategory,
+  getAllService,
+  getProducts,
+  updateCart,
+} from "./redux/actions";
 import ProductDetails from "./pages/ProductDetails";
 import Checkout from "./pages/Checkout";
 import OrderPayment from "./pages/OrderPayment";
@@ -28,6 +32,7 @@ import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import Terms from "./pages/Terms";
 import Helps from "./pages/Helps";
+import MyModal from "./components/UI/VideoModal";
 
 //import "swiper/scss/pagination";
 // import "swiper/scss/navigation";
@@ -46,7 +51,9 @@ function App() {
     dispatch(getAllCategory());
     dispatch(getAllService());
     dispatch(getProducts());
+    dispatch(updateCart());
   }, []);
+
   return (
     <div className="App">
       <Header />
@@ -85,7 +92,7 @@ function App() {
           <Setting />
         </PrivateRoute>
         <Route exact path="/video">
-          <VideoModal />
+          <MyModal />
         </Route>
         <Route exact path="/all-services">
           <AllServices />

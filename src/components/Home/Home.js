@@ -19,6 +19,7 @@ import RecommendSlider from "../BannerSlider/RecommendSlider";
 import Countdown from "react-countdown";
 import up from "../../media/UP-70.svg";
 import CategoryModal from "../UI/CategoryModal";
+import MyModal from "../UI/VideoModal";
 
 const Home = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -131,7 +132,7 @@ const Home = () => {
         >
           <div>
             <Countdown
-              date={Date.now() + 5000000000 - 1636888709464}
+              date={new Date("2021-12-26T10:05:29.896Z").getTime()}
               renderer={renderer}
             />
           </div>
@@ -279,7 +280,7 @@ const Home = () => {
         <h2 className="fw-bold mb-3">Easiest way to get a service</h2>
         <Row>
           <Col md={6}>
-            <img src="" alt="" />
+            <MyModal />
           </Col>
           <Col md={6}>
             <div className="d-flex mb-3">

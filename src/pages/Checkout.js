@@ -28,7 +28,8 @@ const Checkout = () => {
   const { name, contactNumber, email } = auth.user;
   const [time, setTime] = useState("7.00");
   const [date, setDate] = useState(format(new Date(), "dd"));
-
+  const [month, setMonth] = useState(format(new Date(), "LLLL"));
+  const [year, setYear] = useState(format(new Date(), "yyyy"));
   //Modal
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -67,7 +68,7 @@ const Checkout = () => {
                     {date}
                     <span style={{ fontSize: 14 }}>
                       {" "}
-                      {format(new Date(), "LLLL")}, {format(new Date(), "yyyy")}
+                      {month}, {year}
                     </span>{" "}
                   </h3>
                   <button className="change-btn" onClick={() => openModal()}>
@@ -296,6 +297,8 @@ const Checkout = () => {
         setTime={setTime}
         date={date}
         setDate={setDate}
+        setYear={setYear}
+        setMonth={setMonth}
       />
     </div>
   );

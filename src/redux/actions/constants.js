@@ -26,3 +26,7 @@ export const productConstants = {
   GET_ALL_PRODUCTS: "GET_ALL_PRODUCTS",
   // GET_ALL_CATEGORY_FAILURE: "GET_ALL_CATEGORY_FAILURE",
 };
+export const cartConstants = {
+  ADD_TO_CART: "ADD_TO_CART",
+  REMOVE_FROM_CART: "REMOVE_FROM_CART",
+};

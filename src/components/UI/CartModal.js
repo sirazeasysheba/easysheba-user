@@ -1,10 +1,12 @@
 import { faLongArrowAltRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Modal from "react-modal";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import close from "../../media/x-converted.png";
+import { addToCart, removeOneItemFromCart } from "../../redux/actions";
 const customStyles = {
   overlay: {
     position: "fixed",
@@ -45,43 +47,53 @@ Modal.setAppElement("#root");
 //function
 
 const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
-  const [cart, setCart] = useState([]);
+  console.log(productByService);
   const [info, setInfo] = useState(false);
   const [subTotal, setSubTotal] = useState(0);
-  const handleDecrement = (product) => {
-    const sameProduct = cart.find((pd) => pd.id === product.id);
-    if (sameProduct.quantity <= 1) {
-      const others = cart.filter((pd) => pd.id !== product.id);
-      setCart(others);
-    } else {
-      sameProduct.quantity -= 1;
-      const others = cart.filter((pd) => pd.id !== product.id);
-      let newCart = [...others, sameProduct];
-      setCart(newCart);
-      setSubTotal(subTotal - product.price);
-    }
-    setSubTotal(subTotal - product.price);
-  };
-  const handleIncrement = (product) => {
-    const sameProduct = cart.find((pd) => pd.id === product.id);
-    sameProduct.quantity += 1;
-    setSubTotal(subTotal + product.price);
-    const others = cart.filter((pd) => pd.id !== product.id);
-    let newCart = [...others, sameProduct];
-    setCart(newCart);
-  };
-  const handleAddProduct = (product) => {
-    product.quantity = 1;
-    setSubTotal(subTotal + product.quantity * product.price);
-    let newCart = [...cart, product];
-    const sameProduct = cart.find((pd) => pd.id === product.id);
-    if (sameProduct) {
-      product.btn = false;
-    }
-    setCart(newCart);
-  };
+  const [quantity, setQuantity] = useState("");
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
 
-  console.log(cart);
+  const [cartItems, setCartItems] = useState(cart.cartItems);
+  useEffect(() => {
+    setCartItems(cart.cartItems);
+  }, [cart.cartItems]);
+
+  const handleIncrement = (id, quantity) => {
+    // const sameProduct = cart.find((pd) => pd.id === product.id);
+    // sameProduct.quantity += 1;
+    // setSubTotal(subTotal + product.price);
+    // const others = cart.filter((pd) => pd.id !== product.id);
+    // let newCart = [...others, sameProduct];
+    console.log(id, quantity);
+    setQuantity(quantity + 1);
+  };
+  const handleDecrement = (id, quantity) => {
+    // const sameProduct = cart.find((pd) => pd.id === product.id);
+    // if (sameProduct.quantity <= 1) {
+    //   const others = cart.filter((pd) => pd.id !== product.id);
+    //   setCart(others);
+    // } else {
+    //   sameProduct.quantity -= 1;
+    //   const others = cart.filter((pd) => pd.id !== product.id);
+    //   let newCart = [...others, sameProduct];
+    //   setCart(newCart);
+    //   setSubTotal(subTotal - product.price);
+    // }
+    // setSubTotal(subTotal - product.price);
+  };
+  // const handleAddProduct = (product) => {
+  //   product.quantity = 1;
+  //   setSubTotal(subTotal + product.quantity * product.price);
+  //   let newCart = [...cart, product];
+  //   const sameProduct = cart.find((pd) => pd.id === product.id);
+  //   if (sameProduct) {
+  //     product.btn = false;
+  //   }
+  //   setCart(newCart);
+  // };
+
+  // console.log(cart);
   return (
     <div className="cart-modal">
       <Modal
@@ -137,7 +149,7 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
                               <div style={{ backgroundColor: "#f16622" }}>
                                 <button
                                   className="mb-0 px-2 increment-decrement-btn"
-                                  onClick={() => handleDecrement(product)}
+                                  // onClick={() => handleDecrement(product)}
                                 >
                                   -
                                 </button>
@@ -154,7 +166,7 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
                               <div style={{ backgroundColor: "#f16622" }}>
                                 <button
                                   className="mb-0  px-2 increment-decrement-btn"
-                                  onClick={() => handleIncrement(product)}
+                                  // onClick={() => handleIncrement(product)}
                                 >
                                   +
                                 </button>
@@ -163,7 +175,7 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
                           ) : (
                             <button
                               className="primary-btn px-3 py-1 mt-2"
-                              onClick={() => handleAddProduct(product)}
+                              onClick={() => dispatch(addToCart(product))}
                             >
                               Add +{" "}
                             </button>
@@ -182,23 +194,28 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
                       overflowY: "auto",
                     }}
                   >
-                    {cart.length > 0 ? (
+                    {Object.keys(cartItems).length > 0 ? (
                       <div className="mt-3">
-                        {cart.map((product) => (
-                          <div className="mx-3 mb-5" key={product.id}>
+                        {Object.keys(cartItems).map((item) => (
+                          <div className="mx-3 mb-5" key={item}>
+                            {/* {JSON.stringify(item)} */}
                             <div className="d-flex justify-content-between">
-                              <h6> {service.name}</h6>
+                              <h6> {cartItems[item].service.name}</h6>
                               <div className="quantity-section d-flex justify-content-between align-items-center">
                                 <div style={{ backgroundColor: "#f16622" }}>
                                   <button
                                     className="mb-0 px-2 increment-decrement-btn"
-                                    onClick={() => handleDecrement(product)}
+                                    onClick={() =>
+                                      dispatch(
+                                        removeOneItemFromCart(cartItems[item])
+                                      )
+                                    }
                                   >
                                     -
                                   </button>
                                 </div>
                                 <p className="mb-0">
-                                  {product.quantity}
+                                  {cartItems[item].qty}
                                   <span
                                     className="text-muted ms-1"
                                     style={{ fontSize: 12, fontWeight: 200 }}
@@ -209,7 +226,9 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
                                 <div style={{ backgroundColor: "#f16622" }}>
                                   <button
                                     className="mb-0  px-2 increment-decrement-btn"
-                                    onClick={() => handleIncrement(product)}
+                                    onClick={() =>
+                                      dispatch(addToCart(cartItems[item]))
+                                    }
                                   >
                                     +
                                   </button>
@@ -218,11 +237,11 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
                             </div>
                             <div className="d-flex justify-content-between mt-2 ">
                               <small className="text-muted border-start ps-2">
-                                {product.name}
+                                {cartItems[item].name}
                               </small>
                               <p className="fw-bold mb-0">
                                 {" "}
-                                ৳ {product.price * product.quantity}
+                                ৳ {cartItems[item].price * cartItems[item].qty}
                               </p>
                             </div>
                           </div>

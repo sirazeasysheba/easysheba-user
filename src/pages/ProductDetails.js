@@ -26,13 +26,10 @@ import { Formik, Form as Form2 } from "formik";
 import CartModal from "../components/UI/CartModal";
 import ac from "../media/Ac repair.jpeg";
 import software from "../media/software.jpeg";
-import { useDispatch, useSelector } from "react-redux";
-import { getProductByService } from "../redux/actions";
+import { useSelector } from "react-redux";
 const ProductDetails = () => {
   // //
   const [productByService, setProductByService] = useState([]);
-
-  const dispatch = useDispatch();
   const category = useSelector((state) => state.category);
   const services = useSelector((state) => state.service);
   const products = useSelector((state) => state.product);
@@ -40,6 +37,7 @@ const ProductDetails = () => {
   const [service, setService] = useState("");
 
   const { slug } = useParams();
+
   const createCategoryList = (categories, options = []) => {
     for (let category of categories) {
       for (let children of category.children) {
@@ -51,7 +49,7 @@ const ProductDetails = () => {
 
   const createProductList = (serviceId, options = []) => {
     for (let product of products.productList.products) {
-      if (product.service === serviceId) {
+      if (product.service._id === serviceId) {
         options.push(product);
       }
     }
@@ -62,18 +60,15 @@ const ProductDetails = () => {
 
   const newCategory = slugList.find((child) => child.slug === slug);
 
-  const newService = services.services?.find(
+  const newService = services.services.find(
     (service) => service.category === newCategory._id
   );
 
-  function openModal(item) {
-    setService(item);
-    setIsOpen(true);
-  }
   useEffect(() => {
     if (service) {
-      dispatch(getProductByService(service._id));
       const products = createProductList(service._id);
+      console.log(products);
+      // dispatch(getProductByService(service._id));
       setProductByService(products);
     }
   }, [service]);
@@ -89,6 +84,10 @@ const ProductDetails = () => {
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
     subtitle.style.color = "#f00";
+  }
+  function openModal(item) {
+    setService(item);
+    setIsOpen(true);
   }
 
   function closeModal() {
