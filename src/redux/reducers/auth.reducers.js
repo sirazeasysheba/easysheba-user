@@ -39,6 +39,7 @@ const authReducer = (state = initialState, action) => {
     case authConstants.LOGIN_FAILURE:
       state = {
         ...state,
+        loading: true,
         error: action.payload.error,
       };
       break;

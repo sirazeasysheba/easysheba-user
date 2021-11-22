@@ -21,15 +21,15 @@ const Login = () => {
   const auth = useSelector((state) => state.auth);
   // useEffect(() => {
   //   if (auth.error) {
-  //     console.log(auth.error.data.message);
   //     setError(auth.error.data.message);
   //   }
-  // }, []);
-  // useEffect(() => {
-  //   if (auth.loading) {
-  //     return <p>Loading.....</p>;
-  //   }
-  // }, []);
+  // }, [auth.error]);
+
+  useEffect(() => {
+    if (auth.loading) {
+      return <p>Loading.....</p>;
+    }
+  }, [auth.loading]);
 
   if (auth.authenticate) {
     return <Redirect to={`/dashboard`} />;
@@ -45,7 +45,7 @@ const Login = () => {
         validationSchema={validate}
         onSubmit={(values) => {
           const user = values;
-          console.log(user);
+          // console.log(user);
           dispatch(login(user));
         }}
       >

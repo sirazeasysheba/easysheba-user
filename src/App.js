@@ -32,7 +32,6 @@ import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import Terms from "./pages/Terms";
 import Helps from "./pages/Helps";
-import MyModal from "./components/UI/VideoModal";
 
 //import "swiper/scss/pagination";
 // import "swiper/scss/navigation";
@@ -91,9 +90,6 @@ function App() {
         <PrivateRoute exact path="/user/setting">
           <Setting />
         </PrivateRoute>
-        <Route exact path="/video">
-          <MyModal />
-        </Route>
         <Route exact path="/all-services">
           <AllServices />
         </Route>

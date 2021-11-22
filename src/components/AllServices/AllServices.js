@@ -10,7 +10,6 @@ import ScrollspyNav from "react-scrollspy-nav";
 const AllServices = () => {
   //Category
   const [target, setTarget] = useState(null);
-  console.log(target);
   const category = useSelector((state) => state.category);
   const ids = [];
   category.categories.map((cat, index) => {

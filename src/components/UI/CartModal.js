@@ -53,7 +53,7 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
   const [quantity, setQuantity] = useState("");
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-
+  console.log(cart.cartItems);
   const [cartItems, setCartItems] = useState(cart.cartItems);
   useEffect(() => {
     setCartItems(cart.cartItems);
@@ -200,7 +200,7 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
                           <div className="mx-3 mb-5" key={item}>
                             {/* {JSON.stringify(item)} */}
                             <div className="d-flex justify-content-between">
-                              <h6> {cartItems[item].service.name}</h6>
+                              {/* <h6> {cartItems[item].service.name}</h6> */}
                               <div className="quantity-section d-flex justify-content-between align-items-center">
                                 <div style={{ backgroundColor: "#f16622" }}>
                                   <button
@@ -266,8 +266,11 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
                         </div>
                       </div>
                     )}
-                    {cart.length > 0 ? (
-                      <div className="mx-2">
+                    {Object.keys(cartItems).length > 0 ? (
+                      <div
+                        className="mx-2"
+                        style={{ position: "fixed", bottom: 0 }}
+                      >
                         <button
                           className="proceed-btn w-100 mt-5 mb-2"
                           onClick={() => setInfo(true)}
@@ -338,7 +341,10 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
                 </div>
               </div>
             </div>
-            <div className="mx-2">
+            <div
+              className="mx-2"
+              style={{ position: "fixed", bottom: 10, left: "35%" }}
+            >
               <Link to="/checkout">
                 <button className="proceed-btn w-100 mt-5 mb-2">
                   OK, I understand, PROCEED TO CHECKOUT
