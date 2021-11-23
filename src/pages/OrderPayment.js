@@ -8,7 +8,9 @@ import info from "../media/info-blue.svg";
 import bkash from "../media/bkash.png";
 import nagad from "../media/nagad.png";
 import cbl from "../media/cbl.png";
+import { useSelector } from "react-redux";
 const OrderPayment = () => {
+  const auth = useSelector((state) => state.auth);
   const [open, setOpen] = useState(false);
   return (
     <div style={{ marginTop: 100 }}>
@@ -22,7 +24,7 @@ const OrderPayment = () => {
                 </div>
                 <div>
                   <h5 className="fw-bold">
-                    Jo Do your order has been placed successfully!
+                    {auth.user.name} your order has been placed successfully!
                   </h5>
                   <p className="mb-0">Your Order ID : D-563248</p>
                   <small className="d-block mb-3">

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  faCartPlus,
   faSearch,
   faPhone,
   faBell,
@@ -28,8 +27,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../redux/actions/auth.actions";
 import CartCanvas from "../../pages/CartCanvas";
 import NotificationsModal from "../UI/NotificationsModal";
+import Cart from "../UI/Cart";
 
 const Header = () => {
+  const cart = useSelector((state) => state.cart);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -110,12 +111,7 @@ const Header = () => {
                   )}
                   <li className="nav-item fw-bold me-2">
                     <span onClick={handleShow} className="nav-link">
-                      <FontAwesomeIcon
-                        icon={faCartPlus}
-                        style={{ color: "black", cursor: "pointer" }}
-                        className="cart-icon"
-                      />
-                      <span id="span"></span>
+                      <Cart count={Object.keys(cart.cartItems).length} />
                     </span>
                   </li>
                   {auth.authenticate ? (

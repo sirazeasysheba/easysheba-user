@@ -6,7 +6,6 @@ import Home from "./components/Home/Home";
 import Footer from "./components/Layout/Footer";
 import Header from "./components/Layout/Header";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Policy from "./pages/Policy";
 import SignUp from "./pages/SignUp";
@@ -17,6 +16,7 @@ import "swiper/swiper.min.css";
 import {
   getAllCategory,
   getAllService,
+  getCartItems,
   getProducts,
   updateCart,
 } from "./redux/actions";
@@ -37,8 +37,10 @@ import Helps from "./pages/Helps";
 // import "swiper/scss/navigation";
 function App() {
   const auth = useSelector((state) => state.auth);
+  const token = localStorage.getItem("token");
   const dispatch = useDispatch();
   const location = useLocation();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
@@ -51,7 +53,14 @@ function App() {
     dispatch(getAllService());
     dispatch(getProducts());
     dispatch(updateCart());
+    dispatch(getCartItems());
   }, []);
+
+  useEffect(() => {
+    if (token) {
+      dispatch(getCartItems());
+    }
+  }, [token]);
 
   return (
     <div className="App">
@@ -69,9 +78,6 @@ function App() {
         <Route exact path="/cart">
           <Cart />
         </Route>
-        <PrivateRoute exact path="/dashboard">
-          <Dashboard />
-        </PrivateRoute>
         <PrivateRoute exact path="/checkout">
           <Checkout />
         </PrivateRoute>

@@ -1,7 +1,7 @@
 import { Formik, Form } from "formik";
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import { Link, Redirect } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import TextField from "../components/UI/TextField";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
@@ -30,9 +30,13 @@ const Login = () => {
       return <p>Loading.....</p>;
     }
   }, [auth.loading]);
+  const history = useHistory();
+  const location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
 
   if (auth.authenticate) {
-    return <Redirect to={`/dashboard`} />;
+    //  return <Redirect to={`/dashboard`} />;
+    history.replace(from);
   }
 
   return (

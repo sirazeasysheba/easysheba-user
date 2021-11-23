@@ -49,7 +49,7 @@ export const addToCart = (product, Qty = 1) => {
         cartItems: [
           {
             product: product._id,
-            // service:product.service,
+            service: product.service,
             quantity: qty,
           },
         ],

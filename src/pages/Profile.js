@@ -55,6 +55,10 @@ const buttonStyles = {
 };
 Modal.setAppElement("#root");
 const Profile = () => {
+  const auth = useSelector((state) => state.auth);
+  const { name, username, email, contactNumber } = auth.user;
+  const user = useSelector((state) => state.user);
+
   function openModal() {
     setIsOpen(true);
   }
@@ -87,8 +91,6 @@ const Profile = () => {
     address: Yup.string().required("Address is required"),
   });
 
-  const auth = useSelector((state) => state.auth);
-  const { name, username, email, contactNumber } = auth.user;
   const [profileInfo, setProfileInfo] = useState({
     profile_image: [],
   });
@@ -147,7 +149,54 @@ const Profile = () => {
               </div>
               <div className="d-flex  border-bottom mt-3">
                 <p style={{ width: 100, fontWeight: 700 }}>Address: </p>
-                <p>Banasree</p>
+                {user.address.length > 0 ? (
+                  <Container fluid>
+                    <Row>
+                      <Col md={6}>
+                        <div className="d-flex ">
+                          <small className="fw-bold me-3">House No: </small>
+                          <small className="fw-bold me-3">
+                            {user.address[0].house}
+                          </small>
+                        </div>
+                      </Col>
+                      <Col md={6}>
+                        <div className="d-flex ">
+                          <small className="fw-bold me-3">Road No: </small>
+                          <small className="fw-bold me-3">
+                            {user.address[0].road}
+                          </small>
+                        </div>
+                      </Col>
+                    </Row>
+                    <Row className="mt-3">
+                      <Col md={6}>
+                        <div className="d-flex ">
+                          <small className="fw-bold me-3">Block: </small>
+                          <small className="fw-bold me-3">
+                            {user.address[0].block}
+                          </small>
+                        </div>
+                      </Col>
+                      <Col md={6}>
+                        <div className="d-flex ">
+                          <small className="fw-bold me-3">Sector: </small>
+                          <small className="fw-bold me-3">
+                            {user.address[0].sector}
+                          </small>
+                        </div>
+                      </Col>
+                    </Row>
+                    <Row className="mt-3">
+                      <div className="d-flex ">
+                        <small className="fw-bold me-3">Area: </small>
+                        <small className="fw-bold me-3">
+                          {user.address[0].area}
+                        </small>
+                      </div>
+                    </Row>
+                  </Container>
+                ) : null}
               </div>
             </Col>
           </Row>

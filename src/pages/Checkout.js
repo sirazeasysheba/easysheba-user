@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import icons from "../media/checkout.svg";
@@ -11,9 +11,10 @@ import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import TextField from "../components/UI/TextField";
 import { Formik, Form as Form2 } from "formik";
 import * as Yup from "yup";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { format } from "date-fns";
 import DatePickerModal from "../components/UI/DatePickerModal";
+import { addAddress, getAddress } from "../redux/actions";
 const Checkout = () => {
   const validate = Yup.object({
     house: Yup.string().required("House No is required"),
@@ -24,13 +25,22 @@ const Checkout = () => {
   });
 
   //
+  const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+  const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
   const { name, contactNumber, email } = auth.user;
   const [time, setTime] = useState("7.00");
   const [date, setDate] = useState(format(new Date(), "dd"));
   const [month, setMonth] = useState(format(new Date(), "LLLL"));
   const [year, setYear] = useState(format(new Date(), "yyyy"));
-  //Modal
+
+  useEffect(() => {
+    dispatch(getAddress());
+  }, []);
+
+  // console.log(cart.cartItems);
+
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -45,6 +55,15 @@ const Checkout = () => {
   function closeModal() {
     setIsOpen(false);
   }
+  const allServices = useSelector((state) => state.service);
+
+  const getService = (s) => {
+    for (let service of allServices.services) {
+      for (let serve of service.children) {
+        if (serve._id === s) return serve.name;
+      }
+    }
+  };
 
   return (
     <div style={{ marginTop: 55, fontSize: 13 }} className="checkout-container">
@@ -94,102 +113,160 @@ const Checkout = () => {
                 </div>
               </div>
             </div>
-            <div className="checkout-address-container p-3 shadow-lg d-flex mb-5">
-              <div>
-                <img src={home} alt="" className="me-3" />
+            <div className="checkout-address-container p-3 shadow-lg mb-5">
+              <div className="d-flex">
+                <div>
+                  <img src={home} alt="" className="me-3" />
+                </div>
+                <div>
+                  <h6 className="fw-bold">Address</h6>
+                  <p className="text-muted">
+                    Expert will arrive at the address given below
+                  </p>
+                </div>
               </div>
               <div>
-                <h6 className="fw-bold">Address</h6>
-                <p className="text-muted">
-                  Expert will arrive at the address given below
-                </p>
                 <Container>
-                  <Formik
-                    initialValues={{
-                      house: "",
-                      road: "",
-                      sector: "",
-                      block: "",
-                      area: "",
-                    }}
-                    validationSchema={validate}
-                    onSubmit={(values) => {
-                      const user = values;
-                      console.log(user);
-                    }}
-                  >
-                    {(formik) => (
-                      <div className="mb-5 form-wrapper">
-                        <div>
-                          <Form2>
-                            <Row>
-                              <Col md={6}>
-                                <TextField
-                                  label="House No."
-                                  type="text"
-                                  placeholder="House No"
-                                  name="house"
-                                />
-                              </Col>
-                              <Col md={6}>
-                                <TextField
-                                  label="Road No. / Name"
-                                  type="text"
-                                  placeholder="Road No. / Name"
-                                  name="road"
-                                />
-                              </Col>
-                            </Row>
-                            <Row className="mt-3">
-                              <Col md={6}>
-                                <TextField
-                                  label="Block No."
-                                  type="text"
-                                  placeholder="Block No."
-                                  name="block"
-                                />
-                              </Col>
-                              <Col md={6}>
-                                <TextField
-                                  label="Sector No"
-                                  type="text"
-                                  placeholder="Sector No"
-                                  name="sector"
-                                />
-                              </Col>
-                            </Row>
-                            <Row className="mt-3">
-                              <TextField
-                                label="Area"
-                                type="text"
-                                placeholder="Gulshan"
-                                name="area"
-                              />
-                            </Row>
-
-                            <div className="mb-3">
-                              <input
-                                className="form-check-input me-2"
-                                type="checkbox"
-                                value=""
-                                id="flexCheckIndeterminate"
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="flexCheckIndeterminate"
-                                style={{ fontSize: 14 }}
-                              >
-                                Save this adress
-                              </label>
-                            </div>
-                            <button type="submit" className="review-btn">
-                              Save
-                            </button>
-                          </Form2>
+                  {user.address.length > 0 ? (
+                    <div className="mt-3">
+                      <Row>
+                        <Col md={6}>
+                          <div className="d-flex ">
+                            <h6 className="fw-bold me-3">House No: </h6>
+                            <h6 className="fw-bold me-3">
+                              {user.address[0].house}
+                            </h6>
+                          </div>
+                        </Col>
+                        <Col md={6}>
+                          <div className="d-flex ">
+                            <h6 className="fw-bold me-3">Road No: </h6>
+                            <h6 className="fw-bold me-3">
+                              {user.address[0].road}
+                            </h6>
+                          </div>
+                        </Col>
+                      </Row>
+                      <Row className="mt-3">
+                        <Col md={6}>
+                          <div className="d-flex ">
+                            <h6 className="fw-bold me-3">Block: </h6>
+                            <h6 className="fw-bold me-3">
+                              {user.address[0].block}
+                            </h6>
+                          </div>
+                        </Col>
+                        <Col md={6}>
+                          <div className="d-flex ">
+                            <h6 className="fw-bold me-3">Sector: </h6>
+                            <h6 className="fw-bold me-3">
+                              {user.address[0].sector}
+                            </h6>
+                          </div>
+                        </Col>
+                      </Row>
+                      <Row className="mt-3">
+                        <div className="d-flex ">
+                          <h6 className="fw-bold me-3">Area: </h6>
+                          <h6 className="fw-bold me-3">
+                            {user.address[0].area}
+                          </h6>
                         </div>
-                      </div>
-                    )}
-                  </Formik>
+                      </Row>
+                    </div>
+                  ) : (
+                    <Formik
+                      initialValues={{
+                        house: "",
+                        road: "",
+                        sector: "",
+                        block: "",
+                        area: "",
+                      }}
+                      validationSchema={validate}
+                      onSubmit={(values) => {
+                        const address = values;
+                        address.name = name;
+                        address.phoneNumber = contactNumber;
+                        const payload = {
+                          address,
+                        };
+                        dispatch(addAddress(payload));
+                      }}
+                    >
+                      {(formik) => (
+                        <div className="mb-5 form-wrapper">
+                          <div>
+                            <Form2>
+                              <Row>
+                                <Col md={6}>
+                                  <TextField
+                                    label="House No."
+                                    type="text"
+                                    placeholder="House No"
+                                    name="house"
+                                  />
+                                </Col>
+                                <Col md={6}>
+                                  <TextField
+                                    label="Road No. / Name"
+                                    type="text"
+                                    placeholder="Road No. / Name"
+                                    name="road"
+                                  />
+                                </Col>
+                              </Row>
+                              <Row className="mt-3">
+                                <Col md={6}>
+                                  <TextField
+                                    label="Block No."
+                                    type="text"
+                                    placeholder="Block No."
+                                    name="block"
+                                  />
+                                </Col>
+                                <Col md={6}>
+                                  <TextField
+                                    label="Sector No"
+                                    type="text"
+                                    placeholder="Sector No"
+                                    name="sector"
+                                  />
+                                </Col>
+                              </Row>
+                              <Row className="mt-3">
+                                <TextField
+                                  label="Area"
+                                  type="text"
+                                  placeholder="Gulshan"
+                                  name="area"
+                                />
+                              </Row>
+
+                              <div className="mb-3">
+                                <input
+                                  className="form-check-input me-2"
+                                  type="checkbox"
+                                  value=""
+                                  id="flexCheckIndeterminate"
+                                />
+                                <label
+                                  className="form-check-label"
+                                  htmlFor="flexCheckIndeterminate"
+                                  style={{ fontSize: 14 }}
+                                >
+                                  Save this adress
+                                </label>
+                              </div>
+                              <button type="submit" className="review-btn">
+                                Save
+                              </button>
+                            </Form2>
+                          </div>
+                        </div>
+                      )}
+                    </Formik>
+                  )}
                 </Container>
               </div>
             </div>
@@ -197,17 +274,33 @@ const Checkout = () => {
           <Col md={5}>
             <div className="shadow-lg p-5">
               <h5 className="fw-bold mb-3">Order Summary</h5>
-
-              <div className="d-flex justify-content-between align-items-center border-bottom pb-3">
-                <div>
-                  <p className="mb-0"> Table & Work Station Ma...</p>
-                  <h6 className="text-muted">Wall Mount Home Work St.. x1</h6>
+              {Object.keys(cart.cartItems).map((item) => (
+                <div className="d-flex justify-content-between align-items-center border-bottom pb-3">
+                  <div>
+                    {cart.cartItems[item].service.name ? (
+                      <h6> {cart.cartItems[item].service.name}</h6>
+                    ) : (
+                      <h6> {getService(cart.cartItems[item].service)}</h6>
+                    )}
+                    <p className="text-muted">
+                      {" "}
+                      {cart.cartItems[item].name} x {cart.cartItems[item].qty}
+                    </p>
+                  </div>
+                  <p>
+                    ৳ {cart.cartItems[item].price * cart.cartItems[item].qty}
+                  </p>
                 </div>
-                <p>৳ 7500</p>
-              </div>
+              ))}
               <div className="d-flex justify-content-between mt-2">
                 <p className="mb-1">Subtotal</p>
-                <p className="mb-1">৳ 7500</p>
+                <p className="mb-1">
+                  ৳{" "}
+                  {Object.keys(cart.cartItems).reduce((totalPrice, index) => {
+                    const { qty, price } = cart.cartItems[index];
+                    return totalPrice + price * qty;
+                  }, 0)}
+                </p>
               </div>
               <div className="d-flex justify-content-between">
                 <p className="mb-1">Delivery Charge</p>
@@ -219,7 +312,13 @@ const Checkout = () => {
               </div>
               <div className="d-flex justify-content-between mt-2 fw-bold">
                 <p>Amount to be paid</p>
-                <p>৳ 7,500</p>
+                <p>
+                  ৳{" "}
+                  {Object.keys(cart.cartItems).reduce((totalPrice, index) => {
+                    const { qty, price } = cart.cartItems[index];
+                    return totalPrice + price * qty;
+                  }, 0)}
+                </p>
               </div>
               <small className="text-muted d-block">
                 *Prices are VAT exclusive
@@ -273,11 +372,19 @@ const Checkout = () => {
                 </Link>{" "}
               </small>
 
-              <Link to="/order-payment">
-                <button className="place-order-button mt-3 mb-5">
-                  PLACE ORDER
-                </button>{" "}
-              </Link>
+              {user.address.length > 0 ? (
+                <Link to="/order-payment">
+                  <button className="place-order-button mt-3 mb-5">
+                    PLACE ORDER
+                  </button>{" "}
+                </Link>
+              ) : (
+                <Link to="/order-payment">
+                  <button className="place-order-button mt-3 mb-5" disabled>
+                    PLACE ORDER
+                  </button>{" "}
+                </Link>
+              )}
               <div className="d-flex error-section py-2 mb-5">
                 <div className="mx-3 ">
                   <img src={error} alt="" />

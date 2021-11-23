@@ -47,17 +47,26 @@ Modal.setAppElement("#root");
 //function
 
 const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
-  console.log(productByService);
   const [info, setInfo] = useState(false);
   const [subTotal, setSubTotal] = useState(0);
   const [quantity, setQuantity] = useState("");
   const dispatch = useDispatch();
+
   const cart = useSelector((state) => state.cart);
-  console.log(cart.cartItems);
+  const allServices = useSelector((state) => state.service);
   const [cartItems, setCartItems] = useState(cart.cartItems);
+
   useEffect(() => {
     setCartItems(cart.cartItems);
   }, [cart.cartItems]);
+
+  const getService = (s) => {
+    for (let service of allServices.services) {
+      for (let serve of service.children) {
+        if (serve._id === s) return serve.name;
+      }
+    }
+  };
 
   const handleIncrement = (id, quantity) => {
     // const sameProduct = cart.find((pd) => pd.id === product.id);
@@ -93,7 +102,6 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
   //   setCart(newCart);
   // };
 
-  // console.log(cart);
   return (
     <div className="cart-modal">
       <Modal
@@ -197,10 +205,15 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
                     {Object.keys(cartItems).length > 0 ? (
                       <div className="mt-3">
                         {Object.keys(cartItems).map((item) => (
-                          <div className="mx-3 mb-5" key={item}>
+                          <div className="mx-3 mb-3" key={item}>
                             {/* {JSON.stringify(item)} */}
                             <div className="d-flex justify-content-between">
-                              {/* <h6> {cartItems[item].service.name}</h6> */}
+                              {cartItems[item].service.name ? (
+                                <h6> {cartItems[item].service.name}</h6>
+                              ) : (
+                                <h6> {getService(cartItems[item].service)}</h6>
+                              )}
+
                               <div className="quantity-section d-flex justify-content-between align-items-center">
                                 <div style={{ backgroundColor: "#f16622" }}>
                                   <button
@@ -248,7 +261,17 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
                         ))}
                         <div className="d-flex justify-content-between mx-3 ">
                           <h6 className="fw-bold"> Subtotal</h6>
-                          <h6 className="fw-bold"> ৳ {subTotal}</h6>
+                          <h6 className="fw-bold">
+                            {" "}
+                            ৳{" "}
+                            {Object.keys(cart.cartItems).reduce(
+                              (totalPrice, index) => {
+                                const { qty, price } = cart.cartItems[index];
+                                return totalPrice + price * qty;
+                              },
+                              0
+                            )}
+                          </h6>
                         </div>
                       </div>
                     ) : (
@@ -269,7 +292,7 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
                     {Object.keys(cartItems).length > 0 ? (
                       <div
                         className="mx-2"
-                        style={{ position: "fixed", bottom: 0 }}
+                        style={{ position: "fixed", bottom: 0, width: 400 }}
                       >
                         <button
                           className="proceed-btn w-100 mt-5 mb-2"

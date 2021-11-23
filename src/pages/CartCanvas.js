@@ -1,10 +1,20 @@
-import { faClosedCaptioning, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Offcanvas } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ac from "../media/ac.jpg";
 const CartCanvas = (props) => {
+  const cart = useSelector((state) => state.cart);
+  const allServices = useSelector((state) => state.service);
+  const getService = (s) => {
+    for (let service of allServices.services) {
+      for (let serve of service.children) {
+        if (serve._id === s) return serve.name;
+      }
+    }
+  };
   return (
     <div>
       <Offcanvas
@@ -20,44 +30,52 @@ const CartCanvas = (props) => {
           <Offcanvas.Title className="fw-bold"> Service Cart</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <div>
-            <div className="d-flex justify-content-between mx-3 mt-3">
-              <img src={ac} alt="" style={{ height: 60 }} />
-              <div style={{ fontSize: 12 }}>
-                <p className="mb-0 mx-3 text-center">
-                  Book Home Deep Cleaning (Floor,Kitchen,Washroom included)
-                </p>
-                <p
-                  className="text-center fw-bold"
-                  style={{ color: "#f16622", fontSize: 14 }}
+          {Object.keys(cart.cartItems).length > 0 ? (
+            <div>
+              {Object.keys(cart.cartItems).map((item) => (
+                <div
+                  className="d-flex justify-content-between mx-3 mt-1"
+                  key={item}
                 >
-                  ৳ 6,590.00
-                </p>
-              </div>
-              <FontAwesomeIcon icon={faTimes} className="cursor" />
+                  <img src={ac} alt="" style={{ height: 60 }} />
+                  <div style={{ fontSize: 12 }}>
+                    {cart.cartItems[item].service.name ? (
+                      <p className="mb-0">
+                        {" "}
+                        {cart.cartItems[item].service.name}
+                      </p>
+                    ) : (
+                      <p className="mb-0">
+                        {" "}
+                        {getService(cart.cartItems[item].service)}
+                      </p>
+                    )}
+                    <small className="text-muted ">
+                      {cart.cartItems[item].name} X {cart.cartItems[item].qty}{" "}
+                      unit
+                    </small>
+                    <p
+                      className="text-center fw-bold"
+                      style={{ color: "#f16622", fontSize: 14 }}
+                    >
+                      ৳ {cart.cartItems[item].price * cart.cartItems[item].qty}
+                    </p>
+                  </div>
+                  <FontAwesomeIcon icon={faTimes} className="cursor" />
+                </div>
+              ))}
             </div>
-            <div className="d-flex justify-content-between mx-3 mt-3">
-              <img src={ac} alt="" style={{ height: 60 }} />
-              <div style={{ fontSize: 12 }}>
-                <p className="mb-0 mx-3 text-center">
-                  Book Home Deep Cleaning (Floor,Kitchen,Washroom included)
-                </p>
-                <p
-                  className="text-center fw-bold"
-                  style={{ color: "#f16622", fontSize: 14 }}
-                >
-                  ৳ 6,590.00
-                </p>
-              </div>
-              <FontAwesomeIcon icon={faTimes} className="cursor" />
-            </div>
-          </div>
+          ) : null}
           <div className="canvas-footer border-top">
             <div className="d-flex justify-content-between mt-3">
               <p>Subtotal</p>
               <p className="text-center fw-bold" style={{ color: "#f16622" }}>
                 {" "}
-                ৳ 6,590.00
+                ৳{" "}
+                {Object.keys(cart.cartItems).reduce((totalPrice, index) => {
+                  const { qty, price } = cart.cartItems[index];
+                  return totalPrice + price * qty;
+                }, 0)}
               </p>
             </div>
             <div style={{ width: 360 }}>
