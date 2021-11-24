@@ -97,6 +97,9 @@ const Footer = () => {
             <Link to="/blog" className="d-block  mb-2">
               Blog
             </Link>
+            <Link to="/career" className="d-block  mb-2">
+              Career
+            </Link>
             <Link to="/help" className="d-block  mb-2">
               Help
             </Link>

@@ -32,6 +32,7 @@ import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import Terms from "./pages/Terms";
 import Helps from "./pages/Helps";
+import Career from "./pages/Career";
 
 //import "swiper/scss/pagination";
 // import "swiper/scss/navigation";
@@ -107,6 +108,9 @@ function App() {
         </Route>
         <Route exact path="/help">
           <Helps />
+        </Route>
+        <Route exact path="/career">
+          <Career />
         </Route>
         <Route exact path="/about-us">
           <About />

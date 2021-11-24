@@ -6,8 +6,8 @@ import experts from "../../media/experts.svg";
 import equppied from "../../media/equppied.svg";
 import client from "../../media/client-list.jpg";
 import playStore from "../../media/play-store.png";
-import app from "../../media/app-download.webp";
-import service from "../../media/service-request.png";
+import app from "../../media/main.png";
+import service from "../../media/png-clipart-call-centre-customer (1).png";
 import advertise from "../../media/web-banner.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
@@ -326,10 +326,10 @@ const Home = () => {
 
       <Container style={{ fontSize: 14, marginTop: 60 }}>
         <Row>
-          <Col md={5}>
+          <Col md={6}>
             <img src={app} alt="" className="image-fluid" />
           </Col>
-          <Col md={7} className="d-flex align-items-center">
+          <Col md={6} className="d-flex align-items-center">
             <div>
               <p>DOWNLOAD OUR APP</p>
               <h3 className="fw-bold my-3">Any Service, Any Time, Anywhere.</h3>

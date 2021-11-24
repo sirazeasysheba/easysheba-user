@@ -4,11 +4,11 @@ import "../../styles/_topBanner.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Navigation } from "swiper";
 import banner from "../../media/cctv-banner.jpg";
-import banner1 from "../../media/banner (2).jpg";
-import banner2 from "../../media/banner (3).jpg";
-import banner3 from "../../media/banner (4).jpg";
-import banner4 from "../../media/banner (5).jpg";
-import banner5 from "../../media/banner (6).jpg";
+import banner1 from "../../media/rsz_banner_2.jpg";
+import banner2 from "../../media/rsz_banner_3.jpg";
+import banner3 from "../../media/rsz_banner_4.jpg";
+import banner4 from "../../media/rsz_banner_5.jpg";
+import banner5 from "../../media/rsz_banner_6.jpg";
 import { Container } from "react-bootstrap";
 
 SwiperCore.use([Autoplay, Navigation]);

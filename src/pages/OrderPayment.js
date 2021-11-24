@@ -11,7 +11,16 @@ import cbl from "../media/cbl.png";
 import { useSelector } from "react-redux";
 const OrderPayment = () => {
   const auth = useSelector((state) => state.auth);
+  const cart = useSelector((state) => state.cart);
+  const allServices = useSelector((state) => state.service);
   const [open, setOpen] = useState(false);
+  const getService = (s) => {
+    for (let service of allServices.services) {
+      for (let serve of service.children) {
+        if (serve._id === s) return serve.name;
+      }
+    }
+  };
   return (
     <div style={{ marginTop: 100 }}>
       <Container>
@@ -83,24 +92,53 @@ const OrderPayment = () => {
               </div>
               <Collapse in={open}>
                 <div id="example-collapse-text">
-                  <div
-                    className="d-flex justify-content-between align-items-center border-bottom"
-                    style={{ fontSize: 12 }}
-                  >
-                    <div>
-                      <p className="mb-0"> Table & Work Station Ma...</p>
-                      <p className="text-muted fw-bold">
-                        Wall Mount Home Work St.. x1
+                  {Object.keys(cart.cartItems).map((item) => (
+                    <div
+                      className="d-flex justify-content-between align-items-center border-bottom"
+                      style={{ fontSize: 12 }}
+                    >
+                      <div>
+                        {cart.cartItems[item].service.name ? (
+                          <p className="mb-0">
+                            {" "}
+                            {cart.cartItems[item].service.name}
+                          </p>
+                        ) : (
+                          <p className="mb-0">
+                            {" "}
+                            {getService(cart.cartItems[item].service)}
+                          </p>
+                        )}
+                        <p className="text-muted fw-bold">
+                          {" "}
+                          {cart.cartItems[item].name} x{" "}
+                          {cart.cartItems[item].qty}
+                        </p>
+                      </div>
+                      <p>
+                        {" "}
+                        ৳{" "}
+                        {(
+                          cart.cartItems[item].price * cart.cartItems[item].qty
+                        ).toLocaleString()}
                       </p>
                     </div>
-                    <p>৳ 7500</p>
-                  </div>
+                  ))}
                   <div
                     className="d-flex justify-content-between mt-2"
                     style={{ fontSize: 12 }}
                   >
                     <p className="mb-1">Subtotal</p>
-                    <p className="mb-1">৳ 7500</p>
+                    <p className="mb-1">
+                      {" "}
+                      ৳{" "}
+                      {Object.keys(cart.cartItems)
+                        .reduce((totalPrice, index) => {
+                          const { qty, price } = cart.cartItems[index];
+                          return totalPrice + price * qty;
+                        }, 0)
+                        .toLocaleString()}
+                    </p>
                   </div>
                   <div
                     className="d-flex justify-content-between mb-0"
@@ -121,7 +159,16 @@ const OrderPayment = () => {
                     style={{ fontSize: 12 }}
                   >
                     <p className="mb-1">Amount to be paid</p>
-                    <p className="mb-1">৳ 7,500</p>
+                    <p className="mb-1">
+                      {" "}
+                      ৳{" "}
+                      {Object.keys(cart.cartItems)
+                        .reduce((totalPrice, index) => {
+                          const { qty, price } = cart.cartItems[index];
+                          return totalPrice + price * qty;
+                        }, 0)
+                        .toLocaleString()}
+                    </p>
                   </div>
                   <small
                     className="text-muted d-block"

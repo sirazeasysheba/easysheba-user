@@ -6,7 +6,7 @@ import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import close from "../../media/x-converted.png";
-import { addToCart, removeOneItemFromCart } from "../../redux/actions";
+import { addToCart, removeCartItem } from "../../redux/actions";
 const customStyles = {
   overlay: {
     position: "fixed",
@@ -48,8 +48,6 @@ Modal.setAppElement("#root");
 
 const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
   const [info, setInfo] = useState(false);
-  const [subTotal, setSubTotal] = useState(0);
-  const [quantity, setQuantity] = useState("");
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart);
@@ -68,39 +66,16 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
     }
   };
 
-  const handleIncrement = (id, quantity) => {
-    // const sameProduct = cart.find((pd) => pd.id === product.id);
-    // sameProduct.quantity += 1;
-    // setSubTotal(subTotal + product.price);
-    // const others = cart.filter((pd) => pd.id !== product.id);
-    // let newCart = [...others, sameProduct];
-    console.log(id, quantity);
-    setQuantity(quantity + 1);
+  const onQuantityDecrement = (product) => {
+    if (product.qty > 1) {
+      dispatch(addToCart(product, -1));
+    } else {
+      const payload = {
+        productId: product._id,
+      };
+      dispatch(removeCartItem(payload));
+    }
   };
-  const handleDecrement = (id, quantity) => {
-    // const sameProduct = cart.find((pd) => pd.id === product.id);
-    // if (sameProduct.quantity <= 1) {
-    //   const others = cart.filter((pd) => pd.id !== product.id);
-    //   setCart(others);
-    // } else {
-    //   sameProduct.quantity -= 1;
-    //   const others = cart.filter((pd) => pd.id !== product.id);
-    //   let newCart = [...others, sameProduct];
-    //   setCart(newCart);
-    //   setSubTotal(subTotal - product.price);
-    // }
-    // setSubTotal(subTotal - product.price);
-  };
-  // const handleAddProduct = (product) => {
-  //   product.quantity = 1;
-  //   setSubTotal(subTotal + product.quantity * product.price);
-  //   let newCart = [...cart, product];
-  //   const sameProduct = cart.find((pd) => pd.id === product.id);
-  //   if (sameProduct) {
-  //     product.btn = false;
-  //   }
-  //   setCart(newCart);
-  // };
 
   return (
     <div className="cart-modal">
@@ -142,7 +117,7 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
                         <div>
                           <p className="mb-1 fw-bold">{product.name}</p>
                           <p className="fw-bold text-success mb-0">
-                            ৳ {product.price} /{" "}
+                            ৳ {product.price.toLocaleString()} /{" "}
                             <span
                               className="text-muted"
                               style={{ fontSize: 12, fontWeight: 200 }}
@@ -219,9 +194,7 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
                                   <button
                                     className="mb-0 px-2 increment-decrement-btn"
                                     onClick={() =>
-                                      dispatch(
-                                        removeOneItemFromCart(cartItems[item])
-                                      )
+                                      onQuantityDecrement(cartItems[item])
                                     }
                                   >
                                     -
@@ -240,7 +213,7 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
                                   <button
                                     className="mb-0  px-2 increment-decrement-btn"
                                     onClick={() =>
-                                      dispatch(addToCart(cartItems[item]))
+                                      dispatch(addToCart(cartItems[item], 1))
                                     }
                                   >
                                     +
@@ -254,7 +227,10 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
                               </small>
                               <p className="fw-bold mb-0">
                                 {" "}
-                                ৳ {cartItems[item].price * cartItems[item].qty}
+                                ৳{" "}
+                                {(
+                                  cartItems[item].price * cartItems[item].qty
+                                ).toLocaleString()}
                               </p>
                             </div>
                           </div>
@@ -263,14 +239,13 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
                           <h6 className="fw-bold"> Subtotal</h6>
                           <h6 className="fw-bold">
                             {" "}
-                            ৳{" "}
-                            {Object.keys(cart.cartItems).reduce(
-                              (totalPrice, index) => {
+                            ৳ ৳{" "}
+                            {Object.keys(cart.cartItems)
+                              .reduce((totalPrice, index) => {
                                 const { qty, price } = cart.cartItems[index];
                                 return totalPrice + price * qty;
-                              },
-                              0
-                            )}
+                              }, 0)
+                              .toLocaleString()}
                           </h6>
                         </div>
                       </div>

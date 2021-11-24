@@ -2,18 +2,27 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Offcanvas } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ac from "../media/ac.jpg";
+import { removeCartItem } from "../redux/actions";
 const CartCanvas = (props) => {
   const cart = useSelector((state) => state.cart);
   const allServices = useSelector((state) => state.service);
+  const dispatch = useDispatch();
   const getService = (s) => {
     for (let service of allServices.services) {
       for (let serve of service.children) {
         if (serve._id === s) return serve.name;
       }
     }
+  };
+
+  const removeItem = (product) => {
+    const payload = {
+      productId: product._id,
+    };
+    dispatch(removeCartItem(payload));
   };
   return (
     <div>
@@ -58,10 +67,17 @@ const CartCanvas = (props) => {
                       className="text-center fw-bold"
                       style={{ color: "#f16622", fontSize: 14 }}
                     >
-                      ৳ {cart.cartItems[item].price * cart.cartItems[item].qty}
+                      ৳{" "}
+                      {(
+                        cart.cartItems[item].price * cart.cartItems[item].qty
+                      ).toLocaleString()}
                     </p>
                   </div>
-                  <FontAwesomeIcon icon={faTimes} className="cursor" />
+                  <FontAwesomeIcon
+                    icon={faTimes}
+                    className="cursor"
+                    onClick={() => removeItem(cart.cartItems[item])}
+                  />
                 </div>
               ))}
             </div>
@@ -72,21 +88,31 @@ const CartCanvas = (props) => {
               <p className="text-center fw-bold" style={{ color: "#f16622" }}>
                 {" "}
                 ৳{" "}
-                {Object.keys(cart.cartItems).reduce((totalPrice, index) => {
-                  const { qty, price } = cart.cartItems[index];
-                  return totalPrice + price * qty;
-                }, 0)}
+                {Object.keys(cart.cartItems)
+                  .reduce((totalPrice, index) => {
+                    const { qty, price } = cart.cartItems[index];
+                    return totalPrice + price * qty;
+                  }, 0)
+                  .toLocaleString()}
               </p>
             </div>
             <div style={{ width: 360 }}>
               <Link to="/cart">
                 <button className="secondary-btn w-100 mt-3">VIEW CART</button>{" "}
               </Link>
-              <Link to="/checkout">
-                <button className="primary-btn w-100 mt-3 mb-5">
-                  CHECKOUT
-                </button>{" "}
-              </Link>
+              {Object.keys(cart.cartItems).length > 0 ? (
+                <Link to="/checkout">
+                  <button className="primary-btn w-100 mt-3 mb-5">
+                    CHECKOUT
+                  </button>{" "}
+                </Link>
+              ) : (
+                <Link to="/checkout">
+                  <button className="primary-btn w-100 mt-3 mb-5" disabled>
+                    CHECKOUT
+                  </button>{" "}
+                </Link>
+              )}
             </div>
           </div>
         </Offcanvas.Body>

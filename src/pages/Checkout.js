@@ -288,7 +288,10 @@ const Checkout = () => {
                     </p>
                   </div>
                   <p>
-                    ৳ {cart.cartItems[item].price * cart.cartItems[item].qty}
+                    ৳{" "}
+                    {(
+                      cart.cartItems[item].price * cart.cartItems[item].qty
+                    ).toLocaleString()}
                   </p>
                 </div>
               ))}
@@ -296,10 +299,12 @@ const Checkout = () => {
                 <p className="mb-1">Subtotal</p>
                 <p className="mb-1">
                   ৳{" "}
-                  {Object.keys(cart.cartItems).reduce((totalPrice, index) => {
-                    const { qty, price } = cart.cartItems[index];
-                    return totalPrice + price * qty;
-                  }, 0)}
+                  {Object.keys(cart.cartItems)
+                    .reduce((totalPrice, index) => {
+                      const { qty, price } = cart.cartItems[index];
+                      return totalPrice + price * qty;
+                    }, 0)
+                    .toLocaleString()}
                 </p>
               </div>
               <div className="d-flex justify-content-between">
@@ -314,10 +319,12 @@ const Checkout = () => {
                 <p>Amount to be paid</p>
                 <p>
                   ৳{" "}
-                  {Object.keys(cart.cartItems).reduce((totalPrice, index) => {
-                    const { qty, price } = cart.cartItems[index];
-                    return totalPrice + price * qty;
-                  }, 0)}
+                  {Object.keys(cart.cartItems)
+                    .reduce((totalPrice, index) => {
+                      const { qty, price } = cart.cartItems[index];
+                      return totalPrice + price * qty;
+                    }, 0)
+                    .toLocaleString()}
                 </p>
               </div>
               <small className="text-muted d-block">
@@ -385,12 +392,14 @@ const Checkout = () => {
                   </button>{" "}
                 </Link>
               )}
-              <div className="d-flex error-section py-2 mb-5">
-                <div className="mx-3 ">
-                  <img src={error} alt="" />
+              {user.address.length === 0 && (
+                <div className="d-flex error-section py-2 mb-5">
+                  <div className="mx-3 ">
+                    <img src={error} alt="" />
+                  </div>
+                  <p className="mb-0">Please add your address to place order</p>
                 </div>
-                <p className="mb-0">Please add your address to place order</p>
-              </div>
+              )}
             </div>
           </Col>
         </Row>

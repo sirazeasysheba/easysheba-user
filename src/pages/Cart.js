@@ -2,18 +2,38 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Container, Row, Table, Col, Form } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import demo from "../media/ac.jpg";
+import { addToCart, removeCartItem } from "../redux/actions";
+
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const allServices = useSelector((state) => state.service);
+  const dispatch = useDispatch();
   const getService = (s) => {
     for (let service of allServices.services) {
       for (let serve of service.children) {
         if (serve._id === s) return serve.name;
       }
     }
+  };
+  const onQuantityDecrement = (product) => {
+    if (product.qty > 1) {
+      dispatch(addToCart(product, -1));
+    } else {
+      const payload = {
+        productId: product._id,
+      };
+      dispatch(removeCartItem(payload));
+    }
+  };
+
+  const removeItem = (product) => {
+    const payload = {
+      productId: product._id,
+    };
+    dispatch(removeCartItem(payload));
   };
 
   return (
@@ -41,12 +61,13 @@ const Cart = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {Object.keys(cart.cartItems).map((item) => {
+                    {Object.keys(cart.cartItems).map((item) => (
                       <tr key={item}>
                         <td className="d-flex" style={{ width: 350 }}>
                           <FontAwesomeIcon
                             icon={faTimes}
                             className="mt-3 me-2 cursor"
+                            onClick={() => removeItem(cart.cartItems[item])}
                           />
                           <img
                             src={demo}
@@ -54,42 +75,55 @@ const Cart = () => {
                             style={{ height: 40, borderRadius: 5 }}
                           />
                           <div className="ms-3 mt-2">
-                            {cart.cartItems[item].service.name ? (
-                              <p className="mb-0">
-                                {" "}
-                                {cart.cartItems[item].service.name}
-                              </p>
-                            ) : (
-                              <p className="mb-0">
-                                {" "}
-                                {getService(cart.cartItems[item].service)}
-                              </p>
-                            )}
                             <small>
-                              Choose Service: Master Service Choose Ton Of Your
-                              AC: 2-3 Ton
+                              {cart.cartItems[item].service.name ? (
+                                <p className="mb-0">
+                                  {" "}
+                                  {cart.cartItems[item].service.name}
+                                </p>
+                              ) : (
+                                <p className="mb-0">
+                                  {" "}
+                                  {getService(cart.cartItems[item].service)}
+                                </p>
+                              )}
+                              {cart.cartItems[item].name} x{" "}
+                              {cart.cartItems[item].qty}
                             </small>
                           </div>
                         </td>
                         <td>
-                          <div className="mt-3 fw-bold">৳ 1,780</div>
+                          <div className="mt-3">
+                            {" "}
+                            ৳{" "}
+                            {(
+                              cart.cartItems[item].price *
+                              cart.cartItems[item].qty
+                            ).toLocaleString()}
+                          </div>
                         </td>
                         <td>
                           <div className="d-flex">
                             <div>
                               <button
                                 className="px-1 border py-2"
-                                // disabled={disable}
-                                // onClick={handleDecrement}
+                                onClick={() =>
+                                  onQuantityDecrement(cart.cartItems[item])
+                                }
                               >
                                 -
                               </button>
                             </div>
-                            {/* <p className="px-2 py-2 border mx-2 ">{quantity}</p> */}
+                            <p className="px-2 py-2 border mx-2 fw-bold">
+                              {" "}
+                              {cart.cartItems[item].qty}
+                            </p>
                             <div>
                               <button
                                 className="px-1 py-2 border"
-                                // onClick={handleIncrement}
+                                onClick={() =>
+                                  dispatch(addToCart(cart.cartItems[item], 1))
+                                }
                               >
                                 +
                               </button>
@@ -97,12 +131,18 @@ const Cart = () => {
                           </div>
                         </td>
                         <td>
-                          {/* <div className="mt-3 fw-bold">
-                            ৳ {price * quantity}
-                          </div> */}
+                          <div className="fw-bold">
+                            ৳{" "}
+                            {Object.keys(cart.cartItems)
+                              .reduce((totalPrice, index) => {
+                                const { qty, price } = cart.cartItems[index];
+                                return totalPrice + price * qty;
+                              }, 0)
+                              .toLocaleString()}
+                          </div>
                         </td>
-                      </tr>;
-                    })}
+                      </tr>
+                    ))}
                   </tbody>
                 </Table>
                 <Form className="d-flex my-3">
@@ -124,7 +164,16 @@ const Cart = () => {
                 </Form>
               </div>
             ) : (
-              <p>No Items</p>
+              <div className="d-flex align-items-center justify-content-center">
+                <div className="text-center text-muted ">
+                  <h2 className="mt-5">Empty Cart</h2>
+                  <p className="small my-5 mx-5">
+                    Get your service done just with few clicks! so what are you
+                    waiting for?
+                  </p>
+                  <div className="empty-cart-icon"></div>
+                </div>
+              </div>
             )}
           </Col>
           <Col md={4}>
@@ -137,11 +186,13 @@ const Cart = () => {
               <div className="d-flex justify-content-between mt-2">
                 <p className="mb-1">Subtotal</p>
                 <p className="mb-1">
-                  ৳{" "}
-                  {Object.keys(cart.cartItems).reduce((totalPrice, index) => {
-                    const { qty, price } = cart.cartItems[index];
-                    return totalPrice + price * qty;
-                  }, 0)}
+                  ৳ ৳{" "}
+                  {Object.keys(cart.cartItems)
+                    .reduce((totalPrice, index) => {
+                      const { qty, price } = cart.cartItems[index];
+                      return totalPrice + price * qty;
+                    }, 0)
+                    .toLocaleString()}
                 </p>
               </div>
               <div className="d-flex justify-content-between">
@@ -155,18 +206,28 @@ const Cart = () => {
               <div className="d-flex justify-content-between mt-2 fw-bold">
                 <p>Amount to be paid</p>
                 <p>
-                  ৳{" "}
-                  {Object.keys(cart.cartItems).reduce((totalPrice, index) => {
-                    const { qty, price } = cart.cartItems[index];
-                    return totalPrice + price * qty;
-                  }, 0)}
+                  ৳ ৳{" "}
+                  {Object.keys(cart.cartItems)
+                    .reduce((totalPrice, index) => {
+                      const { qty, price } = cart.cartItems[index];
+                      return totalPrice + price * qty;
+                    }, 0)
+                    .toLocaleString()}
                 </p>
               </div>
-              <Link to="/checkout" className="mx-auto">
-                <button className="secondary-btn w-100 mt-3 mb-5">
-                  Proceed to Checkout
-                </button>{" "}
-              </Link>
+              {Object.keys(cart.cartItems).length > 0 ? (
+                <Link to="/checkout" className="mx-auto">
+                  <button className="secondary-btn w-100 mt-3 mb-5">
+                    Proceed to Checkout
+                  </button>{" "}
+                </Link>
+              ) : (
+                <Link to="/checkout" className="mx-auto">
+                  <button className="secondary-btn w-100 mt-3 mb-5" disabled>
+                    Proceed to Checkout
+                  </button>{" "}
+                </Link>
+              )}
             </div>
           </Col>
         </Row>
