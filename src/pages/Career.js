@@ -3,12 +3,16 @@ import { Col, Container, Row } from "react-bootstrap";
 import key from "../media/ic_key.svg";
 import smile from "../media/ic_smile.svg";
 import pin from "../media/ic_pin.svg";
+import symbol from "../media/ic_symbol.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-regular-svg-icons";
 import ServiceManModal from "../components/UI/ServiceManModal";
+
 const Career = () => {
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   function openModal() {
+    console.log("clicked", isOpen);
+
     setIsOpen(true);
   }
 
@@ -181,10 +185,76 @@ const Career = () => {
           </div>
         </div>
         <div id="positions" className="mt-5">
-          <h3 className="text-center">Open Positions</h3>
+          <h3 className="text-center mb-5">Open Positions</h3>
+          <Row>
+            <Col md={3}>
+              <div className="d-flex justify-content-center mb-3">
+                <img src={symbol} alt="" style={{ height: 60 }} />
+              </div>
+              <h5 className="fw-bold mb-3" style={{ maxWidth: 300 }}>
+                Executives, Sales and Marketing
+              </h5>
+              <p style={{ fontSize: 13, color: "#676e8b", fontWeight: 500 }}>
+                Ensure regular client visit & follow up visit
+              </p>
+              <div className="d-flex justify-content-between me-5">
+                <button className="mt-3 mb-5 primary-btn">View Details</button>
+
+                <button className="mt-3 mb-5 primary-btn  px-4">Apply</button>
+              </div>
+            </Col>
+            <Col md={3}>
+              <div className="d-flex justify-content-center mb-3">
+                <img src={symbol} alt="" style={{ height: 60 }} />
+              </div>
+              <h5 className="fw-bold mb-3" style={{ maxWidth: 300 }}>
+                Executives, Sales and Marketing
+              </h5>
+              <p style={{ fontSize: 13, color: "#676e8b", fontWeight: 500 }}>
+                Ensure regular client visit & follow up visit
+              </p>
+              <div className="d-flex justify-content-between me-5">
+                <button className="mt-3 mb-5 primary-btn">View Details</button>
+
+                <button className="mt-3 mb-5 primary-btn  px-4">Apply</button>
+              </div>
+            </Col>
+            <Col md={3}>
+              <div className="d-flex justify-content-center mb-3">
+                <img src={symbol} alt="" style={{ height: 60 }} />
+              </div>
+              <h5 className="fw-bold mb-3" style={{ maxWidth: 300 }}>
+                Executives, Sales and Marketing
+              </h5>
+              <p style={{ fontSize: 13, color: "#676e8b", fontWeight: 500 }}>
+                Ensure regular client visit & follow up visit
+              </p>
+              <div className="d-flex justify-content-between me-5">
+                <button className="mt-3 mb-5 primary-btn">View Details</button>
+
+                <button className="mt-3 mb-5 primary-btn  px-4">Apply</button>
+              </div>
+            </Col>
+            <Col md={3}>
+              <div className="d-flex justify-content-center mb-3">
+                <img src={symbol} alt="" style={{ height: 60 }} />
+              </div>
+              <h5 className="fw-bold mb-3" style={{ maxWidth: 300 }}>
+                Executives, Sales and Marketing
+              </h5>
+              <p style={{ fontSize: 13, color: "#676e8b", fontWeight: 500 }}>
+                Ensure regular client visit & follow up visit
+              </p>
+              <div className="d-flex justify-content-between me-5">
+                <button className="mt-3 mb-5 primary-btn">View Details</button>
+
+                <button className="mt-3 mb-5 primary-btn  px-4">Apply</button>
+              </div>
+            </Col>
+          </Row>
         </div>
       </Container>
-      <ServiceManModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
+      <ServiceManModal modalIsOpen={isOpen} closeModal={closeModal} />
     </div>
   );
 };

@@ -1,6 +1,10 @@
+import { Form, Formik } from "formik";
 import React from "react";
+import { Container, Button } from "react-bootstrap";
 import Modal from "react-modal";
-
+import * as Yup from "yup";
+import close from "../../media/x-converted.png";
+import TextField from "./TextField";
 const customStyles = {
   overlay: {
     position: "fixed",
@@ -39,7 +43,100 @@ const buttonStyles = {
 Modal.setAppElement("#root");
 
 const ServiceManModal = ({ modalIsOpen, closeModal }) => {
-  return <div></div>;
+  const phoneRegExp =
+    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+  const validate = Yup.object({
+    name: Yup.string().required("Name is required"),
+    phone: Yup.string()
+      .required("Phone Number is required")
+      .matches(phoneRegExp, "Phone number is not valid")
+      .min(11, "Phone number is too short")
+      .max(14, "Phone number is too long"),
+  });
+  return (
+    <div className="cart-modal">
+      <Modal
+        isOpen={modalIsOpen}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <div>
+          <button onClick={closeModal} style={buttonStyles}>
+            <img src={close} alt="" />
+          </button>
+          <div>
+            <div className="shadow mt-0 pb-3 pt-4">
+              <h5 className="text-center" style={{ fontWeight: 600 }}>
+                Be Service Man?
+              </h5>
+            </div>
+            <Container>
+              <Formik
+                initialValues={{
+                  email: "",
+                  password: "",
+                }}
+                validationSchema={validate}
+                onSubmit={(values) => {
+                  const user = values;
+                  // console.log(user);
+                  // dispatch(login(user));
+                }}
+              >
+                {(formik) => (
+                  <div className="mb-5 mt-3 form-wrapper px-2">
+                    <h3 className="text-center mb-2">
+                      Welcome to <span style={{ color: "#f16622" }}>Easy</span>
+                      Sheba
+                    </h3>
+                    <p className="text-center text-muted">
+                      Add Your Information
+                    </p>
+                    <div>
+                      <div className="d-flex justify-content-center">
+                        <Form style={{ width: 350 }}>
+                          <TextField
+                            label="Name"
+                            type="text"
+                            placeholder="Your Name"
+                            name="name"
+                          />
+                          <TextField
+                            label="Phone Number"
+                            type="text"
+                            placeholder="01XXXXXXXXX"
+                            name="phone"
+                            //onChange={(e) => setPassword(e.target.value)}
+                          />
+                          <TextField
+                            label="Upload CV"
+                            type="file"
+                            name="cv"
+                            //onChange={(e) => setPassword(e.target.value)}
+                          />
+                          <Button
+                            type="submit"
+                            className="w-100 fw-medium shadow-none bg-success"
+                          >
+                            SUBMIT
+                          </Button>
+                        </Form>
+                      </div>
+
+                      <div
+                        className="d-flex justify-content-center mt-3"
+                        style={{ fontSize: 14 }}
+                      ></div>
+                    </div>
+                  </div>
+                )}
+              </Formik>
+            </Container>
+          </div>
+        </div>
+      </Modal>
+    </div>
+  );
 };
 
 export default ServiceManModal;
