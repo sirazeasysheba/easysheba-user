@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import close from "../../media/x-converted.png";
 import { addToCart, removeCartItem } from "../../redux/actions";
+import { ToastContainer, toast } from "react-toastify";
 const customStyles = {
   overlay: {
     position: "fixed",
@@ -34,19 +35,19 @@ const customStyles = {
   },
 };
 
-const buttonStyles = {
-  position: "absolute",
-  top: "-23px",
-  right: "-35px",
-  border: "none",
-  background: "transparent",
-  zIndex: "10001 !important",
-};
+const buttonStyles = {};
+
 Modal.setAppElement("#root");
 
 //function
 
-const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
+const CartModal = ({
+  modalIsOpen,
+  closeModal,
+  afterOpenModal,
+  productByService,
+  service,
+}) => {
   const [info, setInfo] = useState(false);
   const dispatch = useDispatch();
 
@@ -74,19 +75,25 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
         productId: product._id,
       };
       dispatch(removeCartItem(payload));
+      toast("Removed Successfully", {
+        type: "error",
+        theme: "colored",
+      });
     }
   };
 
   return (
-    <div className="cart-modal">
+    <div className="d-flex justify-content-center">
       <Modal
         isOpen={modalIsOpen}
-        style={customStyles}
+        className="Modal"
+        overlayClassName="Overlay"
         contentLabel="Example Modal"
+        afterOpenModal={afterOpenModal}
       >
         {!info ? (
           <div>
-            <button onClick={closeModal} style={buttonStyles}>
+            <button onClick={closeModal} className="close-btn">
               <img src={close} alt="" />
             </button>
             <div>
@@ -199,6 +206,7 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
                                   >
                                     -
                                   </button>
+                                  <ToastContainer />
                                 </div>
                                 <p className="mb-0">
                                   {cartItems[item].qty}
@@ -267,7 +275,7 @@ const CartModal = ({ modalIsOpen, closeModal, productByService, service }) => {
                     {Object.keys(cartItems).length > 0 ? (
                       <div
                         className="mx-2"
-                        style={{ position: "fixed", bottom: 0, width: 400 }}
+                        style={{ position: "fixed", width: 400 }}
                       >
                         <button
                           className="proceed-btn w-100 mt-5 mb-2"

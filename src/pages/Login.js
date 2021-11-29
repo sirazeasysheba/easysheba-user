@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { login } from "../redux/actions/auth.actions";
 import { useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+
 const Login = () => {
   const [error, setError] = useState(null);
   const validate = Yup.object({
@@ -19,11 +21,12 @@ const Login = () => {
 
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  // useEffect(() => {
-  //   if (auth.error) {
-  //     setError(auth.error.data.message);
-  //   }
-  // }, [auth.error]);
+
+  useEffect(() => {
+    if (auth.error) {
+      setError(auth.error.data.message);
+    }
+  }, [auth.error]);
 
   useEffect(() => {
     if (auth.loading) {
@@ -48,9 +51,22 @@ const Login = () => {
         }}
         validationSchema={validate}
         onSubmit={(values) => {
+          console.log(auth);
           const user = values;
-          // console.log(user);
+
           dispatch(login(user));
+          if (auth.error) {
+            toast(error, {
+              type: "error",
+              theme: "colored",
+            });
+          } else {
+            toast("Login Successful!", {
+              type: "success",
+              position: "top-right",
+              theme: "colored",
+            });
+          }
         }}
       >
         {(formik) => (
@@ -62,7 +78,6 @@ const Login = () => {
             <div>
               <div className="d-flex justify-content-center">
                 <Form style={{ width: 350 }}>
-                  {error && <p>{error}</p>}
                   <TextField
                     label="Email"
                     type="email"
@@ -99,6 +114,7 @@ const Login = () => {
                   >
                     Login
                   </Button>
+                  <ToastContainer position="top-center" />
                 </Form>
                 {/* {auth.error && <p>{auth.error}</p>} */}
               </div>

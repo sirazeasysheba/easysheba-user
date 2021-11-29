@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import demo from "../media/ac.jpg";
 import { addToCart, removeCartItem } from "../redux/actions";
-
+import { ToastContainer, toast } from "react-toastify";
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const allServices = useSelector((state) => state.service);
@@ -26,6 +26,10 @@ const Cart = () => {
         productId: product._id,
       };
       dispatch(removeCartItem(payload));
+      toast("Removed Successfully", {
+        type: "error",
+        theme: "colored",
+      });
     }
   };
 
@@ -34,6 +38,10 @@ const Cart = () => {
       productId: product._id,
     };
     dispatch(removeCartItem(payload));
+    toast("Removed Successfully", {
+      type: "error",
+      theme: "colored",
+    });
   };
 
   return (
@@ -69,6 +77,7 @@ const Cart = () => {
                             className="mt-3 me-2 cursor"
                             onClick={() => removeItem(cart.cartItems[item])}
                           />
+                          <ToastContainer />
                           <img
                             src={demo}
                             alt=""

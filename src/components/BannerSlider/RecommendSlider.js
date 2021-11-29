@@ -16,6 +16,29 @@ const RecommendSlider = () => {
     slidesToShow: 4,
     slidesToScroll: 1,
     arrow: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -26,7 +49,7 @@ const RecommendSlider = () => {
             <div>
               <img src={software} alt="" className="trending-image" />
 
-              <p className="text-center mt-2 fw-bold">Software Development</p>
+              <p className="trending-text mt-2 fw-bold">Software Development</p>
             </div>
           </Link>
         </div>
@@ -35,7 +58,7 @@ const RecommendSlider = () => {
             <div>
               <img src={pest} alt="" className="trending-image" />
 
-              <p className="text-center mt-2 fw-bold">Pest Control</p>
+              <p className="trending-text mt-2 fw-bold">Pest Control</p>
             </div>
           </Link>
         </div>
@@ -44,7 +67,7 @@ const RecommendSlider = () => {
             <div>
               <img src={web} alt="" className="trending-image" />
 
-              <p className="text-center mt-2 fw-bold">Website Development</p>
+              <p className="trending-text mt-2 fw-bold">Website Development</p>
             </div>
           </Link>
         </div>
@@ -53,7 +76,7 @@ const RecommendSlider = () => {
             <div>
               <img src={cctv} alt="" className="trending-image" />
 
-              <p className="text-center mt-2 fw-bold">
+              <p className="trending-text mt-2 fw-bold">
                 {" "}
                 CCTV Installation and Repair
               </p>
@@ -65,7 +88,7 @@ const RecommendSlider = () => {
             <div>
               <img src={ac} alt="" className="trending-image" />
 
-              <p className="text-center mt-2 fw-bold">AC Repair Service</p>
+              <p className="trending-text mt-2 fw-bold">AC Repair Service</p>
             </div>
           </Link>
         </div>
@@ -74,7 +97,7 @@ const RecommendSlider = () => {
             <div>
               <img src={digital} alt="" className="trending-image" />
 
-              <p className="text-center mt-2 fw-bold">Digital Marketing</p>
+              <p className="trending-text mt-2 fw-bold">Digital Marketing</p>
             </div>
           </Link>
         </div>

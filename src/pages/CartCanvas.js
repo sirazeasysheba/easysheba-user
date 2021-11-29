@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ac from "../media/ac.jpg";
 import { removeCartItem } from "../redux/actions";
+import { ToastContainer, toast } from "react-toastify";
 const CartCanvas = (props) => {
   const cart = useSelector((state) => state.cart);
   const allServices = useSelector((state) => state.service);
@@ -23,6 +24,10 @@ const CartCanvas = (props) => {
       productId: product._id,
     };
     dispatch(removeCartItem(payload));
+    toast("Removed Successfully", {
+      type: "error",
+      theme: "colored",
+    });
   };
   return (
     <div>
@@ -78,6 +83,7 @@ const CartCanvas = (props) => {
                     className="cursor"
                     onClick={() => removeItem(cart.cartItems[item])}
                   />
+                  <ToastContainer />
                 </div>
               ))}
             </div>

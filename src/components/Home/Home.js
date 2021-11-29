@@ -64,7 +64,7 @@ const Home = () => {
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     return (
       <div className="clock border px-3 py-2">
-        <div className="d-flex justify-content-between align-items-center clock-items text-center">
+        <div className="clock-items text-center">
           <div>
             <p className="mb-0">{days}</p>
             <small className="mb-0">Days</small>
@@ -74,9 +74,7 @@ const Home = () => {
           </span>
           <div>
             <p className="mb-0">{hours}</p>
-            <small className="mb-0" style={{ fontSize: 12 }}>
-              Hours
-            </small>
+            <small className="mb-0">Hours</small>
           </div>
           <span className="mx-2" style={{ fontSize: 16 }}>
             :
@@ -126,7 +124,7 @@ const Home = () => {
             backgroundImage: `url(${advertise})`,
             //backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
-            height: "220px",
+            minHeight: "220px",
             backgroundSize: "contain",
           }}
         >

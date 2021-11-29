@@ -21,8 +21,8 @@ const AllServices = () => {
     <div className="All-services mb-5" style={{ marginTop: 80 }}>
       <Container>
         <Row>
-          <Col md={3}>
-            <h3 className="mb-4 text-center">All Services</h3>
+          <h3 className="mb-4 ms-3 fw-bold">All Services</h3>
+          <Col md={3} className="border-end pe-0" style={{ maxWidth: 250 }}>
             <div
               className="scroll-spy mb-5"
               style={{ position: "sticky", top: 80 }}
@@ -36,7 +36,7 @@ const AllServices = () => {
                 headerBackground="true"
                 style={{ position: "fixed" }}
               >
-                <div className="all-service-category">
+                <div className="all-service-category ">
                   {category.categories.map((cat, index) => (
                     <div key={index} className="service-list">
                       <a href={`#${index}`} className="d-block">
@@ -53,8 +53,8 @@ const AllServices = () => {
               </ScrollspyNav>
             </div>
           </Col>
-          <Col md={9} className="my-5">
-            <div>
+          <Col md={9}>
+            <div className="ms-5">
               {category.categories.map((cat, index) => (
                 <div id={`${index}`} className="mb-5">
                   <h3 className="fw-bold mb-5">{cat.name}</h3>

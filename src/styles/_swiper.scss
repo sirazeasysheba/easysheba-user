@@ -7,7 +7,6 @@
 
   .swiper-slide {
     text-align: center;
-    font-size: 18px;
     background: #fff;
 
     /* Center slide text vertically */
@@ -56,5 +55,25 @@
   }
   .swiper-button-disabled {
     display: none !important;
+  }
+  .swiper-text {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.75);
+    font-weight: 600;
+  }
+  .swiper-image {
+    max-height: 40px;
+    margin-top: 10px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .service-slider {
+    .swiper-text {
+      font-size: 10px !important;
+    }
+    .swiper-image {
+      max-height: 30px;
+      margin-top: 7px;
+    }
   }
 }

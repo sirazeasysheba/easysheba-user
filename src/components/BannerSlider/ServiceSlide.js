@@ -11,10 +11,22 @@ const ServiceSlide = ({ openModal }) => {
   return (
     <div className="p-3 shadow-lg service-slider" style={{ borderRadius: 20 }}>
       <Swiper
-        slidesPerView={6}
         spaceBetween={5}
         navigation={true}
         className="mySwiper"
+        breakpoints={{
+          400: {
+            slidesPerView: 3,
+          },
+          // when window width is >= 640px
+          600: {
+            slidesPerView: 4,
+          },
+          // when window width is >= 768px
+          768: {
+            slidesPerView: 6,
+          },
+        }}
       >
         {category.categories.map((cat, index) => (
           <SwiperSlide key={index}>
@@ -24,22 +36,13 @@ const ServiceSlide = ({ openModal }) => {
                   <img
                     src={cat.categoryImage}
                     alt=""
-                    style={{ maxHeight: 40, marginTop: 10 }}
+                    className="swiper-image"
                   />
                 </div>
               )}
               {/* <span onClick={openModal} style={{ cursor: "pointer" }}> */}
               <Link to="/all-services" className="link">
-                <p
-                  className="mt-2 text-center"
-                  style={{
-                    fontSize: 14,
-                    color: "rgba(0,0,0,.75)",
-                    fontWeight: "600",
-                  }}
-                >
-                  {cat.name}
-                </p>
+                <p className="mt-2 text-center swiper-text">{cat.name}</p>
               </Link>
               {/* </span> */}
             </div>

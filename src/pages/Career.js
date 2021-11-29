@@ -11,8 +11,6 @@ import ServiceManModal from "../components/UI/ServiceManModal";
 const Career = () => {
   const [isOpen, setIsOpen] = useState(false);
   function openModal() {
-    console.log("clicked", isOpen);
-
     setIsOpen(true);
   }
 

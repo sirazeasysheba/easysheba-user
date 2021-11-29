@@ -28,6 +28,7 @@ import { signOut } from "../../redux/actions/auth.actions";
 import CartCanvas from "../../pages/CartCanvas";
 import NotificationsModal from "../UI/NotificationsModal";
 import Cart from "../UI/Cart";
+import { ToastContainer, toast } from "react-toastify";
 
 const Header = () => {
   const cart = useSelector((state) => state.cart);
@@ -44,7 +45,11 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const logout = () => {
-    console.log("clicked");
+    toast("Login Successful!", {
+      type: "success",
+      position: "top-right",
+      theme: "colored",
+    });
     dispatch(signOut());
   };
   return (
@@ -184,10 +189,11 @@ const Header = () => {
                                   marginRight: 10,
                                 }}
                                 className="mt-2 text-danger"
-                              />{" "}
+                              />
                               Logout
                             </Dropdown.Item>
                           </Dropdown.Menu>
+                          <ToastContainer />
                         </Dropdown>
                       </span>
                     </li>

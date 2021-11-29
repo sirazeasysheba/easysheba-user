@@ -33,6 +33,7 @@ const ProductDetails = () => {
   const category = useSelector((state) => state.category);
   const services = useSelector((state) => state.service);
   const products = useSelector((state) => state.product);
+  console.log(products.productList.products);
 
   const [service, setService] = useState("");
 
@@ -49,7 +50,7 @@ const ProductDetails = () => {
 
   const createProductList = (serviceId, options = []) => {
     for (let product of products.productList.products) {
-      if (product.service._id === serviceId) {
+      if (product.service._id && product.service._id === serviceId) {
         options.push(product);
       }
     }
@@ -60,7 +61,7 @@ const ProductDetails = () => {
 
   const newCategory = slugList.find((child) => child.slug === slug);
 
-  const newService = services.services.find(
+  const newService = services.services?.find(
     (service) => service.category === newCategory._id
   );
 
