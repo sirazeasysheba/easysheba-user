@@ -73,6 +73,26 @@ const userReducer = (state = initialState, action) => {
         error: action.payload.error,
       };
       break;
+    case userConstants.ADD_USER_ORDER_REQUEST:
+      state = {
+        ...state,
+        loading: true,
+      };
+      break;
+    case userConstants.ADD_USER_ORDER_SUCCESS:
+      state = {
+        ...state,
+        order: action.payload.order,
+        loading: false,
+      };
+      break;
+    case userConstants.ADD_USER_ORDER_FAILURE:
+      state = {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+      };
+      break;
     default:
       return state;
   }

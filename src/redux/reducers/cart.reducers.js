@@ -37,6 +37,7 @@ const cartReducer = (state = initState, action) => {
       state = {
         ...initState,
       };
+
       break;
     default:
       return state;

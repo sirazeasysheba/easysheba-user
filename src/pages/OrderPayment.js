@@ -75,7 +75,13 @@ const OrderPayment = () => {
               <div className="d-flex align-items-center my-3">
                 {" "}
                 <p className="mb-0 me-3 fw-bold" style={{ fontSize: 13 }}>
-                  Total Payable ৳ 1780
+                  Total Payable ৳{" "}
+                  {Object.keys(cart.cartItems)
+                    .reduce((totalPrice, index) => {
+                      const { qty, price } = cart.cartItems[index];
+                      return totalPrice + price * qty;
+                    }, 0)
+                    .toLocaleString()}
                 </p>
                 <button
                   onClick={() => setOpen(!open)}

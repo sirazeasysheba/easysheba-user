@@ -14,7 +14,12 @@ import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
 import { format } from "date-fns";
 import DatePickerModal from "../components/UI/DatePickerModal";
-import { addAddress, getAddress } from "../redux/actions";
+import {
+  addAddress,
+  addOrder,
+  getAddress,
+  getCartItems,
+} from "../redux/actions";
 const Checkout = () => {
   const validate = Yup.object({
     house: Yup.string().required("House No is required"),
@@ -63,6 +68,25 @@ const Checkout = () => {
         if (serve._id === s) return serve.name;
       }
     }
+  };
+
+  const onConfirmOrder = () => {
+    const items = Object.keys(cart.cartItems).map((key) => ({
+      productId: key,
+      payablePrice: cart.cartItems[key].price,
+      purchasedQty: cart.cartItems[key].qty,
+    }));
+    const payload = {
+      addressId: user.address[0]._id,
+      totalAmount: Object.keys(cart.cartItems).reduce((totalPrice, index) => {
+        const { qty, price } = cart.cartItems[index];
+        return totalPrice + price * qty;
+      }, 0),
+      items: items,
+      paymentStatus: "pending",
+      paymentType: "card",
+    };
+    dispatch(addOrder(payload));
   };
 
   return (
@@ -380,7 +404,7 @@ const Checkout = () => {
               </small>
 
               {user.address.length > 0 ? (
-                <Link to="/order-payment">
+                <Link to="/order-payment" onClick={onConfirmOrder}>
                   <button className="place-order-button mt-3 mb-5">
                     PLACE ORDER
                   </button>{" "}

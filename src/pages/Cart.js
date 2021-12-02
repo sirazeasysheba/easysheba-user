@@ -104,11 +104,7 @@ const Cart = () => {
                         <td>
                           <div className="mt-3">
                             {" "}
-                            ৳{" "}
-                            {(
-                              cart.cartItems[item].price *
-                              cart.cartItems[item].qty
-                            ).toLocaleString()}
+                            ৳ {cart.cartItems[item].price.toLocaleString()}
                           </div>
                         </td>
                         <td>
@@ -140,14 +136,12 @@ const Cart = () => {
                           </div>
                         </td>
                         <td>
-                          <div className="fw-bold">
+                          <div className="fw-bold mt-2">
                             ৳{" "}
-                            {Object.keys(cart.cartItems)
-                              .reduce((totalPrice, index) => {
-                                const { qty, price } = cart.cartItems[index];
-                                return totalPrice + price * qty;
-                              }, 0)
-                              .toLocaleString()}
+                            {(
+                              cart.cartItems[item].price *
+                              cart.cartItems[item].qty
+                            ).toLocaleString()}
                           </div>
                         </td>
                       </tr>
