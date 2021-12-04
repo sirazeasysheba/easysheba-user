@@ -18,6 +18,7 @@ import {
   getAllCategory,
   getAllService,
   getCartItems,
+  getOrders,
   getProducts,
   updateCart,
 } from "./redux/actions";
@@ -39,6 +40,7 @@ import Career from "./pages/Career";
 // import "swiper/scss/navigation";
 function App() {
   const auth = useSelector((state) => state.auth);
+  const cart = useSelector((state) => state.cart);
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
   const location = useLocation();
@@ -55,7 +57,7 @@ function App() {
     dispatch(getAllService());
     dispatch(getProducts());
     dispatch(updateCart());
-    dispatch(getCartItems());
+    // dispatch(getCartItems());
   }, []);
 
   useEffect(() => {
@@ -63,6 +65,10 @@ function App() {
       dispatch(getCartItems());
     }
   }, [token]);
+
+  useEffect(() => {
+    dispatch(getOrders());
+  }, [cart.cartItems]);
 
   return (
     <div className="App">

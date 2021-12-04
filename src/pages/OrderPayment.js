@@ -11,16 +11,9 @@ import cbl from "../media/cbl.png";
 import { useSelector } from "react-redux";
 const OrderPayment = () => {
   const auth = useSelector((state) => state.auth);
-  const cart = useSelector((state) => state.cart);
-  const allServices = useSelector((state) => state.service);
+  const order = useSelector((state) => state.user.order);
+  console.log(order);
   const [open, setOpen] = useState(false);
-  const getService = (s) => {
-    for (let service of allServices.services) {
-      for (let serve of service.children) {
-        if (serve._id === s) return serve.name;
-      }
-    }
-  };
   return (
     <div style={{ marginTop: 100 }}>
       <Container>
@@ -35,7 +28,9 @@ const OrderPayment = () => {
                   <h5 className="fw-bold">
                     {auth.user.name} your order has been placed successfully!
                   </h5>
-                  <p className="mb-0">Your Order ID : D-563248</p>
+                  <p className="mb-0">
+                    Your Order ID : <span className="fw-bold">{order.id}</span>
+                  </p>
                   <small className="d-block mb-3">
                     To track your order Download our app & login.
                   </small>
@@ -75,13 +70,7 @@ const OrderPayment = () => {
               <div className="d-flex align-items-center my-3">
                 {" "}
                 <p className="mb-0 me-3 fw-bold" style={{ fontSize: 13 }}>
-                  Total Payable ৳{" "}
-                  {Object.keys(cart.cartItems)
-                    .reduce((totalPrice, index) => {
-                      const { qty, price } = cart.cartItems[index];
-                      return totalPrice + price * qty;
-                    }, 0)
-                    .toLocaleString()}
+                  Total Payable ৳ {order.totalAmount.toLocaleString()}
                 </p>
                 <button
                   onClick={() => setOpen(!open)}
@@ -98,34 +87,23 @@ const OrderPayment = () => {
               </div>
               <Collapse in={open}>
                 <div id="example-collapse-text">
-                  {Object.keys(cart.cartItems).map((item) => (
+                  {order.items.map((item) => (
                     <div
                       className="d-flex justify-content-between align-items-center border-bottom"
                       style={{ fontSize: 12 }}
                     >
                       <div>
-                        {cart.cartItems[item].service.name ? (
-                          <p className="mb-0">
-                            {" "}
-                            {cart.cartItems[item].service.name}
-                          </p>
-                        ) : (
-                          <p className="mb-0">
-                            {" "}
-                            {getService(cart.cartItems[item].service)}
-                          </p>
-                        )}
+                        <p className="mb-0"> {item.serviceName}</p>
+
                         <p className="text-muted fw-bold">
-                          {" "}
-                          {cart.cartItems[item].name} x{" "}
-                          {cart.cartItems[item].qty}
+                          {item.productName} x {item.purchasedQty}
                         </p>
                       </div>
                       <p>
                         {" "}
                         ৳{" "}
                         {(
-                          cart.cartItems[item].price * cart.cartItems[item].qty
+                          item.payablePrice * item.purchasedQty
                         ).toLocaleString()}
                       </p>
                     </div>
@@ -137,13 +115,7 @@ const OrderPayment = () => {
                     <p className="mb-1">Subtotal</p>
                     <p className="mb-1">
                       {" "}
-                      ৳{" "}
-                      {Object.keys(cart.cartItems)
-                        .reduce((totalPrice, index) => {
-                          const { qty, price } = cart.cartItems[index];
-                          return totalPrice + price * qty;
-                        }, 0)
-                        .toLocaleString()}
+                      ৳ {order.totalAmount.toLocaleString()}
                     </p>
                   </div>
                   <div
@@ -167,13 +139,7 @@ const OrderPayment = () => {
                     <p className="mb-1">Amount to be paid</p>
                     <p className="mb-1">
                       {" "}
-                      ৳{" "}
-                      {Object.keys(cart.cartItems)
-                        .reduce((totalPrice, index) => {
-                          const { qty, price } = cart.cartItems[index];
-                          return totalPrice + price * qty;
-                        }, 0)
-                        .toLocaleString()}
+                      ৳ {order.totalAmount.toLocaleString()}
                     </p>
                   </div>
                   <small

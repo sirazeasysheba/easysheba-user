@@ -5,6 +5,8 @@ const initialState = {
   loading: false,
   error: null,
   message: "",
+  order: [],
+  orders: [],
 };
 const userReducer = (state = initialState, action) => {
   console.log(action);
@@ -87,6 +89,26 @@ const userReducer = (state = initialState, action) => {
       };
       break;
     case userConstants.ADD_USER_ORDER_FAILURE:
+      state = {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+      };
+      break;
+    case userConstants.GET_USER_ORDER_REQUEST:
+      state = {
+        ...state,
+        loading: true,
+      };
+      break;
+    case userConstants.GET_USER_ORDER_SUCCESS:
+      state = {
+        ...state,
+        orders: action.payload.orders,
+        loading: false,
+      };
+      break;
+    case userConstants.GET_USER_ORDER_FAILURE:
       state = {
         ...state,
         loading: false,

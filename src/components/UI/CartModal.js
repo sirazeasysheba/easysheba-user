@@ -300,8 +300,8 @@ const CartModal = ({
             </div>
           </div>
         ) : (
-          <div>
-            <button onClick={closeModal} style={buttonStyles}>
+          <div className="lol-modal">
+            <button onClick={closeModal} className="close-btn">
               <img src={close} alt="" />
             </button>
             <div>
@@ -347,10 +347,7 @@ const CartModal = ({
                 </div>
               </div>
             </div>
-            <div
-              className="mx-2"
-              style={{ position: "fixed", bottom: 10, left: "35%" }}
-            >
+            <div className="mx-2" style={{ position: "fixed", bottom: 100 }}>
               <Link to="/checkout">
                 <button className="proceed-btn w-100 mt-5 mb-2">
                   OK, I understand, PROCEED TO CHECKOUT

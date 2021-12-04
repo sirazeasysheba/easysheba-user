@@ -4,8 +4,8 @@ import "../../styles/_topBanner.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Navigation } from "swiper";
 import banner from "../../media/cctv-banner.jpg";
-import banner1 from "../../media/rsz_banner_2.jpg";
-import banner2 from "../../media/rsz_banner_3.jpg";
+import banner1 from "../../media/appliance repair.jpg";
+import banner2 from "../../media/cleaning.jpg";
 import banner3 from "../../media/rsz_banner_4.jpg";
 import banner4 from "../../media/rsz_banner_5.jpg";
 import banner5 from "../../media/rsz_banner_6.jpg";
@@ -34,7 +34,7 @@ const BannerSlider = () => {
               src={banner}
               alt=""
               className="image-fluid"
-              style={{ maxHeight: 320 }}
+              style={{ maxHeight: 350 }}
             />
           </SwiperSlide>
           <SwiperSlide className=" rounded-2 d-flex align-items-center justify-content-center text-white">
@@ -42,7 +42,7 @@ const BannerSlider = () => {
               src={banner1}
               alt=""
               className="image-fluid"
-              style={{ maxHeight: 320 }}
+              style={{ maxHeight: 350 }}
             />
           </SwiperSlide>
           <SwiperSlide className="rounded-2 d-flex align-items-center justify-content-center text-white">
@@ -50,7 +50,7 @@ const BannerSlider = () => {
               src={banner2}
               alt=""
               className="image-fluid"
-              style={{ maxHeight: 320 }}
+              style={{ maxHeight: 350 }}
             />
           </SwiperSlide>
           <SwiperSlide className=" rounded-2 d-flex align-items-center justify-content-center text-white">
@@ -58,7 +58,7 @@ const BannerSlider = () => {
               src={banner3}
               alt=""
               className="image-fluid"
-              style={{ maxHeight: 320 }}
+              style={{ maxHeight: 350 }}
             />
           </SwiperSlide>
           <SwiperSlide className=" rounded-2 d-flex align-items-center justify-content-center text-white">
@@ -66,7 +66,7 @@ const BannerSlider = () => {
               src={banner4}
               alt=""
               className="image-fluid"
-              style={{ maxHeight: 320 }}
+              style={{ maxHeight: 350 }}
             />
           </SwiperSlide>
           <SwiperSlide className=" rounded-2 d-flex align-items-center justify-content-center text-white">
@@ -74,7 +74,7 @@ const BannerSlider = () => {
               src={banner5}
               alt=""
               className="image-fluid"
-              style={{ maxHeight: 320 }}
+              style={{ maxHeight: 350 }}
             />
           </SwiperSlide>
         </Swiper>

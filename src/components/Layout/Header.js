@@ -77,7 +77,7 @@ const Header = () => {
                         icon={faPhone}
                         className="fa-rotate-90"
                       />{" "}
-                      01966-050506
+                      09696-010506
                     </NavLink>
                   </li>
                 </Nav>

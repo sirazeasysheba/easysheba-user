@@ -1,19 +1,19 @@
 .banner-slider {
   max-width: 1350px;
   .swiper {
-    width: 80%;
-    height: 500px;
+    width: 100%;
   }
 
   .swiper-slide {
     background-position: center;
-    background-size: cover;
+    // background-size: cover;
   }
 
   .swiper-slide img {
     display: block;
     width: 100%;
-    object-fit: cover;
+    height: 100%;
+    // object-fit: cover;
   }
 
   .swiper-button-next {

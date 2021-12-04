@@ -389,7 +389,7 @@ const Home = () => {
                     icon={faPhone}
                     className="fa-rotate-90 me-1"
                   />{" "}
-                  01966-050506
+                  09696-010506
                 </button>
               </div>
             </Col>

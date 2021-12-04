@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import icons from "../media/checkout.svg";
 import error from "../media/error.svg";
 import schedule from "../media/schedule-icon.svg";
@@ -14,12 +14,7 @@ import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
 import { format } from "date-fns";
 import DatePickerModal from "../components/UI/DatePickerModal";
-import {
-  addAddress,
-  addOrder,
-  getAddress,
-  getCartItems,
-} from "../redux/actions";
+import { addAddress, addOrder, getAddress } from "../redux/actions";
 const Checkout = () => {
   const validate = Yup.object({
     house: Yup.string().required("House No is required"),
@@ -39,7 +34,6 @@ const Checkout = () => {
   const [date, setDate] = useState(format(new Date(), "dd"));
   const [month, setMonth] = useState(format(new Date(), "LLLL"));
   const [year, setYear] = useState(format(new Date(), "yyyy"));
-
   useEffect(() => {
     dispatch(getAddress());
   }, []);
@@ -71,10 +65,13 @@ const Checkout = () => {
   };
 
   const onConfirmOrder = () => {
+    const schedule = `${time}pm on ${date}-${month}-${year}`;
     const items = Object.keys(cart.cartItems).map((key) => ({
       productId: key,
+      productName: cart.cartItems[key].name,
       payablePrice: cart.cartItems[key].price,
       purchasedQty: cart.cartItems[key].qty,
+      serviceName: getService(cart.cartItems[key].service),
     }));
     const payload = {
       addressId: user.address[0]._id,
@@ -85,9 +82,14 @@ const Checkout = () => {
       items: items,
       paymentStatus: "pending",
       paymentType: "card",
+      schedule: schedule,
     };
     dispatch(addOrder(payload));
   };
+
+  // if (cart.cartItems.length <= 0) {
+  //   <Redirect to="/all-services" />;
+  // }
 
   return (
     <div style={{ marginTop: 55, fontSize: 13 }} className="checkout-container">

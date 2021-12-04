@@ -31,6 +31,7 @@
     "react-scrollspy-nav": "^1.2.4",
     "react-slick": "^0.28.1",
     "react-stepper-horizontal": "^1.0.11",
+    "react-table": "^7.7.0",
     "react-toast-notifications": "^2.5.1",
     "react-toastify": "^8.1.0",
     "redux": "^4.1.1",

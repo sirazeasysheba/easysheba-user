@@ -262,7 +262,7 @@ const OrderDetails = () => {
                           className="fa-rotate-90 ms-3 me-2"
                           style={{ fontSize: 20 }}
                         />
-                        <h5 className="fw-bold">01966-050506</h5>
+                        <h5 className="fw-bold">09696-010506</h5>
                       </div>
                     </Row>
                   </div>
@@ -288,7 +288,7 @@ const OrderDetails = () => {
                             className="fa-rotate-90 me-2"
                             style={{ marginTop: 4 }}
                           />
-                          <p className="fw-bold">01966-050506</p>
+                          <p className="fw-bold">09696-010506</p>
                         </div>
                       </div>
                     </div>
@@ -302,7 +302,7 @@ const OrderDetails = () => {
                         className="fa-rotate-90 ms-3 me-2 "
                         style={{ fontSize: 18, fontWeight: 300 }}
                       />
-                      <h5 className="fw-bold">01966-050506</h5>
+                      <h5 className="fw-bold">09696-010506</h5>
                     </div>
                   </div>
                 </Tab.Pane>

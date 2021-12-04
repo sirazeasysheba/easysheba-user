@@ -1,7 +1,4 @@
-import { faChevronRight, faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import demo from "../media/ac.jpg";
 import {
   Badge,
   Breadcrumb,
@@ -13,6 +10,7 @@ import {
   Table,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import ReactTable from "../components/ReactTable/ReactTable";
 
 const Orders = () => {
   return (
@@ -43,38 +41,8 @@ const Orders = () => {
           </Col>
           <Col md={9}>
             <div className="ms-5">
-              <div className="d-flex">
-                <div className="order-search-box-container border rounded me-5">
-                  <Form className="d-flex align-items-center">
-                    <FontAwesomeIcon
-                      icon={faSearch}
-                      className="ms-2 order-search-box-icon"
-                    />
-                    <FormControl
-                      type="search"
-                      placeholder="Search"
-                      aria-label="Search"
-                      className="search-order me-2 shadow-none"
-                    />
-                  </Form>
-                </div>
-                <Form className="order-select-form">
-                  <Form.Select>
-                    <option selected>All</option>
-                    <option value="1">Served</option>
-                    <option value="2">Not Responded</option>
-                    <option value="3">Pending</option>
-                    <option value="4">Schedule Due</option>
-                    <option value="5">Payment Due</option>
-                    <option value="6">Accepted</option>
-                    <option value="7">Serve Due</option>
-                    <option value="8">Declined Due</option>
-                    <option value="9">Canceled</option>
-                  </Form.Select>
-                </Form>
-              </div>
               <div className="mt-5">
-                <Table className="table-borderless">
+                {/* <Table className="table-borderless">
                   <thead
                     style={{
                       backgroundColor: "rgba(18,15,46,.04)",
@@ -159,7 +127,9 @@ const Orders = () => {
                       </td>
                     </tr>
                   </tbody>
-                </Table>
+                </Table> */}
+
+                <ReactTable />
               </div>
             </div>
           </Col>

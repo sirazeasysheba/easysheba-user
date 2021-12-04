@@ -161,6 +161,7 @@
 }
 .Modal {
   background-color: white;
+  min-height: 80vh;
   width: 1000px !important;
   margin-top: 50px;
   margin-left: auto;
@@ -195,6 +196,7 @@
   background: transparent;
   z-index: 10001 !important;
 }
+
 @media screen and (max-width: 600px) {
   .Modal {
     background-color: white;

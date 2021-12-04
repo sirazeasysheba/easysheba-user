@@ -80,3 +80,33 @@
     cursor: pointer;
   }
 }
+.react-data-table {
+  table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  table td,
+  table th {
+    // border: 1px solid black;
+    padding: 8px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  table tr:hover {
+    background-color: #ddd;
+  }
+  table th,
+  tfoot td {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    color: #333333;
+  }
+}

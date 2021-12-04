@@ -141,7 +141,10 @@ const Footer = () => {
                 <div className="address-icon text-center me-2">
                   <FontAwesomeIcon icon={faPhone} className="fa-rotate-90" />
                 </div>
-                <p>01966-050506</p>
+                <div>
+                  <p className="mb-0">09696-010506</p>
+                  <p>01966-050506</p>
+                </div>
               </div>
               <div className="d-flex  footer-info" style={{ marginTop: -8 }}>
                 <div className="address-icon text-center me-2">
