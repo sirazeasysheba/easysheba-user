@@ -14,7 +14,9 @@ import "./styles/style.scss";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 import "react-toastify/dist/ReactToastify.css";
+import MessengerCustomerChat from "react-messenger-customer-chat";
 import {
+  getAddress,
   getAllCategory,
   getAllService,
   getCartItems,
@@ -63,6 +65,7 @@ function App() {
   useEffect(() => {
     if (token) {
       dispatch(getCartItems());
+      dispatch(getAddress());
     }
   }, [token]);
 
@@ -95,7 +98,7 @@ function App() {
         <PrivateRoute exact path="/orders">
           <Orders />
         </PrivateRoute>
-        <PrivateRoute exact path="/order-details">
+        <PrivateRoute path="/order/:id">
           <OrderDetails />
         </PrivateRoute>
         <PrivateRoute exact path="/profile">
@@ -129,6 +132,12 @@ function App() {
           <NotFound />
         </Route>
       </Switch>
+      <MessengerCustomerChat
+        pageId="102826721297012"
+        appId="<APP_ID>"
+        htmlRef="<REF_STRING>"
+      />
+      ,
       <Footer />
     </div>
   );

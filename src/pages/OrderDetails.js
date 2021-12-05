@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import {
   Breadcrumb,
   Col,
@@ -9,7 +10,7 @@ import {
   Row,
   Tab,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import demo from "../media/ac.jpg";
 import { ReactComponent as CopyIcon } from "../media/copy.svg";
 import Stepper from "react-stepper-horizontal";
@@ -22,6 +23,13 @@ const OrderDetails = () => {
   const [open3, setOpen3] = useState(false);
   const [open4, setOpen4] = useState(false);
 
+  const auth = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.user);
+  const { id } = useParams();
+  const item = user.orders.find((child) => child._id === id);
+  const time = item.schedule.split(" ");
+  const date = time[2].split("-");
+  console.log(item);
   return (
     <div style={{ marginTop: 100, marginBottom: 50, fontSize: 13 }}>
       <Container>
@@ -126,10 +134,19 @@ const OrderDetails = () => {
                               }
                               style={{ cursor: "pointer" }}
                             />{" "}
-                            D-563248
+                            {item.id}
                           </p>
-                          <h6 className="fw-bold">Desktop Services</h6>
-                          <h4 className="fw-bold">৳ 1,780</h4>
+                          {item.items.map((i, index) => (
+                            <div key={index}>
+                              <h6 className="fw-bold">{i.serviceName}</h6>
+                              <h4 className="fw-bold">
+                                ৳{" "}
+                                {(
+                                  i.payablePrice * i.purchasedQty
+                                ).toLocaleString()}
+                              </h4>
+                            </div>
+                          ))}
                           <Link to="/">
                             <button className="primary-btn fw-bold w-100 mt-3 mb-3">
                               CANCEL ORDER
@@ -152,44 +169,51 @@ const OrderDetails = () => {
                                 borderRight: "4px solid #f5f5f6",
                               }}
                             >
-                              <h5> 03</h5>
-                              <h5> Nov</h5>
+                              <h5> {date[0]}</h5>
+                              <h5> {date[1]}</h5>
                             </div>
-                            <div>
-                              <h6 className="ms-5" style={{ lineHeight: 2 }}>
-                                Wednesday <br /> 9:00 PM-10:00 PM
-                              </h6>
+                            <div className="d-flex align-items-center">
+                              <h6 className="ms-5">{time[0]}</h6>
                             </div>
                           </div>
                         </div>
                         <div className="shadow-lg rounded px-4 mt-5  py-3">
                           <h6 className="fw-bold">Ordered By</h6>
-                          <p>Md. Arifur Rahman</p>
-                          <p>+8801821069661</p>
-                          <p>4,4,Khilgaon</p>
+                          <p>{auth.user.name}</p>
+                          <p>{auth.user.contactNumber}</p>
+                          <p>
+                            {user.address[0].house}, {user.address[0].road},{" "}
+                            {user.address[0].sector}, {user.address[0].area}
+                          </p>
                         </div>
                       </Col>
                       <Col md={4}>
                         <div className="shadow-lg rounded px-4 py-3">
                           <h5 className="fw-bold mb-3">Bill & Payment </h5>
-                          <div className="d-flex justify-content-between align-items-center border-bottom">
-                            <div>
-                              <p className="mb-0">
-                                {" "}
-                                Table & Work Station Ma...
-                              </p>
-                              <p className="text-muted fw-bold">
-                                Wall Mount Home Work St.. x1
+                          {item.items.map((i, index) => (
+                            <div className="d-flex justify-content-between align-items-center border-bottom">
+                              <div>
+                                <p className="mb-0">{i.serviceName}</p>
+                                <p className="text-muted fw-bold">
+                                  {i.productName}.. x {i.purchasedQty}
+                                </p>
+                              </div>
+                              <p>
+                                ৳{" "}
+                                {(
+                                  i.payablePrice * i.purchasedQty
+                                ).toLocaleString()}
                               </p>
                             </div>
-                            <p>৳ 7500</p>
-                          </div>
+                          ))}
                           <div
                             className="d-flex justify-content-between mt-2"
                             style={{ fontSize: 12 }}
                           >
                             <p className="mb-1">Subtotal</p>
-                            <p className="mb-1">৳ 7500</p>
+                            <p className="mb-1">
+                              ৳ {item.totalAmount.toLocaleString()}
+                            </p>
                           </div>
                           <div
                             className="d-flex justify-content-between mb-0"
@@ -210,7 +234,10 @@ const OrderDetails = () => {
                             style={{ fontSize: 12 }}
                           >
                             <p className="mb-1">Amount to be paid</p>
-                            <p className="mb-1">৳ 7,500</p>
+                            <p className="mb-1">
+                              {" "}
+                              ৳ {item.totalAmount.toLocaleString()}
+                            </p>
                           </div>
                           <small
                             className="text-muted d-block"
@@ -281,7 +308,7 @@ const OrderDetails = () => {
                         }}
                       />
                       <div>
-                        <h6 className="fw-bold">Bright Computer</h6>
+                        <h6 className="fw-bold">EasySheba Platform Ltd</h6>
                         <div className="d-flex">
                           <FontAwesomeIcon
                             icon={faPhone}

@@ -44,7 +44,7 @@ export const COLUMNS = [
     Footer: "",
     accessor: "_id",
     Cell: (cell) => (
-      <Link to={`/order/${cell.cell._id}`}>
+      <Link to={`/order/${cell.row.values._id}`}>
         <button className="view-details-btn fw-bold" style={{ fontSize: 13 }}>
           Details{" "}
           <FontAwesomeIcon

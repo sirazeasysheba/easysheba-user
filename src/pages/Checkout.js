@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import icons from "../media/checkout.svg";
 import error from "../media/error.svg";
 import schedule from "../media/schedule-icon.svg";
