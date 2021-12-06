@@ -1,4 +1,3 @@
-import { getCartItems } from ".";
 import axios from "../../helpers/axios";
 import { cartConstants, userConstants } from "./constants";
 

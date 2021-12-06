@@ -35,7 +35,8 @@ const cartReducer = (state = initState, action) => {
       break;
     case cartConstants.RESET_CART:
       state = {
-        ...initState,
+        ...state,
+        cartItems: {},
       };
 
       break;

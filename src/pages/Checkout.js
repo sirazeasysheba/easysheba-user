@@ -14,7 +14,12 @@ import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
 import { format } from "date-fns";
 import DatePickerModal from "../components/UI/DatePickerModal";
-import { addAddress, addOrder, getAddress } from "../redux/actions";
+import {
+  addAddress,
+  addOrder,
+  getAddress,
+  getCartItems,
+} from "../redux/actions";
 const Checkout = () => {
   const validate = Yup.object({
     house: Yup.string().required("House No is required"),
@@ -85,6 +90,8 @@ const Checkout = () => {
       schedule: schedule,
     };
     dispatch(addOrder(payload));
+    window.localStorage.setItem("order", JSON.stringify(payload));
+    dispatch(getCartItems());
   };
 
   // if (cart.cartItems.length <= 0) {

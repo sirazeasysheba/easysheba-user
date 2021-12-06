@@ -33,7 +33,6 @@ const ProductDetails = () => {
   const category = useSelector((state) => state.category);
   const services = useSelector((state) => state.service);
   const products = useSelector((state) => state.product);
-  console.log(products.productList.products);
 
   const [service, setService] = useState("");
 

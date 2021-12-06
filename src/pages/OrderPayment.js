@@ -11,7 +11,7 @@ import cbl from "../media/cbl.png";
 import { useSelector } from "react-redux";
 const OrderPayment = () => {
   const auth = useSelector((state) => state.auth);
-  const order = useSelector((state) => state.user.order);
+  const order = JSON.parse(localStorage.getItem("order"));
   console.log(order);
   const [open, setOpen] = useState(false);
   return (
@@ -70,7 +70,7 @@ const OrderPayment = () => {
               <div className="d-flex align-items-center my-3">
                 {" "}
                 <p className="mb-0 me-3 fw-bold" style={{ fontSize: 13 }}>
-                  Total Payable ৳ {order.totalAmount.toLocaleString()}
+                  Total Payable ৳ {order.totalAmount}
                 </p>
                 <button
                   onClick={() => setOpen(!open)}

@@ -103,7 +103,9 @@ const Home = () => {
         </button>
       )}
       <div className="choose-section mb-2 pt-5">
-        <BannerSlider />
+        <div className="d-flex justify-content-center">
+          <BannerSlider />
+        </div>
         <div className="my-5">
           <Container>
             <h3 className="text-center fw-bold mb-3">Our Services</h3>
