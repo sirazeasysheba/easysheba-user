@@ -12,7 +12,6 @@ import { useSelector } from "react-redux";
 const OrderPayment = () => {
   const auth = useSelector((state) => state.auth);
   const order = JSON.parse(localStorage.getItem("order"));
-  console.log(order);
   const [open, setOpen] = useState(false);
   return (
     <div style={{ marginTop: 100 }}>

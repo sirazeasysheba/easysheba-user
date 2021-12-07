@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   Breadcrumb,
@@ -23,13 +23,22 @@ const OrderDetails = () => {
   const [open2, setOpen2] = useState(false);
   const [open3, setOpen3] = useState(false);
   const [open4, setOpen4] = useState(false);
-
+  const [status, setStatus] = useState(1);
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const { id } = useParams();
   const item = user.orders?.find((child) => child._id === id);
   const time = item?.schedule.split(" ");
-
+  useEffect(() => {
+    if (item?.orderStatus[3]?.isCompleted) {
+      setStatus(3);
+    } else if (item?.orderStatus[0]?.isCompleted === false) {
+      setStatus(0);
+    }
+  }, [item]);
+  const handlePayNow = () => {
+    window.localStorage.setItem("order", JSON.stringify(item));
+  };
   return (
     <div style={{ marginTop: 100, marginBottom: 50, fontSize: 13 }}>
       <Container>
@@ -106,15 +115,25 @@ const OrderDetails = () => {
                     <div className="shadow-lg mx-3 rounded p-4">
                       <h6 className="fw-bold">TimeLine</h6>
                       <div className="mx-5" style={{ maxWidth: 700 }}>
-                        <Stepper
-                          steps={[
-                            { title: "Order Placed" },
-                            { title: "Order Confirmed" },
-                            { title: "Order Processing" },
-                            { title: "Order Completed" },
-                          ]}
-                          activeStep={1}
-                        />
+                        {status === 0 ? (
+                          <Stepper
+                            steps={[
+                              { title: "Order Placed" },
+                              { title: "Order Canceled" },
+                            ]}
+                            activeStep={1}
+                          />
+                        ) : (
+                          <Stepper
+                            steps={[
+                              { title: "Order Placed" },
+                              { title: "Order Confirmed" },
+                              { title: "Order Processing" },
+                              { title: "Order Completed" },
+                            ]}
+                            activeStep={status}
+                          />
+                        )}
                       </div>
                     </div>
                     <Row className="mt-3 mx-2">
@@ -147,11 +166,15 @@ const OrderDetails = () => {
                               </h4>
                             </div>
                           ))}
-                          <Link to="/">
+                          {status === 1 ? (
                             <button className="primary-btn fw-bold w-100 mt-3 mb-3">
                               CANCEL ORDER
-                            </button>{" "}
-                          </Link>
+                            </button>
+                          ) : (
+                            <div className="completed d-flex justify-content-center mt-4">
+                              <p className="my-2">Completed</p>
+                            </div>
+                          )}
                         </div>
                       </Col>
                       <Col md={5}>
@@ -184,11 +207,23 @@ const OrderDetails = () => {
                         </div>
                         <div className="shadow-lg rounded px-4 mt-5  py-3">
                           <h6 className="fw-bold">Ordered By</h6>
-                          <p>{auth.user.name}</p>
-                          <p>{auth.user.contactNumber}</p>
+                          <p className="fw-bold mb-2">{auth.user.name}</p>
+                          <p className="fw-bold mb-2">
+                            Phone:{" "}
+                            <span className="ms-3">
+                              {auth.user.contactNumber}
+                            </span>{" "}
+                          </p>
                           <p>
-                            {user.address[0]?.house}, {user.address[0]?.road},{" "}
-                            {user.address[0]?.sector}, {user.address[0]?.area}
+                            <span className="fw-bold"> Address:</span>
+
+                            <span className="ms-3">
+                              House: {user.address[0]?.house}, Road:
+                              {user.address[0]?.road}, <br />
+                              <span style={{ marginLeft: 70 }}></span>
+                              Sector: {user.address[0]?.sector}, Area:{" "}
+                              {user.address[0]?.area}
+                            </span>
                           </p>
                         </div>
                       </Col>
@@ -238,7 +273,11 @@ const OrderDetails = () => {
                             className="d-flex justify-content-between mt-2 fw-bold"
                             style={{ fontSize: 12 }}
                           >
-                            <p className="mb-1">Amount to be paid</p>
+                            {status === 3 ? (
+                              <p className="mb-1">Amount paid</p>
+                            ) : (
+                              <p className="mb-1">Amount to be paid</p>
+                            )}
                             <p className="mb-1">
                               {" "}
                               ৳ {item?.totalAmount.toLocaleString()}
@@ -256,32 +295,46 @@ const OrderDetails = () => {
                           >
                             *Price may vary depending on product availability
                           </small>
-                          <Form className="d-flex my-3">
-                            <Form.Group
-                              className="mb-3 app-form"
-                              controlId="formBasicEmail"
-                              style={{ maxWidth: 200 }}
-                            >
-                              <Form.Control
-                                type="text"
-                                placeholder="Type your promo code"
-                                className="app-form shadow-none"
-                              />
-                            </Form.Group>
-                            <Form.Group
-                              className="mb-3 "
-                              controlId="formBasicEmail"
-                            >
-                              <button className="shadow-none add-promo-btn-2">
-                                Add Promo
-                              </button>
-                            </Form.Group>
-                          </Form>
-                          <Link to="/order-payment">
-                            <button className="primary-btn fw-bold w-100 mt-3 mb-3">
-                              PAY NOW
-                            </button>{" "}
-                          </Link>
+                          {status === 1 && (
+                            <Form className="d-flex my-3">
+                              <Form.Group
+                                className="mb-3 app-form"
+                                controlId="formBasicEmail"
+                                style={{ maxWidth: 200 }}
+                              >
+                                <Form.Control
+                                  type="text"
+                                  placeholder="Type your promo code"
+                                  className="app-form shadow-none"
+                                />
+                              </Form.Group>
+                              <Form.Group
+                                className="mb-3 "
+                                controlId="formBasicEmail"
+                              >
+                                <button className="shadow-none add-promo-btn-2">
+                                  Add Promo
+                                </button>
+                              </Form.Group>
+                            </Form>
+                          )}
+                          {status === 1 ? (
+                            <Link to="/order-payment" onClick={handlePayNow}>
+                              <button className="primary-btn fw-bold w-100 mt-3 mb-3">
+                                PAY NOW
+                              </button>{" "}
+                            </Link>
+                          ) : (
+                            <Link to="/order-payment">
+                              <button
+                                className="primary-btn fw-bold w-100 mt-3 mb-3"
+                                disabled
+                                style={{ color: "black" }}
+                              >
+                                Order Completed
+                              </button>{" "}
+                            </Link>
+                          )}
                         </div>
                       </Col>
                       <div
