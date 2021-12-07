@@ -66,13 +66,9 @@ function App() {
     if (token) {
       dispatch(getCartItems());
       dispatch(getAddress());
+      dispatch(getOrders());
     }
   }, [token]);
-
-  useEffect(() => {
-    dispatch(getOrders());
-  }, [cart.cartItems]);
-
   return (
     <div className="App">
       <Header />

@@ -45,8 +45,8 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const logout = () => {
-    toast("Login Successful!", {
-      type: "success",
+    toast("Logout Successful!", {
+      type: "danger",
       position: "top-right",
       theme: "colored",
     });

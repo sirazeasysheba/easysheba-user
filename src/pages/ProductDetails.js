@@ -33,7 +33,6 @@ const ProductDetails = () => {
   const category = useSelector((state) => state.category);
   const services = useSelector((state) => state.service);
   const products = useSelector((state) => state.product);
-
   const [service, setService] = useState("");
 
   const { slug } = useParams();
@@ -55,20 +54,15 @@ const ProductDetails = () => {
     }
     return options;
   };
-
   const slugList = createCategoryList(category.categories);
-
   const newCategory = slugList.find((child) => child.slug === slug);
-
-  const newService = services.services?.find(
-    (service) => service.category === newCategory._id
+  const newService = services?.services?.find(
+    (service) => service?.category === newCategory?._id
   );
 
   useEffect(() => {
     if (service) {
       const products = createProductList(service._id);
-      console.log(products);
-      // dispatch(getProductByService(service._id));
       setProductByService(products);
     }
   }, [service]);
@@ -144,8 +138,8 @@ const ProductDetails = () => {
                     </Breadcrumb>
                   </div>
                   <div className="text-white mb-5">
-                    <h1 className="fw-bold">{newService.name}</h1>
-                    <h3 className="fw-bold">৳ {newService.priceRange}</h3>
+                    <h1 className="fw-bold">{newService?.name}</h1>
+                    <h3 className="fw-bold">৳ {newService?.priceRange}</h3>
                     <h5 className="mt-5 fw-medium">
                       Why take service from us?
                     </h5>
@@ -158,7 +152,7 @@ const ProductDetails = () => {
                       }}
                     >
                       <h5 className="me-2 ps-2 pt-2 fw-bold">
-                        <FontAwesomeIcon icon={faStar2} /> {newService.rating}
+                        <FontAwesomeIcon icon={faStar2} /> {newService?.rating}
                       </h5>
                       <h6 className="pt-2"> out of 5</h6>
                     </div>
@@ -201,7 +195,7 @@ const ProductDetails = () => {
 
                 <Col md={5}>
                   <div className="details-form shadow mb-3">
-                    <h3 className="fw-bold">{newService.name}</h3>
+                    <h3 className="fw-bold">{newService?.name}</h3>
                     <div
                       className="d-flex align-items-center"
                       style={{
@@ -214,7 +208,7 @@ const ProductDetails = () => {
                         className="me-2 ps-2 pt-2 fw-bold"
                         style={{ fontSize: 16 }}
                       >
-                        <FontAwesomeIcon icon={faStar2} /> {newService.rating}
+                        <FontAwesomeIcon icon={faStar2} /> {newService?.rating}
                       </h5>
                       <h6 className="pt-2" style={{ fontSize: 12 }}>
                         {" "}
@@ -223,7 +217,7 @@ const ProductDetails = () => {
                     </div>
 
                     <div className="mt-3">
-                      {newService.children?.map((item, index) => (
+                      {newService?.children?.map((item, index) => (
                         <div
                           className="service-btn mb-2"
                           key={index}
@@ -289,10 +283,10 @@ const ProductDetails = () => {
 
                       <Tab.Content>
                         <Tab.Pane eventKey="details">
-                          <div className="mt-4">{newService.details}</div>
+                          <div className="mt-4">{newService?.details}</div>
                         </Tab.Pane>
                         <Tab.Pane eventKey="additional-information">
-                          <div className="mt-3">{newService.information}</div>
+                          <div className="mt-3">{newService?.information}</div>
                         </Tab.Pane>
                         <Tab.Pane eventKey="reviews">
                           <div className="mt-3">

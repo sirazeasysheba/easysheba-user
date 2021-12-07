@@ -24,7 +24,7 @@ const Login = () => {
 
   useEffect(() => {
     if (auth.error) {
-      setError(auth.error.data.message);
+      setError(auth.error?.data?.message);
     }
   }, [auth.error]);
 
@@ -53,8 +53,8 @@ const Login = () => {
         onSubmit={(values) => {
           console.log(auth);
           const user = values;
-
           dispatch(login(user));
+
           if (auth.error) {
             toast(error, {
               type: "error",

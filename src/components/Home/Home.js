@@ -103,7 +103,7 @@ const Home = () => {
         </button>
       )}
       <div className="choose-section mb-2 pt-5">
-        <div className="d-flex justify-content-center">
+        <div className="mx-auto">
           <BannerSlider />
         </div>
         <div className="my-5">

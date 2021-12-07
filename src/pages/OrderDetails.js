@@ -8,6 +8,7 @@ import {
   Form,
   Nav,
   Row,
+  Spinner,
   Tab,
 } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
@@ -26,10 +27,9 @@ const OrderDetails = () => {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const { id } = useParams();
-  const item = user.orders.find((child) => child._id === id);
-  const time = item.schedule.split(" ");
-  const date = time[2].split("-");
-  console.log(item);
+  const item = user.orders?.find((child) => child._id === id);
+  const time = item?.schedule.split(" ");
+
   return (
     <div style={{ marginTop: 100, marginBottom: 50, fontSize: 13 }}>
       <Container>
@@ -134,9 +134,9 @@ const OrderDetails = () => {
                               }
                               style={{ cursor: "pointer" }}
                             />{" "}
-                            {item.id}
+                            {item?.id}
                           </p>
-                          {item.items.map((i, index) => (
+                          {item?.items?.map((i, index) => (
                             <div key={index}>
                               <h6 className="fw-bold">{i.serviceName}</h6>
                               <h4 className="fw-bold">
@@ -169,11 +169,16 @@ const OrderDetails = () => {
                                 borderRight: "4px solid #f5f5f6",
                               }}
                             >
-                              <h5> {date[0]}</h5>
-                              <h5> {date[1]}</h5>
+                              {time ? (
+                                <div>
+                                  <h5> {time[2].slice("-")}</h5>
+                                </div>
+                              ) : (
+                                <Spinner animation="border" />
+                              )}
                             </div>
                             <div className="d-flex align-items-center">
-                              <h6 className="ms-5">{time[0]}</h6>
+                              {time && <h6 className="ms-5">{time[0]}</h6>}
                             </div>
                           </div>
                         </div>
@@ -182,15 +187,15 @@ const OrderDetails = () => {
                           <p>{auth.user.name}</p>
                           <p>{auth.user.contactNumber}</p>
                           <p>
-                            {user.address[0].house}, {user.address[0].road},{" "}
-                            {user.address[0].sector}, {user.address[0].area}
+                            {user.address[0]?.house}, {user.address[0]?.road},{" "}
+                            {user.address[0]?.sector}, {user.address[0]?.area}
                           </p>
                         </div>
                       </Col>
                       <Col md={4}>
                         <div className="shadow-lg rounded px-4 py-3">
                           <h5 className="fw-bold mb-3">Bill & Payment </h5>
-                          {item.items.map((i, index) => (
+                          {item?.items?.map((i, index) => (
                             <div className="d-flex justify-content-between align-items-center border-bottom">
                               <div>
                                 <p className="mb-0">{i.serviceName}</p>
@@ -212,7 +217,7 @@ const OrderDetails = () => {
                           >
                             <p className="mb-1">Subtotal</p>
                             <p className="mb-1">
-                              ৳ {item.totalAmount.toLocaleString()}
+                              ৳ {item?.totalAmount.toLocaleString()}
                             </p>
                           </div>
                           <div
@@ -236,7 +241,7 @@ const OrderDetails = () => {
                             <p className="mb-1">Amount to be paid</p>
                             <p className="mb-1">
                               {" "}
-                              ৳ {item.totalAmount.toLocaleString()}
+                              ৳ {item?.totalAmount.toLocaleString()}
                             </p>
                           </div>
                           <small
