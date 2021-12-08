@@ -13,6 +13,7 @@ const OrderPayment = () => {
   const auth = useSelector((state) => state.auth);
   const order = JSON.parse(localStorage.getItem("order"));
   const [open, setOpen] = useState(false);
+  console.log(order);
   return (
     <div style={{ marginTop: 100 }}>
       <Container>

@@ -1,5 +1,5 @@
 import axios from "../../helpers/axios";
-import { cartConstants, userConstants } from "./constants";
+import { cartConstants, orderConstants, userConstants } from "./constants";
 
 export const signup = (user) => {
   console.log(user);
@@ -93,6 +93,7 @@ export const addOrder = (payload) => {
           type: userConstants.ADD_USER_ORDER_SUCCESS,
           payload: { order },
         });
+        dispatch(getOrders());
       } else {
         const { error } = res.data;
         dispatch({
@@ -146,6 +147,28 @@ export const getOrder = () => {
         const { error } = res.data;
         dispatch({
           type: userConstants.GET_USER_ORDER_FAILURE,
+          payload: { error },
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const cancelOrder = (payload) => {
+  console.log(payload);
+  return async (dispatch) => {
+    dispatch({ type: orderConstants.CANCEL_CUSTOMER_ORDER_REQUEST });
+    try {
+      const res = await axios.post("/user/order/cancel", payload);
+      if (res.status === 201) {
+        dispatch({ type: orderConstants.CANCEL_CUSTOMER_ORDER_SUCCESS });
+        dispatch(getOrders());
+      } else {
+        const { error } = res.data;
+        dispatch({
+          type: orderConstants.CANCEL_CUSTOMER_ORDER_FAILURE,
           payload: { error },
         });
       }

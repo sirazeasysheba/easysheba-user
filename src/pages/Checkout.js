@@ -71,6 +71,7 @@ const Checkout = () => {
 
   const onConfirmOrder = () => {
     const schedule = `${time}pm on ${date}-${month}-${year}`;
+    const num = Math.random().toString().substr(2, 6);
     const items = Object.keys(cart.cartItems).map((key) => ({
       productId: key,
       productName: cart.cartItems[key].name,
@@ -88,6 +89,7 @@ const Checkout = () => {
       paymentStatus: "pending",
       paymentType: "card",
       schedule: schedule,
+      id: `E-${num}`,
     };
     dispatch(addOrder(payload));
     window.localStorage.setItem("order", JSON.stringify(payload));

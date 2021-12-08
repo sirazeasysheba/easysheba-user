@@ -22,7 +22,11 @@ const AllServices = () => {
       <Container>
         <Row>
           <h3 className="mb-4 ms-3 fw-bold">All Services</h3>
-          <Col md={3} className="border-end pe-0" style={{ maxWidth: 250 }}>
+          <Col
+            md={3}
+            className="border-end pe-0 scroll-section"
+            style={{ maxWidth: 250 }}
+          >
             <div
               className="scroll-spy mb-5"
               style={{ position: "sticky", top: 80 }}
@@ -53,7 +57,7 @@ const AllServices = () => {
               </ScrollspyNav>
             </div>
           </Col>
-          <Col md={9}>
+          <Col md={9} sm={12}>
             <div className="ms-5">
               {category.categories.map((cat, index) => (
                 <div id={`${index}`} className="mb-5">

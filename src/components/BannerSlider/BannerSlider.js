@@ -6,9 +6,9 @@ import SwiperCore, { Autoplay, Navigation } from "swiper";
 import banner from "../../media/cctv-banner.jpg";
 import banner1 from "../../media/appliance repair.jpg";
 import banner2 from "../../media/cleaning.jpg";
-import banner3 from "../../media/rsz_banner_4.jpg";
-import banner4 from "../../media/rsz_banner_5.jpg";
-import banner5 from "../../media/rsz_banner_6.jpg";
+import banner3 from "../../media/Shifting And Car Rent.jpg";
+import banner4 from "../../media/it services.jpg";
+import banner5 from "../../media/interior design.jpg";
 import { Container } from "react-bootstrap";
 
 SwiperCore.use([Autoplay, Navigation]);

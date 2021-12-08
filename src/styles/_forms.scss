@@ -9,9 +9,17 @@
 .password {
   .eye-icon {
     position: absolute;
-    top: 495px;
-    right: 520px;
+    top: 560px;
+    right: 533px;
     cursor: pointer;
     z-index: 1000;
+  }
+}
+@media screen and (max-width: 600px) {
+  .password {
+    .eye-icon {
+      top: 560px;
+      right: 90px;
+    }
   }
 }

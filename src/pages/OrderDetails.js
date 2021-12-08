@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Breadcrumb,
   Col,
@@ -17,6 +17,8 @@ import { ReactComponent as CopyIcon } from "../media/copy.svg";
 import Stepper from "react-stepper-horizontal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { cancelOrder } from "../redux/actions/user.actions";
+import format from "date-fns/format";
 const OrderDetails = () => {
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
@@ -26,9 +28,11 @@ const OrderDetails = () => {
   const [status, setStatus] = useState(1);
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const { id } = useParams();
   const item = user.orders?.find((child) => child._id === id);
   const time = item?.schedule.split(" ");
+  console.log(item);
   useEffect(() => {
     if (item?.orderStatus[3]?.isCompleted) {
       setStatus(3);
@@ -38,6 +42,15 @@ const OrderDetails = () => {
   }, [item]);
   const handlePayNow = () => {
     window.localStorage.setItem("order", JSON.stringify(item));
+  };
+  const handleCancelOrder = () => {
+    if (item) {
+      const payload = {
+        orderId: item._id,
+        type: "ordered",
+      };
+      dispatch(cancelOrder(payload));
+    }
   };
   return (
     <div style={{ marginTop: 100, marginBottom: 50, fontSize: 13 }}>
@@ -166,13 +179,24 @@ const OrderDetails = () => {
                               </h4>
                             </div>
                           ))}
-                          {status === 1 ? (
-                            <button className="primary-btn fw-bold w-100 mt-3 mb-3">
+                          {status === 1 && (
+                            <button
+                              className="primary-btn fw-bold w-100 mt-3 mb-3"
+                              onClick={handleCancelOrder}
+                            >
                               CANCEL ORDER
                             </button>
-                          ) : (
+                          )}
+                          {status === 3 && (
                             <div className="completed d-flex justify-content-center mt-4">
                               <p className="my-2">Completed</p>
+                            </div>
+                          )}
+                          {status === 0 && (
+                            <div className="completed d-flex justify-content-center mt-4">
+                              <p className="my-2" style={{ color: "red" }}>
+                                Order Canceled
+                              </p>
                             </div>
                           )}
                         </div>
@@ -181,9 +205,16 @@ const OrderDetails = () => {
                         <div className="shadow-lg rounded px-4  py-3">
                           <div className="d-flex justify-content-between">
                             <h6 className="fw-bold">Schedule</h6>
-                            <button className="change-btn">
-                              <FontAwesomeIcon icon={faEdit} /> Change
-                            </button>
+                            {status === 1 && (
+                              <button className="change-btn">
+                                <FontAwesomeIcon icon={faEdit} /> Change
+                              </button>
+                            )}
+                            {status === 0 && (
+                              <h6 className="fw-bold" style={{ color: "red" }}>
+                                Canceled{" "}
+                              </h6>
+                            )}
                           </div>
                           <div className="d-flex mt-3 fw-bold">
                             <div
@@ -194,15 +225,35 @@ const OrderDetails = () => {
                             >
                               {time ? (
                                 <div>
-                                  <h5> {time[2].slice("-")}</h5>
+                                  <h6> {time[2].slice("-")}</h6>
                                 </div>
                               ) : (
                                 <Spinner animation="border" />
                               )}
+                              <div className="d-flex ">
+                                <p className="mb-0">
+                                  {" "}
+                                  {time && <h6 className="mx-3">{time[0]}</h6>}
+                                </p>
+                              </div>
                             </div>
-                            <div className="d-flex align-items-center">
-                              {time && <h6 className="ms-5">{time[0]}</h6>}
-                            </div>
+
+                            {status === 0 && (
+                              <div>
+                                <p className="mb-2">
+                                  {format(
+                                    new Date(item?.updatedAt),
+                                    "'at' h:mm a"
+                                  )}
+                                </p>
+                                <p>
+                                  {format(
+                                    new Date(item?.updatedAt),
+                                    "dd/MM/yyyy"
+                                  )}
+                                </p>
+                              </div>
+                            )}
                           </div>
                         </div>
                         <div className="shadow-lg rounded px-4 mt-5  py-3">
@@ -318,13 +369,14 @@ const OrderDetails = () => {
                               </Form.Group>
                             </Form>
                           )}
-                          {status === 1 ? (
+                          {status === 1 && (
                             <Link to="/order-payment" onClick={handlePayNow}>
                               <button className="primary-btn fw-bold w-100 mt-3 mb-3">
                                 PAY NOW
                               </button>{" "}
                             </Link>
-                          ) : (
+                          )}
+                          {status === 3 && (
                             <Link to="/order-payment">
                               <button
                                 className="primary-btn fw-bold w-100 mt-3 mb-3"
@@ -332,6 +384,17 @@ const OrderDetails = () => {
                                 style={{ color: "black" }}
                               >
                                 Order Completed
+                              </button>{" "}
+                            </Link>
+                          )}
+                          {status === 0 && (
+                            <Link to="/order-payment">
+                              <button
+                                className="primary-btn fw-bold w-100 mt-3 mb-3"
+                                disabled
+                                style={{ color: "red" }}
+                              >
+                                Order Canceled
                               </button>{" "}
                             </Link>
                           )}
