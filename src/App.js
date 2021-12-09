@@ -42,7 +42,6 @@ import Career from "./pages/Career";
 // import "swiper/scss/navigation";
 function App() {
   const auth = useSelector((state) => state.auth);
-  const cart = useSelector((state) => state.cart);
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
   const location = useLocation();
@@ -130,8 +129,8 @@ function App() {
       </Switch>
       <MessengerCustomerChat
         pageId="102826721297012"
-        appId="<APP_ID>"
-        htmlRef="<REF_STRING>"
+        appId="746374129670772"
+        // htmlRef="<REF_STRING>"
       />
       ,
       <Footer />

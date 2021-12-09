@@ -12,7 +12,7 @@ import {
   Tab,
 } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
-import demo from "../media/ac.jpg";
+import demo from "../media/76348.jpg";
 import { ReactComponent as CopyIcon } from "../media/copy.svg";
 import Stepper from "react-stepper-horizontal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

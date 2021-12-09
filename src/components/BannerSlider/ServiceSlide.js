@@ -15,7 +15,7 @@ const ServiceSlide = ({ openModal }) => {
         navigation={true}
         className="mySwiper"
         breakpoints={{
-          400: {
+          300: {
             slidesPerView: 3,
           },
           // when window width is >= 640px
