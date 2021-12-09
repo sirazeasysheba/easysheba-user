@@ -44,3 +44,14 @@
     display: none !important;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .banner-slider {
+    .swiper-button-next {
+      background-size: 30px;
+    }
+    .swiper-button-prev {
+      background-size: 30px;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import easy from "../media/banner (6).jpg";
+import easy from "../media/about us.jpg";
 const About = () => {
   return (
     <div style={{ marginTop: 100, marginBottom: 50 }}>

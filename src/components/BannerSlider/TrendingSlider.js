@@ -49,7 +49,7 @@ const TrendingSlider = () => {
     <div className="trending-slider">
       <Slider {...settings}>
         <div className="ms-3">
-          <Link to="/product-details" className="link">
+          <Link to="/services/ac-servicing" className="link">
             <div>
               <img src={ac} alt="" className="trending-image" />
 
@@ -58,7 +58,7 @@ const TrendingSlider = () => {
           </Link>
         </div>
         <div className="ms-3">
-          <Link to="/product-details" className="link">
+          <Link to="/services/cctv-installation-and-repair" className="link">
             <div>
               <img src={cctv} alt="" className="trending-image" />
 
@@ -69,7 +69,7 @@ const TrendingSlider = () => {
           </Link>
         </div>
         <div className="ms-3">
-          <Link to="/product-details" className="link">
+          <Link to="/services/software-development" className="link">
             <div>
               <img src={software} alt="" className="trending-image" />
 
@@ -78,7 +78,7 @@ const TrendingSlider = () => {
           </Link>
         </div>
         <div className="ms-3">
-          <Link to="/product-details" className="link">
+          <Link to="/services/gas-stove-repair" className="link">
             <div>
               <img src={gas} alt="" className="trending-image trending-text" />
 
@@ -87,7 +87,7 @@ const TrendingSlider = () => {
           </Link>
         </div>
         <div className="ms-3">
-          <Link to="/product-details" className="link">
+          <Link to="/services/geysar-repair" className="link">
             <div>
               <img src={geysar} alt="" className="trending-image" />
 
@@ -96,7 +96,7 @@ const TrendingSlider = () => {
           </Link>
         </div>
         <div className="ms-3">
-          <Link to="/product-details" className="link">
+          <Link to="/services/digital-marketing" className="link">
             <div>
               <img src={digital} alt="" className="trending-image" />
 

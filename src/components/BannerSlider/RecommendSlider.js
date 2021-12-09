@@ -45,7 +45,7 @@ const RecommendSlider = () => {
     <div className="trending-slider">
       <Slider {...settings}>
         <div className="ms-3">
-          <Link to="/product-details" className="link">
+          <Link to="/services/software-development" className="link">
             <div>
               <img src={software} alt="" className="trending-image" />
 
@@ -54,7 +54,7 @@ const RecommendSlider = () => {
           </Link>
         </div>
         <div className="ms-3">
-          <Link to="/product-details" className="link">
+          <Link to="/all-services" className="link">
             <div>
               <img src={pest} alt="" className="trending-image" />
 
@@ -63,7 +63,7 @@ const RecommendSlider = () => {
           </Link>
         </div>
         <div className="ms-3">
-          <Link to="/product-details" className="link">
+          <Link to="/services/website-development" className="link">
             <div>
               <img src={web} alt="" className="trending-image" />
 
@@ -72,7 +72,7 @@ const RecommendSlider = () => {
           </Link>
         </div>
         <div className="ms-3">
-          <Link to="/product-details" className="link">
+          <Link to="/services/cctc-installation-and-repair" className="link">
             <div>
               <img src={cctv} alt="" className="trending-image" />
 
@@ -84,7 +84,7 @@ const RecommendSlider = () => {
           </Link>
         </div>
         <div className="ms-3">
-          <Link to="/product-details" className="link">
+          <Link to="/services/ac-servicing" className="link">
             <div>
               <img src={ac} alt="" className="trending-image" />
 
@@ -93,7 +93,7 @@ const RecommendSlider = () => {
           </Link>
         </div>
         <div className="ms-3">
-          <Link to="/product-details" className="link">
+          <Link to="/services/digital-marketing" className="link">
             <div>
               <img src={digital} alt="" className="trending-image" />
 

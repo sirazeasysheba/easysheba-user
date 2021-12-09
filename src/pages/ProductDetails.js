@@ -72,6 +72,8 @@ const ProductDetails = () => {
     email: Yup.string().email("Email is Invalid").required("Email is required"),
     name: Yup.string().required("Name is required"),
   });
+  const details = newService?.details.split(".");
+  const information = newService?.information.split(".");
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -283,10 +285,40 @@ const ProductDetails = () => {
 
                       <Tab.Content>
                         <Tab.Pane eventKey="details">
-                          <div className="mt-4">{newService?.details}</div>
+                          <div className="mt-4">
+                            <h6 className="fw-bold">
+                              Our All {newService?.name} Services
+                            </h6>
+                            <ul className="mt-3">
+                              {newService?.children?.map((item, index) => (
+                                <li style={{ fontSize: 13 }} key={index}>
+                                  {item.name}
+                                </li>
+                              ))}
+                            </ul>
+                            <div>
+                              <p className="fw-bold">Features</p>
+                              <ul className="mt-3">
+                                {details?.map((item, index) => (
+                                  <li style={{ fontSize: 13 }} key={index}>
+                                    {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
                         </Tab.Pane>
                         <Tab.Pane eventKey="additional-information">
-                          <div className="mt-3">{newService?.information}</div>
+                          <div className="mt-3">
+                            <p className="fw-bold">You may also know</p>
+                            <ul className="mt-3">
+                              {information?.map((item, index) => (
+                                <li style={{ fontSize: 13 }} key={index}>
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         </Tab.Pane>
                         <Tab.Pane eventKey="reviews">
                           <div className="mt-3">
@@ -621,7 +653,7 @@ const ProductDetails = () => {
                       className="me-2 mb-1 "
                       style={{ fontSize: 30 }}
                     />
-                    <h2>01966050506</h2>
+                    <h2>09696-010506</h2>
                   </div>
                 </div>
                 <div className="like-container shadow-lg mb-5">

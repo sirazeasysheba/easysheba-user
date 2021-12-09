@@ -54,8 +54,8 @@ const Header = () => {
   };
   return (
     <>
-      <Container fluid>
-        <Row style={{ maxWidth: 1350 }}>
+      <Container>
+        <Row>
           <Navbar
             bg="light"
             expand="lg"

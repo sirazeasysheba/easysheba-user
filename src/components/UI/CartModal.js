@@ -8,35 +8,6 @@ import { Link } from "react-router-dom";
 import close from "../../media/x-converted.png";
 import { addToCart, removeCartItem } from "../../redux/actions";
 import { ToastContainer, toast } from "react-toastify";
-const customStyles = {
-  overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "rgba(255, 255, 255, 0.75)",
-    zIndex: 1000,
-  },
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    width: "1000px",
-    minHeight: "500px",
-    transform: "translate(-50%, -50%)",
-    overflow: "visible",
-    padding: 0,
-
-    boxShadow:
-      "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
-  },
-};
-
-const buttonStyles = {};
-
 Modal.setAppElement("#root");
 
 //function
@@ -123,6 +94,15 @@ const CartModal = ({
                       >
                         <div>
                           <p className="mb-1 fw-bold">{product.name}</p>
+                          <div>
+                            {product.info && (
+                              <ul>
+                                {product.info.split(".").map((i, index) => (
+                                  <li style={{ fontSize: 10 }}>{i}</li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
                           <p className="fw-bold text-success mb-0">
                             ৳ {product.price.toLocaleString()} /{" "}
                             <span
@@ -315,39 +295,25 @@ const CartModal = ({
                   {" "}
                   Please note for {service.name}
                 </h5>
-                <div>
-                  <div className="d-flex justify-content-center mb-2">
-                    <FontAwesomeIcon
-                      icon={faLongArrowAltRight}
-                      className="me-2 text-success"
-                    />
-                    <h6>Hanging Charge 400tk (If applicable)</h6>
-                  </div>
-                  <div className="d-flex justify-content-center mb-2">
-                    <FontAwesomeIcon
-                      icon={faLongArrowAltRight}
-                      className="me-2 text-success"
-                    />
-                    <h6>Hanging Charge 400tk (If applicable)</h6>
-                  </div>
-                  <div className="d-flex justify-content-center mb-2">
-                    <FontAwesomeIcon
-                      icon={faLongArrowAltRight}
-                      className="me-2 text-success"
-                    />
-                    <h6>Hanging Charge 400tk (If applicable)</h6>
-                  </div>
-                  <div className="d-flex justify-content-center mb-2">
-                    <FontAwesomeIcon
-                      icon={faLongArrowAltRight}
-                      className="me-2 text-success"
-                    />
-                    <h6>Hanging Charge 400tk (If applicable)</h6>
+                <div className="d-flex justify-content-center">
+                  <div>
+                    {service?.notes?.split(".").map((note, index) => (
+                      <div className="d-flex mb-2" key={index}>
+                        <FontAwesomeIcon
+                          icon={faLongArrowAltRight}
+                          className="me-2 text-success"
+                        />
+                        <h6>{note}</h6>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
-            <div className="mx-2" style={{ position: "fixed", bottom: 100 }}>
+            <div
+              className="mx-2 d-flex justify-content-center"
+              style={{ position: "fixed", bottom: 100 }}
+            >
               <Link to="/checkout">
                 <button className="proceed-btn w-100 mt-5 mb-2">
                   OK, I understand, PROCEED TO CHECKOUT

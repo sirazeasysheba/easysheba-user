@@ -103,7 +103,7 @@ const Home = () => {
         </button>
       )}
       <div className="choose-section mb-2 pt-5">
-        <div className="mx-auto">
+        <div className="d-flex justify-content-center">
           <BannerSlider />
         </div>
         <div className="my-5">
@@ -121,7 +121,7 @@ const Home = () => {
 
         {/* Advertisement */}
         <Container
-          className="my-5 clock-container"
+          className="my-5 clock-container d-flex justify-content-center"
           style={{
             backgroundImage: `url(${advertise})`,
             //backgroundSize: "contain",
@@ -219,10 +219,7 @@ const Home = () => {
       <Container>
         <Row className="mt-5">
           <Col md={3} className="py-2  text-center">
-            <div
-              className="py-2 shadow-lg rounded"
-              style={{ background: "#f16622" }}
-            >
+            <div className="py-2 rounded" style={{ background: "#f16622" }}>
               <h1
                 className="mb-0 pb-0 text-white mt-1"
                 style={{ lineHeight: 1 }}
@@ -249,7 +246,7 @@ const Home = () => {
                 className="mb-0 pb-0 text-white mt-1"
                 style={{ lineHeight: 1 }}
               >
-                1100+
+                3,048+
               </h1>
               <h5 className="mt-0 text-white">Order Served</h5>
             </div>
@@ -260,7 +257,7 @@ const Home = () => {
                 className="mb-0 pb-0 text-white mt-1"
                 style={{ lineHeight: 1 }}
               >
-                500+
+                2,000+
               </h1>
               <h5 className="mt-0 text-white">Five Star Ratings</h5>
             </div>
